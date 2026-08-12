@@ -8,6 +8,7 @@
     --bg-card: #1a2332;
     --bg-hover: #243044;
     --bg-code: #0d1420;
+    --bg-dropdown: #1a2332;
     --text-primary: #e8edf5;
     --text-secondary: #94a3b8;
     --text-muted: #64748b;
@@ -29,6 +30,7 @@
     --bg-card: #ffffff;
     --bg-hover: #e8edf5;
     --bg-code: #f0f4f8;
+    --bg-dropdown: #ffffff;
     --text-primary: #0a0e17;
     --text-secondary: #334155;
     --text-muted: #64748b;
@@ -47,6 +49,7 @@ body.high-contrast {
     --bg-card: #1a1a1a !important;
     --bg-hover: #2a2a2a !important;
     --bg-code: #0a0a0a !important;
+    --bg-dropdown: #1a1a1a !important;
     --text-primary: #ffff00 !important;
     --text-secondary: #ffff00 !important;
     --text-muted: #ffff00 !important;
@@ -78,123 +81,6 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
 
 /* ========================================
-   شريط إمكانية الوصول - ثابت ومخفي/ظاهر
-   ======================================== */
-
-.accessibility-bar {
-    background: var(--bg-surface);
-    border-bottom: 2px solid var(--gold);
-    padding: 0.4rem 1rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1002;
-    box-shadow: var(--shadow-lg);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateY(-100%);
-    opacity: 0;
-    visibility: hidden;
-}
-
-.accessibility-bar.open {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-}
-
-.bar-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 0.3rem 1rem;
-    position: relative;
-    padding-right: 30px;
-}
-
-.bar-group {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    flex-wrap: wrap;
-}
-
-.bar-label {
-    font-size: 0.7rem;
-    color: var(--text-secondary);
-    font-weight: 500;
-}
-
-.bar-divider {
-    width: 1px;
-    height: 20px;
-    background: var(--border-color);
-}
-
-.bar-btn {
-    background: transparent;
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    padding: 0.15rem 0.5rem;
-    border-radius: 30px;
-    font-size: 0.75rem;
-    cursor: pointer;
-    transition: var(--transition);
-    font-family: inherit;
-    min-height: 26px;
-    min-width: 30px;
-}
-
-.bar-btn:hover {
-    background: var(--bg-hover);
-    border-color: var(--gold);
-    color: var(--text-primary);
-}
-
-.bar-btn.btn-gold {
-    background: var(--gold);
-    border-color: var(--gold);
-    color: var(--bg-body);
-}
-.bar-btn.btn-gold:hover { background: var(--gold-dark); }
-
-.bar-btn.btn-speak {
-    background: var(--gold-glow);
-    border-color: var(--gold);
-    color: var(--gold);
-}
-
-.bar-size {
-    font-size: 0.7rem;
-    color: var(--text-secondary);
-    min-width: 24px;
-    text-align: center;
-    font-weight: 600;
-}
-
-.bar-close {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    background: transparent;
-    border: none;
-    color: var(--text-secondary);
-    font-size: 1rem;
-    cursor: pointer;
-    padding: 0.2rem 0.4rem;
-    transition: var(--transition);
-}
-
-.bar-close:hover {
-    color: var(--text-primary);
-    transform: translateY(-50%) rotate(90deg);
-}
-
-/* ========================================
    الهيدر الثابت
    ======================================== */
 
@@ -208,12 +94,7 @@ body {
     right: 0;
     z-index: 1001;
     box-shadow: var(--shadow);
-    transition: all 0.3s ease;
-}
-
-/* عندما يكون شريط الوصول مفتوح، الهيدر يتحرك للأسفل */
-.main-header.shifted {
-    top: 56px;
+    transition: var(--transition);
 }
 
 .header-container {
@@ -315,6 +196,15 @@ body {
     background: var(--border-color);
 }
 
+/* ========================================
+   زر وشريط إمكانية الوصول - منسدل صغير
+   ======================================== */
+
+.access-wrapper {
+    position: relative;
+    flex-shrink: 0;
+}
+
 .access-toggle {
     background: var(--gold-glow);
     border: 1px solid var(--gold);
@@ -324,7 +214,9 @@ body {
     font-size: 1rem;
     cursor: pointer;
     transition: var(--transition);
-    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .access-toggle:hover {
@@ -335,6 +227,112 @@ body {
 .access-toggle.active {
     background: var(--gold);
     transform: scale(0.95);
+}
+
+/* شريط إمكانية الوصول - منسدل صغير */
+.access-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) scale(0.9);
+    background: var(--bg-dropdown);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 0.6rem 0.8rem;
+    min-width: 280px;
+    max-width: 90vw;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1003;
+}
+
+.access-dropdown.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) scale(1);
+}
+
+/* سهم صغير فوق القائمة */
+.access-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid var(--bg-dropdown);
+}
+
+.access-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.access-row {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.access-label {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.access-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border-color);
+}
+
+.access-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 0.1rem 0.5rem;
+    border-radius: 30px;
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: inherit;
+    min-height: 24px;
+    min-width: 28px;
+}
+
+.access-btn:hover {
+    background: var(--bg-hover);
+    border-color: var(--gold);
+    color: var(--text-primary);
+}
+
+.access-btn.btn-gold {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--bg-body);
+}
+.access-btn.btn-gold:hover { background: var(--gold-dark); }
+
+.access-btn.btn-speak {
+    background: var(--gold-glow);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.access-size {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    min-width: 22px;
+    text-align: center;
+    font-weight: 600;
 }
 
 /* ========================================
@@ -505,7 +503,7 @@ body {
 }
 
 /* ========================================
-   المحتوى الرئيسي
+   المحتوى الرئيسي (نفس السابق)
    ======================================== */
 
 .main-container {
@@ -529,10 +527,6 @@ body {
     min-height: 500px;
     transition: var(--transition);
 }
-
-/* ========================================
-   باقي التنسيقات
-   ======================================== */
 
 .welcome-screen { text-align: center; padding: 1rem 0; }
 .welcome-icon { font-size: 3.5rem; margin-bottom: 0.5rem; }
@@ -713,34 +707,9 @@ body {
    الاستجابة
    ======================================== */
 
-@media (max-width: 1024px) {
-    .bar-container {
-        gap: 0.3rem 0.6rem;
-        padding-right: 25px;
-    }
-    .bar-label { font-size: 0.65rem; }
-    .bar-btn { font-size: 0.7rem; min-height: 24px; min-width: 26px; padding: 0.1rem 0.4rem; }
-    .bar-size { font-size: 0.65rem; min-width: 20px; }
-}
-
 @media (max-width: 768px) {
     body { padding-top: 60px; }
-    .main-header { padding: 0.4rem 0.8rem; top: 0; }
-    .main-header.shifted { top: 48px; }
-    
-    .accessibility-bar { padding: 0.3rem 0.5rem; }
-    .accessibility-bar.open { transform: translateY(0); }
-    
-    .bar-container {
-        gap: 0.2rem 0.4rem;
-        padding-right: 20px;
-    }
-    .bar-divider { display: none; }
-    .bar-label { font-size: 0.55rem; }
-    .bar-btn { font-size: 0.6rem; min-height: 20px; min-width: 22px; padding: 0.1rem 0.3rem; }
-    .bar-size { font-size: 0.55rem; min-width: 16px; }
-    .bar-close { font-size: 0.8rem; }
-    
+    .main-header { padding: 0.4rem 0.8rem; }
     .header-brand h1 { font-size: 1rem; }
     .brand-icon { font-size: 1.2rem; padding: 0.15rem; }
     .header-stats { gap: 0.4rem; }
@@ -750,6 +719,18 @@ body {
     .access-toggle { width: 30px; height: 30px; font-size: 0.85rem; }
     .menu-toggle { min-width: 30px; min-height: 30px; }
     .menu-toggle span { width: 16px; height: 2px; }
+    
+    .access-dropdown {
+        min-width: 200px;
+        left: 50%;
+        transform: translateX(-50%) scale(0.9);
+    }
+    .access-dropdown.open {
+        transform: translateX(-50%) scale(1);
+    }
+    .access-btn { font-size: 0.6rem; min-height: 20px; min-width: 22px; padding: 0.05rem 0.3rem; }
+    .access-size { font-size: 0.6rem; min-width: 18px; }
+    .access-label { font-size: 0.6rem; }
     
     .content-area { padding: 1rem; min-height: 300px; }
     .welcome-screen h2 { font-size: 1.4rem; }
@@ -763,16 +744,6 @@ body {
 @media (max-width: 480px) {
     body { padding-top: 54px; }
     .main-header { padding: 0.3rem 0.5rem; }
-    .main-header.shifted { top: 44px; }
-    
-    .accessibility-bar { padding: 0.2rem 0.3rem; }
-    .accessibility-bar.open { transform: translateY(0); }
-    .bar-container { gap: 0.15rem 0.3rem; padding-right: 16px; }
-    .bar-btn { font-size: 0.5rem; min-height: 18px; min-width: 18px; padding: 0.05rem 0.2rem; }
-    .bar-size { font-size: 0.5rem; min-width: 14px; }
-    .bar-label { font-size: 0.5rem; }
-    .bar-close { font-size: 0.7rem; }
-    
     .header-brand h1 { font-size: 0.85rem; }
     .brand-icon { font-size: 1rem; }
     .stat-number { font-size: 0.7rem; }
@@ -780,6 +751,20 @@ body {
     .access-toggle { width: 26px; height: 26px; font-size: 0.7rem; }
     .menu-toggle { min-width: 26px; min-height: 26px; }
     .menu-toggle span { width: 14px; height: 2px; }
+    
+    .access-dropdown {
+        min-width: 170px;
+        padding: 0.4rem 0.5rem;
+        left: 50%;
+        transform: translateX(-50%) scale(0.85);
+    }
+    .access-dropdown.open {
+        transform: translateX(-50%) scale(1);
+    }
+    .access-row { gap: 0.2rem; }
+    .access-btn { font-size: 0.5rem; min-height: 18px; min-width: 18px; padding: 0.05rem 0.2rem; }
+    .access-size { font-size: 0.5rem; min-width: 14px; }
+    .access-label { font-size: 0.5rem; }
     
     .main-container { padding: 0.5rem; }
     .content-area { padding: 0.8rem; border-radius: var(--radius); }

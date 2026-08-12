@@ -224,7 +224,7 @@ body {
 }
 
 /* ========================================
-   زر وشريط إمكانية الوصول - منسدل صغير
+   زر وشريط إمكانية الوصول
    ======================================== */
 
 .access-wrapper {
@@ -256,7 +256,6 @@ body {
     transform: scale(0.95);
 }
 
-/* شريط إمكانية الوصول - منسدل صغير */
 .access-dropdown {
     position: absolute;
     top: calc(100% + 8px);
@@ -284,7 +283,6 @@ body {
     transform: translateX(-50%) scale(1);
 }
 
-/* سهم صغير فوق القائمة */
 .access-dropdown::before {
     content: '';
     position: absolute;
@@ -369,7 +367,7 @@ body {
 }
 
 /* ========================================
-   القائمة الجانبية الثابتة
+   القائمة الجانبية
    ======================================== */
 
 .sidebar-overlay {
@@ -447,10 +445,6 @@ body {
     overflow-y: auto;
     padding: 0.5rem;
 }
-
-/* ========================================
-   عناصر القائمة الجانبية
-   ======================================== */
 
 .sidebar-chapter {
     background: var(--bg-card);
@@ -569,7 +563,6 @@ body {
     transition: var(--transition);
 }
 
-/* شاشة الترحيب */
 .welcome-screen {
     text-align: center;
     padding: 1rem 0;
@@ -626,10 +619,6 @@ body {
     color: var(--text-secondary);
     font-size: 0.75rem;
 }
-
-/* ========================================
-   محتوى الدروس
-   ======================================== */
 
 .lesson-header {
     margin-bottom: 1.5rem;
@@ -766,10 +755,6 @@ body {
 .example-box strong {
     color: #a78bfa;
 }
-
-/* ========================================
-   الفوتر
-   ======================================== */
 
 .main-footer {
     background: var(--bg-surface);

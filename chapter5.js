@@ -1,994 +1,1474 @@
 const chapter5 = {
     id: 'ch5',
-    title: 'المشروع العملي النهائي - بناء تطبيق متكامل',
+    title: 'المشروع العملي النهائي - تطبيق إدارة المهام',
     description: 'تطبيق كل ما تعلمته في مشروع واحد متكامل خطوة بخطوة',
     lessons: [
         {
             id: '5-1',
-            title: 'التخطيط الهندسي - تحليل المشكلة وتحديد المتطلبات',
+            title: 'التخطيط للمشروع - تحديد المتطلبات والهيكل',
             content: `
-                <h3>التخطيط الهندسي - أساس أي مشروع ناجح</h3>
-                <p>قبل كتابة أي كود، يجب التخطيط للمشروع بشكل كامل. هذا يضمن نجاح المشروع وتجنب المشاكل لاحقاً.</p>
+                <h3>التخطيط للمشروع - أساس النجاح</h3>
+                <p>قبل كتابة أي كود، يجب التخطيط للمشروع بشكل كامل. في هذا الدرس سنحدد متطلبات مشروع إدارة المهام ونصمم هيكله.</p>
                 
-                <h4>مراحل التخطيط الهندسي</h4>
+                <h4>فكرة المشروع</h4>
+                <p>سنقوم ببناء تطبيق إدارة مهام متكامل (Task Manager) يسمح للمستخدم بـ:</p>
                 <ul>
-                    <li><strong>تحليل المشكلة:</strong> فهم المشكلة التي سنحلها بالضبط</li>
-                    <li><strong>تحديد المتطلبات:</strong> ما هي الميزات التي يحتاجها المشروع؟</li>
-                    <li><strong>تصميم الهيكل:</strong> كيف سيكون شكل التطبيق؟</li>
-                    <li><strong>اختيار التقنيات:</strong> ما هي الأدوات والتقنيات المناسبة؟</li>
-                    <li><strong>تخطيط الوقت:</strong> جدولة المهام والمراحل الزمنية</li>
+                    <li>إضافة مهام جديدة مع عنوان ووصف وتاريخ استحقاق وأولوية</li>
+                    <li>عرض المهام في قائمة منظمة</li>
+                    <li>تغيير حالة المهمة (معلقة، قيد التنفيذ، مكتملة)</li>
+                    <li>حذف المهام</li>
+                    <li>تصفية المهام حسب الحالة</li>
+                    <li>البحث عن المهام</li>
+                    <li>حفظ المهام في LocalStorage</li>
+                    <li>التبديل بين الثيم الداكن والفاتح</li>
+                    <li>دعم إمكانية الوصول (تكبير الخط، تباين عالي، قراءة صوتية)</li>
+                    <li>تصميم متجاوب مع جميع الأجهزة</li>
                 </ul>
                 
-                <h4>مشروع أكاديمية الكومندا - التحليل</h4>
+                <h4>هيكل المشروع</h4>
                 <div class="code-block">
-                    <span class="comment">// تحليل المشكلة</span>
-                    <span class="keyword">const</span> problemAnalysis = {
-                        <span class="property">المشكلة</span>: <span class="string">"الحاجة إلى منصة تعلم برمجة متكاملة للمبتدئين"</span>,
-                        <span class="property">الحل</span>: <span class="string">"بناء منصة تعلم ذاتي تحتوي على فصول ودروس مع أدوات تفاعلية"</span>,
-                        <span class="property">المستخدمون</span>: <span class="string">"المبتدئين في البرمجة"</span>,
-                        <span class="property">القيمة</span>: <span class="string">"توفير محتوى منظم وشامل مع أدوات دعم للتعلم"</span>
-                    };
+📁 مشروع-إدارة-المهام/
+├── 📄 index.html      (الهيكل الرئيسي)
+├── 📄 style.css       (التنسيقات والثيمات)
+├── 📄 app.js          (منطق التطبيق)
+├── 📄 chapter1.js     (فصول التعلم)
+├── 📄 chapter2.js
+├── 📄 chapter3.js
+├── 📄 chapter4.js
+└── 📄 chapter5.js     (هذا الملف)
                 </div>
                 
-                <h4>تحديد المتطلبات الوظيفية</h4>
+                <h4>هيكل واجهة المستخدم</h4>
                 <ul>
-                    <li><strong>عرض الفصول والدروس:</strong> قائمة جانبية تعرض الفصول والدروس</li>
-                    <li><strong>عرض المحتوى:</strong> عرض شرح الدروس مع أمثلة وأكواد</li>
-                    <li><strong>شريط إمكانية الوصول:</strong> تكبير الخط، تباين عالي، قراءة صوتية</li>
-                    <li><strong>التفاعل:</strong> استجابة للأحداث (نقر، تمرير، كتابة)</li>
-                    <li><strong>حفظ التفضيلات:</strong> حفظ إعدادات المستخدم في LocalStorage</li>
+                    <li><strong>شريط إمكانية الوصول:</strong> في أعلى الصفحة للتحكم بالخط والتباين والقراءة</li>
+                    <li><strong>الهيدر:</strong> يحتوي على شعار التطبيق وإحصائيات سريعة</li>
+                    <li><strong>شريط التحكم:</strong> زر إضافة مهمة، فلتر المهام، بحث</li>
+                    <li><strong>منطقة المهام:</strong> عرض المهام في بطاقات منظمة</li>
+                    <li><strong>الفوتر:</strong> معلومات حقوق النشر</li>
                 </ul>
-                
-                <h4>المتطلبات غير الوظيفية</h4>
-                <ul>
-                    <li><strong>الأداء:</strong> تحميل سريع واستجابة فورية</li>
-                    <li><strong>إمكانية الوصول:</strong> متوافق مع WCAG 2.1</li>
-                    <li><strong>التوافق:</strong> يعمل على جميع المتصفحات الحديثة</li>
-                    <li><strong>التجاوب:</strong> متوافق مع جميع أحجام الشاشات</li>
-                </ul>
-                
-                <div class="example-box">
-                    <strong>📝 أداة التخطيط - قائمة المهام</strong>
-                    <div class="code-block">
-                        <span class="comment">// قائمة مهام المشروع (Project Backlog)</span>
-                        <span class="keyword">const</span> projectTasks = [
-                            { <span class="property">id</span>: 1, <span class="property">task</span>: <span class="string">"إنشاء هيكل HTML الأساسي"</span>, <span class="property">status</span>: <span class="string">"pending"</span> },
-                            { <span class="property">id</span>: 2, <span class="property">task</span>: <span class="string">"تصميم الثيم والتنسيقات CSS"</span>, <span class="property">status</span>: <span class="string">"pending"</span> },
-                            { <span class="property">id</span>: 3, <span class="property">task</span>: <span class="string">"برمجة شريط إمكانية الوصول"</span>, <span class="property">status</span>: <span class="string">"pending"</span> },
-                            { <span class="property">id</span>: 4, <span class="property">task</span>: <span class="string">"بناء قائمة الفصول الجانبية"</span>, <span class="property">status</span>: <span class="string">"pending"</span> },
-                            { <span class="property">id</span>: 5, <span class="property">task</span>: <span class="string">"عرض الدروس والمحتوى"</span>, <span class="property">status</span>: <span class="string">"pending"</span> },
-                            { <span class="property">id</span>: 6, <span class="property">task</span>: <span class="string">"تفعيل القراءة الصوتية"</span>, <span class="property">status</span>: <span class="string">"pending"</span> },
-                            { <span class="property">id</span>: 7, <span class="property">task</span>: <span class="string">"حفظ تفضيلات المستخدم"</span>, <span class="property">status</span>: <span class="string">"pending"</span> },
-                            { <span class="property">id</span>: 8, <span class="property">task</span>: <span class="string">"تحسين الأداء والاختبار"</span>, <span class="property">status</span>: <span class="string">"pending"</span> }
-                        ];
-                        
-                        <span class="comment">// عرض التقدم</span>
-                        <span class="keyword">function</span> <span class="function">showProgress</span>() {
-                            <span class="keyword">const</span> done = projectTasks.<span class="function">filter</span>(t => t.status === <span class="string">"done"</span>).length;
-                            <span class="keyword">const</span> total = projectTasks.length;
-                            <span class="function">console</span>.<span class="function">log</span>(<span class="string">\`التقدم: \${done}/\${total} مهام مكتملة\`</span>);
-                            <span class="keyword">return</span> done / total;
-                        }
-                    </div>
-                </div>
                 
                 <div class="note-box">
-                    <strong>🎯 خطوات التخطيط العملي:</strong>
-                    <ol>
-                        <li>افهم المشكلة التي تحلها</li>
-                        <li>اكتب قائمة بجميع الميزات المطلوبة</li>
-                        <li>رتب الميزات حسب الأولوية</li>
-                        <li>صمم واجهة المستخدم (رسم تخطيطي)</li>
-                        <li>حدد التقنيات والأدوات المناسبة</li>
-                        <li>قسم العمل إلى مراحل صغيرة</li>
-                        <li>ابدأ التنفيذ واختبر كل مرحلة</li>
-                    </ol>
+                    <strong>📋 قائمة مهام المشروع:</strong>
+                    <ul>
+                        <li>✅ تصميم هيكل HTML</li>
+                        <li>✅ تنسيق CSS مع ثيمات داكن/فاتح</li>
+                        <li>✅ برمجة منطق إدارة المهام</li>
+                        <li>✅ ربط DOM بالأحداث</li>
+                        <li>✅ حفظ البيانات في LocalStorage</li>
+                        <li>✅ إضافة إمكانية الوصول</li>
+                        <li>✅ اختبار وتحسين الأداء</li>
+                    </ul>
+                </div>
+                
+                <div class="example-box">
+                    <strong>📝 نموذج بيانات المهمة:</strong>
+                    <div class="code-block">
+{
+    id: 1234567890,           // معرف فريد
+    title: "تعلم JavaScript",  // عنوان المهمة
+    description: "دراسة الفصل الرابع", // وصف المهمة
+    status: "pending",         // الحالة: pending, progress, completed
+    priority: "high",          // الأولوية: high, medium, low
+    createdAt: "2026-01-15T10:30:00.000Z", // تاريخ الإنشاء
+    dueDate: "2026-01-20",     // تاريخ الاستحقاق
+    tags: ["برمجة", "مهم"]     // وسم (اختياري)
+}
+                    </div>
                 </div>
             `
         },
         {
             id: '5-2',
-            title: 'بناء الهيكل باستخدام HTML5 الدلالي',
+            title: 'بناء هيكل HTML - الخطوة الأولى',
             content: `
-                <h3>كتابة الهيكل الكامل للمنصة باستخدام HTML5 الدلالي</h3>
-                <p>الهيكل الدلالي يحسن SEO ويسهل إمكانية الوصول ويجعل الكود أكثر قراءة.</p>
+                <h3>بناء الهيكل الأساسي باستخدام HTML</h3>
+                <p>في هذا الدرس سنبني الهيكل الكامل لتطبيق إدارة المهام باستخدام HTML5 الدلالي.</p>
                 
-                <h4>هيكل الصفحة الدلالي</h4>
+                <h4>الهيكل الكامل</h4>
                 <div class="code-block">
-                    <span class="comment">&lt;!-- هيكل المنصة التعليمية --&gt;</span>
-                    <span class="keyword">&lt;!DOCTYPE</span> <span class="function">html</span><span class="keyword">&gt;</span>
-                    <span class="keyword">&lt;html</span> <span class="function">lang</span>=<span class="string">"ar"</span> <span class="function">dir</span>=<span class="string">"rtl"</span><span class="keyword">&gt;</span>
-                        <span class="keyword">&lt;head&gt;</span>
-                            <span class="keyword">&lt;meta</span> <span class="function">charset</span>=<span class="string">"UTF-8"</span><span class="keyword">&gt;</span>
-                            <span class="keyword">&lt;meta</span> <span class="function">name</span>=<span class="string">"viewport"</span> <span class="function">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span><span class="keyword">&gt;</span>
-                            <span class="keyword">&lt;title&gt;</span>أكاديمية الكومندا - منصة التعلم المتكاملة<span class="keyword">&lt;/title&gt;</span>
-                            <span class="keyword">&lt;meta</span> <span class="function">name</span>=<span class="string">"description"</span> <span class="function">content</span>=<span class="string">"منصة تعلم برمجة متكاملة للمبتدئين"</span><span class="keyword">&gt;</span>
-                            
-                            <span class="comment">&lt;!-- Open Graph --&gt;</span>
-                            <span class="keyword">&lt;meta</span> <span class="function">property</span>=<span class="string">"og:title"</span> <span class="function">content</span>=<span class="string">"أكاديمية الكومندا"</span><span class="keyword">&gt;</span>
-                            <span class="keyword">&lt;meta</span> <span class="function">property</span>=<span class="string">"og:description"</span> <span class="function">content</span>=<span class="string">"تعلم البرمجة من الصفر حتى الاحتراف"</span><span class="keyword">&gt;</span>
-                            
-                            <span class="keyword">&lt;link</span> <span class="function">rel</span>=<span class="string">"stylesheet"</span> <span class="function">href</span>=<span class="string">"style.css"</span><span class="keyword">&gt;</span>
-                        <span class="keyword">&lt;/head&gt;</span>
-                        
-                        <span class="keyword">&lt;body&gt;</span>
-                            <span class="comment">&lt;!-- شريط إمكانية الوصول --&gt;</span>
-                            <span class="keyword">&lt;header</span> <span class="function">role</span>=<span class="string">"banner"</span><span class="keyword">&gt;</span>
-                                <span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"toolbar"</span> <span class="function">id</span>=<span class="string">"accessibilityToolbar"</span><span class="keyword">&gt;</span>
-                                    <span class="keyword">&lt;button</span> <span class="function">id</span>=<span class="string">"fontDec"</span><span class="keyword">&gt;</span>أ-<span class="keyword">&lt;/button&gt;</span>
-                                    <span class="keyword">&lt;button</span> <span class="function">id</span>=<span class="string">"fontInc"</span><span class="keyword">&gt;</span>أ+<span class="keyword">&lt;/button&gt;</span>
-                                    <span class="keyword">&lt;button</span> <span class="function">id</span>=<span class="string">"contrastToggle"</span><span class="keyword">&gt;</span>🌓 تباين عالي<span class="keyword">&lt;/button&gt;</span>
-                                    <span class="keyword">&lt;button</span> <span class="function">id</span>=<span class="string">"speakBtn"</span><span class="keyword">&gt;</span>🔊 استماع<span class="keyword">&lt;/button&gt;</span>
-                                    <span class="keyword">&lt;button</span> <span class="function">id</span>=<span class="string">"stopSpeakBtn"</span><span class="keyword">&gt;</span>⏹️ إيقاف<span class="keyword">&lt;/button&gt;</span>
-                                <span class="keyword">&lt;/div&gt;</span>
-                            <span class="keyword">&lt;/header&gt;</span>
-                            
-                            <span class="comment">&lt;!-- المحتوى الرئيسي --&gt;</span>
-                            <span class="keyword">&lt;main</span> <span class="function">class</span>=<span class="string">"container"</span><span class="keyword">&gt;</span>
-                                <span class="comment">&lt;!-- الهيدر الرئيسي --&gt;</span>
-                                <span class="keyword">&lt;header</span> <span class="function">class</span>=<span class="string">"main-header"</span><span class="keyword">&gt;</span>
-                                    <span class="keyword">&lt;h1&gt;</span>⚡ أكاديمية الكومندا<span class="keyword">&lt;/h1&gt;</span>
-                                    <span class="keyword">&lt;p</span> <span class="function">class</span>=<span class="string">"subtitle"</span><span class="keyword">&gt;</span>منصة التعلم الذاتي المتكاملة<span class="keyword">&lt;/p&gt;</span>
-                                <span class="keyword">&lt;/header&gt;</span>
-                                
-                                <span class="comment">&lt;!-- الشبكة الرئيسية --&gt;</span>
-                                <span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"academy-grid"</span><span class="keyword">&gt;</span>
-                                    <span class="comment">&lt;!-- القائمة الجانبية --&gt;</span>
-                                    <span class="keyword">&lt;aside</span> <span class="function">class</span>=<span class="string">"sidebar"</span> <span class="function">id</span>=<span class="string">"chapterSidebar"</span> 
-                                           <span class="function">role</span>=<span class="string">"navigation"</span> <span class="function">aria-label</span>=<span class="string">"فصول الأكاديمية"</span><span class="keyword">&gt;</span>
-                                        <span class="comment">&lt;!-- سيتم إنشاؤها بواسطة JavaScript --&gt;</span>
-                                    <span class="keyword">&lt;/aside&gt;</span>
-                                    
-                                    <span class="comment">&lt;!-- منطقة المحتوى --&gt;</span>
-                                    <span class="keyword">&lt;section</span> <span class="function">class</span>=<span class="string">"main-content"</span> <span class="function">id</span>=<span class="string">"mainContent"</span> 
-                                             <span class="function">role</span>=<span class="string">"main"</span> <span class="function">aria-live</span>=<span class="string">"polite"</span><span class="keyword">&gt;</span>
-                                        <span class="keyword">&lt;div</span> <span class="function">id</span>=<span class="string">"contentRenderer"</span><span class="keyword">&gt;</span>
-                                            <span class="comment">&lt;!-- المحتوى المعروض --&gt;</span>
-                                        <span class="keyword">&lt;/div&gt;</span>
-                                    <span class="keyword">&lt;/section&gt;</span>
-                                <span class="keyword">&lt;/div&gt;</span>
-                            <span class="keyword">&lt;/main&gt;</span>
-                            
-                            <span class="comment">&lt;!-- الفوتر --&gt;</span>
-                            <span class="keyword">&lt;footer</span> <span class="function">role</span>=<span class="string">"contentinfo"</span><span class="keyword">&gt;</span>
-                                <span class="keyword">&lt;p&gt;</span>© 2026 أكاديمية الكومندا - جميع الحقوق محفوظة<span class="keyword">&lt;/p&gt;</span>
-                            <span class="keyword">&lt;/footer&gt;</span>
-                            
-                            <span class="keyword">&lt;script</span> <span class="function">src</span>=<span class="string">"chapter1.js"</span><span class="keyword">&gt;&lt;/script&gt;</span>
-                            <span class="keyword">&lt;script</span> <span class="function">src</span>=<span class="string">"app.js"</span><span class="keyword">&gt;&lt;/script&gt;</span>
-                        <span class="keyword">&lt;/body&gt;</span>
-                    <span class="keyword">&lt;/html&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ar" dir="rtl"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;مدير المهام - أكاديمية الكومندا&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- شريط إمكانية الوصول --&gt;
+    &lt;div class="accessibility-bar" id="accessBar"&gt;
+        &lt;button id="fontDec"&gt;أ-&lt;/button&gt;
+        &lt;span id="fontSizeDisplay"&gt;16&lt;/span&gt;
+        &lt;button id="fontInc"&gt;أ+&lt;/button&gt;
+        &lt;button id="themeToggle"&gt;🌙&lt;/button&gt;
+        &lt;button id="contrastToggle"&gt;♿&lt;/button&gt;
+        &lt;button id="speakBtn"&gt;🔊&lt;/button&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- الهيدر --&gt;
+    &lt;header class="main-header"&gt;
+        &lt;div class="header-content"&gt;
+            &lt;h1&gt;📋 مدير المهام&lt;/h1&gt;
+            &lt;div class="header-stats"&gt;
+                &lt;div class="stat"&gt;
+                    &lt;span id="totalTasks"&gt;0&lt;/span&gt;
+                    &lt;label&gt;الإجمالي&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class="stat"&gt;
+                    &lt;span id="completedTasks"&gt;0&lt;/span&gt;
+                    &lt;label&gt;مكتملة&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class="stat"&gt;
+                    &lt;span id="pendingTasks"&gt;0&lt;/span&gt;
+                    &lt;label&gt;معلقة&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/header&gt;
+    
+    &lt;!-- المحتوى الرئيسي --&gt;
+    &lt;main class="main-content"&gt;
+        &lt;!-- شريط التحكم --&gt;
+        &lt;section class="control-bar"&gt;
+            &lt;button id="showAddTask" class="btn-primary"&gt;➕ إضافة مهمة&lt;/button&gt;
+            &lt;div class="filters"&gt;
+                &lt;button class="filter-btn active" data-filter="all"&gt;الكل&lt;/button&gt;
+                &lt;button class="filter-btn" data-filter="pending"&gt;معلقة&lt;/button&gt;
+                &lt;button class="filter-btn" data-filter="progress"&gt;قيد التنفيذ&lt;/button&gt;
+                &lt;button class="filter-btn" data-filter="completed"&gt;مكتملة&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;input type="text" id="searchInput" placeholder="🔍 بحث عن مهمة..."&gt;
+        &lt;/section&gt;
+        
+        &lt;!-- نافذة إضافة مهمة (مودال) --&gt;
+        &lt;div class="modal" id="taskModal"&gt;
+            &lt;div class="modal-content"&gt;
+                &lt;span class="close" id="closeModal"&gt;&times;&lt;/span&gt;
+                &lt;h2&gt;إضافة مهمة جديدة&lt;/h2&gt;
+                &lt;form id="taskForm"&gt;
+                    &lt;input type="text" id="taskTitle" placeholder="عنوان المهمة" required&gt;
+                    &lt;textarea id="taskDesc" placeholder="وصف المهمة (اختياري)"&gt;&lt;/textarea&gt;
+                    &lt;select id="taskPriority"&gt;
+                        &lt;option value="high"&gt;🔴 عالية&lt;/option&gt;
+                        &lt;option value="medium" selected&gt;🟡 متوسطة&lt;/option&gt;
+                        &lt;option value="low"&gt;🟢 منخفضة&lt;/option&gt;
+                    &lt;/select&gt;
+                    &lt;input type="date" id="taskDueDate"&gt;
+                    &lt;button type="submit" class="btn-primary"&gt;💾 حفظ المهمة&lt;/button&gt;
+                &lt;/form&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;!-- قائمة المهام --&gt;
+        &lt;section class="tasks-container" id="tasksContainer"&gt;
+            &lt;div class="tasks-grid" id="tasksGrid"&gt;
+                &lt;!-- سيتم عرض المهام هنا بواسطة JavaScript --&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+    
+    &lt;footer class="main-footer"&gt;
+        &lt;p&gt;© 2026 أكاديمية الكومندا - مشروع إدارة المهام&lt;/p&gt;
+    &lt;/footer&gt;
+    
+    &lt;script src="app.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
                 </div>
                 
+                <h4>شرح العناصر الرئيسية</h4>
+                <ul>
+                    <li><strong>شريط إمكانية الوصول:</strong> أدوات التحكم في حجم الخط والثيم والتباين والقراءة</li>
+                    <li><strong>الهيدر:</strong> يحتوي على عنوان التطبيق وإحصائيات المهام</li>
+                    <li><strong>شريط التحكم:</strong> أزرار التصفية والبحث وإضافة المهام</li>
+                    <li><strong>نافذة المودال:</strong> نموذج لإضافة مهمة جديدة</li>
+                    <li><strong>شبكة المهام:</strong> مكان عرض بطاقات المهام</li>
+                </ul>
+                
                 <div class="note-box">
-                    <strong>⭐ أهمية الهيكل الدلالي:</strong>
-                    <ul>
-                        <li><strong>SEO:</strong> محركات البحث تفهم المحتوى بشكل أفضل</li>
-                        <li><strong>إمكانية الوصول:</strong> قارئات الشاشة تتنقل بسهولة</li>
-                        <li><strong>الصيانة:</strong> كود نظيف ومنظم يسهل تعديله</li>
-                        <li><strong>التوافق:</strong> يدعم التقنيات الحديثة</li>
-                    </ul>
+                    <strong>⭐ ملاحظة مهمة:</strong>
+                    <p>استخدمنا عناصر دلالية مثل <code>header</code>, <code>main</code>, <code>section</code>, <code>footer</code> لتحسين SEO وإمكانية الوصول.</p>
                 </div>
             `
         },
         {
             id: '5-3',
-            title: 'تصميم واجهات المستخدم وشريط إمكانية الوصول',
+            title: 'تصميم CSS - الثيمات والتنسيقات',
             content: `
-                <h3>تصميم واجهات المستخدم وتفعيل شريط إمكانية الوصول</h3>
-                <p>واجهة المستخدم الجيدة تجمع بين الجمال والوظيفة، مع مراعاة جميع المستخدمين.</p>
+                <h3>تصميم واجهة المستخدم باستخدام CSS</h3>
+                <p>في هذا الدرس سنقوم بتنسيق التطبيق باستخدام CSS مع دعم الثيم الداكن والفاتح والتباين العالي.</p>
                 
-                <h4>مبادئ تصميم الواجهات</h4>
-                <ul>
-                    <li><strong>البساطة:</strong> تصميم نظيف بدون فوضى</li>
-                    <li><strong>الوضوح:</strong> محتوى مفهوم وسهل القراءة</li>
-                    <li><strong>الاستجابة:</strong> يعمل على جميع الأجهزة</li>
-                    <li><strong>الاتساق:</strong> تنسيق موحد في جميع الصفحات</li>
-                    <li><strong>التغذية الراجعة:</strong> استجابة فورية لأفعال المستخدم</li>
-                </ul>
-                
-                <h4>شريط إمكانية الوصول - الكود</h4>
+                <h4>المتغيرات والثيمات</h4>
                 <div class="code-block">
-                    <span class="comment">// التحكم في حجم الخط</span>
-                    <span class="keyword">let</span> fontSize = 16;
-                    
-                    <span class="keyword">function</span> <span class="function">changeFontSize</span>(direction) {
-                        <span class="keyword">const</span> step = 1.2;
-                        <span class="keyword">if</span> (direction === <span class="string">'increase'</span>) {
-                            fontSize *= step;
-                        } <span class="keyword">else</span> {
-                            fontSize /= step;
-                            <span class="keyword">if</span> (fontSize < 10) fontSize = 10;
-                        }
-                        document.documentElement.style.fontSize = fontSize + <span class="string">'px'</span>;
-                        localStorage.<span class="function">setItem</span>(<span class="string">'fontSize'</span>, fontSize);
-                    }
-                    
-                    <span class="comment">// التباين العالي</span>
-                    <span class="keyword">function</span> <span class="function">toggleContrast</span>() {
-                        document.body.classList.<span class="function">toggle</span>(<span class="string">'high-contrast'</span>);
-                        <span class="keyword">const</span> isHighContrast = document.body.classList.<span class="function">contains</span>(<span class="string">'high-contrast'</span>);
-                        localStorage.<span class="function">setItem</span>(<span class="string">'highContrast'</span>, isHighContrast);
-                    }
-                    
-                    <span class="comment">// القراءة الصوتية</span>
-                    <span class="keyword">function</span> <span class="function">speakContent</span>() {
-                        <span class="keyword">const</span> content = document.<span class="function">querySelector</span>(<span class="string">'#contentRenderer'</span>);
-                        <span class="keyword">const</span> text = content.textContent.<span class="function">trim</span>();
-                        <span class="keyword">if</span> (text) {
-                            <span class="keyword">const</span> utterance = <span class="keyword">new</span> <span class="function">SpeechSynthesisUtterance</span>(text);
-                            utterance.lang = <span class="string">'ar-SA'</span>;
-                            utterance.rate = 0.9;
-                            window.speechSynthesis.<span class="function">speak</span>(utterance);
-                        }
-                    }
-                    
-                    <span class="comment">// ربط الأحداث</span>
-                    document.<span class="function">getElementById</span>(<span class="string">'fontInc'</span>).<span class="function">addEventListener</span>(<span class="string">'click'</span>, () => <span class="function">changeFontSize</span>(<span class="string">'increase'</span>));
-                    document.<span class="function">getElementById</span>(<span class="string">'fontDec'</span>).<span class="function">addEventListener</span>(<span class="string">'click'</span>, () => <span class="function">changeFontSize</span>(<span class="string">'decrease'</span>));
-                    document.<span class="function">getElementById</span>(<span class="string">'contrastToggle'</span>).<span class="function">addEventListener</span>(<span class="string">'click'</span>, <span class="function">toggleContrast</span>);
-                    document.<span class="function">getElementById</span>(<span class="string">'speakBtn'</span>).<span class="function">addEventListener</span>(<span class="string">'click'</span>, <span class="function">speakContent</span>);
+/* ========================================
+   الثيمات والمتغيرات
+   ======================================== */
+
+:root {
+    /* الثيم الداكن (افتراضي) */
+    --bg-body: #0a0e17;
+    --bg-surface: #111927;
+    --bg-card: #1a2332;
+    --bg-hover: #243044;
+    --bg-input: #0d1420;
+    
+    --text-primary: #e8edf5;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --text-inverse: #0a0e17;
+    
+    --border-color: #2a3a5e;
+    --border-light: #1e2d4a;
+    
+    --gold: #fbbf24;
+    --gold-dark: #d97706;
+    --gold-glow: rgba(251, 191, 36, 0.12);
+    
+    --status-pending: #facc15;
+    --status-progress: #3b82f6;
+    --status-completed: #22c55e;
+    
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    
+    --radius: 12px;
+    --radius-lg: 16px;
+    --transition: all 0.3s ease;
+}
+
+/* الثيم الفاتح */
+[data-theme="light"] {
+    --bg-body: #f0f4f8;
+    --bg-surface: #ffffff;
+    --bg-card: #ffffff;
+    --bg-hover: #e8edf5;
+    --bg-input: #f0f4f8;
+    
+    --text-primary: #0a0e17;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
+    --text-inverse: #f8fafc;
+    
+    --border-color: #cbd5e1;
+    --border-light: #e2e8f0;
+    
+    --gold: #d97706;
+    --gold-dark: #b45309;
+    --gold-glow: rgba(217, 119, 6, 0.08);
+    
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* التباين العالي */
+body.high-contrast {
+    --bg-body: #000000 !important;
+    --bg-surface: #0a0a0a !important;
+    --bg-card: #1a1a1a !important;
+    --bg-hover: #2a2a2a !important;
+    --bg-input: #0a0a0a !important;
+    
+    --text-primary: #ffff00 !important;
+    --text-secondary: #ffff00 !important;
+    --text-muted: #ffff00 !important;
+    --text-inverse: #000000 !important;
+    
+    --border-color: #ffff00 !important;
+    --border-light: #ffff00 !important;
+    
+    --gold: #ffff00 !important;
+    --gold-dark: #ffff00 !important;
+    --gold-glow: rgba(255, 255, 0, 0.15) !important;
+    
+    --status-pending: #ffff00 !important;
+    --status-progress: #00ffff !important;
+    --status-completed: #00ff00 !important;
+}
                 </div>
                 
-                <div class="example-box">
-                    <strong>📝 تصميم متجاوب - مثال عملي</strong>
-                    <div class="code-block">
-                        <span class="comment">// CSS للتجاوب</span>
-                        <span class="selector">/* Mobile First */</span>
-                        <span class="selector">.academy-grid</span> {
-                            <span class="property">display</span>: <span class="value">grid</span>;
-                            <span class="property">grid-template-columns</span>: <span class="value">1fr</span>;
-                            <span class="property">gap</span>: <span class="value">1rem</span>;
-                        }
-                        
-                        <span class="selector">@media (min-width: 768px)</span> {
-                            <span class="selector">.academy-grid</span> {
-                                <span class="property">grid-template-columns</span>: <span class="value">280px 1fr</span>;
-                            }
-                        }
-                        
-                        <span class="selector">@media (min-width: 1024px)</span> {
-                            <span class="selector">.academy-grid</span> {
-                                <span class="property">grid-template-columns</span>: <span class="value">320px 1fr</span>;
-                                <span class="property">gap</span>: <span class="value">2rem</span>;
-                            }
-                        }
-                    </div>
+                <h4>تنسيق بطاقة المهمة</h4>
+                <div class="code-block">
+/* ========================================
+   بطاقة المهمة
+   ======================================== */
+
+.task-card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 1rem 1.2rem;
+    border: 1px solid var(--border-light);
+    border-right: 4px solid var(--status-pending);
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    animation: slideIn 0.3s ease-out;
+}
+
+.task-card:hover {
+    transform: translateX(-4px);
+    box-shadow: var(--shadow);
+    border-color: var(--gold);
+}
+
+/* حالات المهمة */
+.task-card.status-pending {
+    border-right-color: var(--status-pending);
+}
+
+.task-card.status-progress {
+    border-right-color: var(--status-progress);
+}
+
+.task-card.status-completed {
+    border-right-color: var(--status-completed);
+    opacity: 0.7;
+}
+
+.task-card.status-completed .task-title {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+/* عناصر البطاقة */
+.task-card .task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.task-card .task-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.task-card .task-priority {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 30px;
+    background: var(--bg-hover);
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.task-card .task-priority.high {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.task-card .task-priority.medium {
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.1);
+}
+
+.task-card .task-priority.low {
+    color: #22c55e;
+    background: rgba(34, 197, 94, 0.1);
+}
+
+.task-card .task-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0.3rem 0 0.5rem 0;
+    line-height: 1.6;
+}
+
+.task-card .task-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.6rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--border-light);
+}
+
+.task-card .task-date {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.task-card .task-actions {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.task-card .task-actions button {
+    background: transparent;
+    border: none;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: var(--transition);
+    color: var(--text-secondary);
+}
+
+.task-card .task-actions .complete-btn:hover {
+    color: #22c55e;
+    background: rgba(34, 197, 94, 0.1);
+}
+
+.task-card .task-actions .delete-btn:hover {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
                 </div>
                 
-                <div class="note-box">
-                    <strong>♿ مبادئ إمكانية الوصول:</strong>
-                    <ul>
-                        <li>استخدم <code>role</code> و <code>aria-*</code> للعناصر الديناميكية</li>
-                        <li>تأكد من تباين الألوان الكافي (4.5:1 على الأقل)</li>
-                        <li>وفر طريقة للتحكم في حجم الخط</li>
-                        <li>دعم التنقل عبر لوحة المفاتيح</li>
-                        <li>قدم نصوص بديلة للصور والوسائط</li>
-                    </ul>
+                <h4>تنسيق المودال</h4>
+                <div class="code-block">
+/* ========================================
+   نافذة المودال
+   ======================================== */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2000;
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg);
+    animation: modalIn 0.3s ease-out;
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-content .close {
+    float: left;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.modal-content .close:hover {
+    color: var(--text-primary);
+    transform: rotate(90deg);
+}
+
+.modal-content h2 {
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content select {
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    background: var(--bg-input);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus,
+.modal-content select:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px var(--gold-glow);
+}
+
+.modal-content textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+                </div>
+                
+                <h4>التجاوب مع الشاشات</h4>
+                <div class="code-block">
+/* ========================================
+   الاستجابة للشاشات
+   ======================================== */
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+    
+    .header-stats {
+        justify-content: space-around;
+    }
+    
+    .control-bar {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .filters {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .tasks-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        padding: 1.2rem;
+        margin: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .task-card .task-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+    
+    .task-card .task-footer {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+    
+    .task-card .task-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
                 </div>
             `
         },
         {
             id: '5-4',
-            title: 'برمجة أدوات تكبير الخط والتباين',
+            title: 'برمجة منطق التطبيق - إدارة المهام',
             content: `
-                <h3>برمجة أدوات تكبير/تصغير الخطوط وتغيير التباين</h3>
-                <p>هذه الأدوات تجعل التطبيق متاحاً للجميع، بما في ذلك ذوي الاحتياجات الخاصة.</p>
+                <h3>برمجة منطق إدارة المهام باستخدام JavaScript</h3>
+                <p>في هذا الدرس سنقوم ببرمجة الجزء الأساسي من التطبيق: إدارة المهام (إضافة، حذف، تحديث، عرض).</p>
                 
-                <h4>نظام تكبير الخطوط</h4>
+                <h4>فئة إدارة المهام</h4>
                 <div class="code-block">
-                    <span class="comment">// نظام إدارة حجم الخط</span>
-                    <span class="keyword">class</span> <span class="function">FontManager</span> {
-                        <span class="function">constructor</span>() {
-                            <span class="keyword">this</span>.minSize = 10;
-                            <span class="keyword">this</span>.maxSize = 40;
-                            <span class="keyword">this</span>.defaultSize = 16;
-                            <span class="keyword">this</span>.currentSize = <span class="keyword">this</span>.<span class="function">loadSize</span>() || <span class="keyword">this</span>.defaultSize;
-                            <span class="keyword">this</span>.<span class="function">applySize</span>();
-                        }
-                        
-                        <span class="function">increase</span>() {
-                            <span class="keyword">if</span> (<span class="keyword">this</span>.currentSize < <span class="keyword">this</span>.maxSize) {
-                                <span class="keyword">this</span>.currentSize *= 1.1;
-                                <span class="keyword">this</span>.<span class="function">applySize</span>();
-                                <span class="keyword">this</span>.<span class="function">saveSize</span>();
-                            }
-                        }
-                        
-                        <span class="function">decrease</span>() {
-                            <span class="keyword">if</span> (<span class="keyword">this</span>.currentSize > <span class="keyword">this</span>.minSize) {
-                                <span class="keyword">this</span>.currentSize /= 1.1;
-                                <span class="keyword">if</span> (<span class="keyword">this</span>.currentSize < <span class="keyword">this</span>.minSize) {
-                                    <span class="keyword">this</span>.currentSize = <span class="keyword">this</span>.minSize;
-                                }
-                                <span class="keyword">this</span>.<span class="function">applySize</span>();
-                                <span class="keyword">this</span>.<span class="function">saveSize</span>();
-                            }
-                        }
-                        
-                        <span class="function">applySize</span>() {
-                            document.documentElement.style.fontSize = <span class="keyword">this</span>.currentSize + <span class="string">'px'</span>;
-                            <span class="keyword">this</span>.<span class="function">updateDisplay</span>();
-                        }
-                        
-                        <span class="function">updateDisplay</span>() {
-                            <span class="keyword">const</span> display = document.<span class="function">querySelector</span>(<span class="string">'.font-size-display'</span>);
-                            <span class="keyword">if</span> (display) {
-                                display.textContent = <span class="string">\`حجم الخط: \${Math.<span class="function">round</span>(<span class="keyword">this</span>.currentSize)}px\`</span>;
-                            }
-                        }
-                        
-                        <span class="function">saveSize</span>() {
-                            localStorage.<span class="function">setItem</span>(<span class="string">'fontSize'</span>, <span class="keyword">this</span>.currentSize);
-                        }
-                        
-                        <span class="function">loadSize</span>() {
-                            <span class="keyword">const</span> saved = localStorage.<span class="function">getItem</span>(<span class="string">'fontSize'</span>);
-                            <span class="keyword">return</span> saved ? <span class="keyword">parseFloat</span>(saved) : <span class="keyword">null</span>;
-                        }
-                    }
+// ========================================
+// فئة إدارة المهام
+// ========================================
+
+class TaskManager {
+    constructor() {
+        this.tasks = [];
+        this.currentFilter = 'all';
+        this.loadTasks();
+    }
+    
+    // إضافة مهمة جديدة
+    addTask(taskData) {
+        const task = {
+            id: Date.now(),
+            title: taskData.title.trim(),
+            description: taskData.description ? taskData.description.trim() : '',
+            status: 'pending',
+            priority: taskData.priority || 'medium',
+            createdAt: new Date().toISOString(),
+            dueDate: taskData.dueDate || null,
+            tags: taskData.tags || []
+        };
+        
+        // التحقق من صحة البيانات
+        if (!task.title || task.title.length < 3) {
+            throw new Error('عنوان المهمة يجب أن يكون 3 أحرف على الأقل');
+        }
+        
+        this.tasks.unshift(task); // إضافة في البداية
+        this.saveTasks();
+        return task;
+    }
+    
+    // حذف مهمة
+    deleteTask(id) {
+        const index = this.tasks.findIndex(task => task.id === id);
+        if (index !== -1) {
+            this.tasks.splice(index, 1);
+            this.saveTasks();
+            return true;
+        }
+        return false;
+    }
+    
+    // تحديث مهمة
+    updateTask(id, updates) {
+        const task = this.tasks.find(t => t.id === id);
+        if (task) {
+            Object.assign(task, updates);
+            this.saveTasks();
+            return true;
+        }
+        return false;
+    }
+    
+    // تغيير حالة المهمة
+    changeStatus(id, newStatus) {
+        const validStatuses = ['pending', 'progress', 'completed'];
+        if (!validStatuses.includes(newStatus)) {
+            throw new Error('حالة غير صالحة');
+        }
+        return this.updateTask(id, { status: newStatus });
+    }
+    
+    // الحصول على جميع المهام
+    getAllTasks() {
+        return [...this.tasks];
+    }
+    
+    // تصفية المهام حسب الحالة
+    getTasksByStatus(status) {
+        if (status === 'all') return this.getAllTasks();
+        return this.tasks.filter(task => task.status === status);
+    }
+    
+    // البحث عن المهام
+    searchTasks(query) {
+        if (!query || query.trim() === '') {
+            return this.getTasksByStatus(this.currentFilter);
+        }
+        
+        const searchTerm = query.toLowerCase().trim();
+        return this.tasks.filter(task => {
+            return task.title.toLowerCase().includes(searchTerm) ||
+                   task.description.toLowerCase().includes(searchTerm) ||
+                   (task.tags && task.tags.some(tag => tag.toLowerCase().includes(searchTerm)));
+        });
+    }
+    
+    // الحصول على إحصائيات
+    getStats() {
+        const total = this.tasks.length;
+        const completed = this.tasks.filter(t => t.status === 'completed').length;
+        const pending = this.tasks.filter(t => t.status === 'pending').length;
+        const progress = this.tasks.filter(t => t.status === 'progress').length;
+        
+        return {
+            total,
+            completed,
+            pending,
+            progress,
+            completionRate: total > 0 ? Math.round((completed / total) * 100) : 0
+        };
+    }
+    
+    // حفظ في LocalStorage
+    saveTasks() {
+        try {
+            localStorage.setItem('tasks', JSON.stringify(this.tasks));
+        } catch (error) {
+            console.error('خطأ في حفظ المهام:', error);
+        }
+    }
+    
+    // تحميل من LocalStorage
+    loadTasks() {
+        try {
+            const saved = localStorage.getItem('tasks');
+            if (saved) {
+                this.tasks = JSON.parse(saved);
+            }
+        } catch (error) {
+            console.error('خطأ في تحميل المهام:', error);
+            this.tasks = [];
+        }
+    }
+    
+    // تصدير المهام
+    exportTasks() {
+        return JSON.stringify(this.tasks, null, 2);
+    }
+    
+    // استيراد المهام
+    importTasks(data) {
+        try {
+            const tasks = JSON.parse(data);
+            if (!Array.isArray(tasks)) {
+                throw new Error('البيانات غير صالحة');
+            }
+            this.tasks = tasks;
+            this.saveTasks();
+            return true;
+        } catch (error) {
+            throw new Error('خطأ في استيراد المهام: ' + error.message);
+        }
+    }
+    
+    // حذف جميع المهام
+    clearAllTasks() {
+        if (this.tasks.length === 0) return;
+        this.tasks = [];
+        this.saveTasks();
+    }
+}
                 </div>
                 
-                <h4>نظام التباين العالي</h4>
+                <h4>تهيئة مدير المهام</h4>
                 <div class="code-block">
-                    <span class="comment">// نظام إدارة التباين</span>
-                    <span class="keyword">class</span> <span class="function">ContrastManager</span> {
-                        <span class="function">constructor</span>() {
-                            <span class="keyword">this</span>.isHighContrast = <span class="keyword">this</span>.<span class="function">loadState</span>() || <span class="keyword">false</span>;
-                            <span class="keyword">this</span>.<span class="function">applyState</span>();
-                        }
-                        
-                        <span class="function">toggle</span>() {
-                            <span class="keyword">this</span>.isHighContrast = !<span class="keyword">this</span>.isHighContrast;
-                            <span class="keyword">this</span>.<span class="function">applyState</span>();
-                            <span class="keyword">this</span>.<span class="function">saveState</span>();
-                        }
-                        
-                        <span class="function">applyState</span>() {
-                            <span class="keyword">if</span> (<span class="keyword">this</span>.isHighContrast) {
-                                document.body.classList.<span class="function">add</span>(<span class="string">'high-contrast'</span>);
-                                <span class="keyword">this</span>.<span class="function">updateButton</span>(<span class="string">'🌓 تباين عادي'</span>);
-                            } <span class="keyword">else</span> {
-                                document.body.classList.<span class="function">remove</span>(<span class="string">'high-contrast'</span>);
-                                <span class="keyword">this</span>.<span class="function">updateButton</span>(<span class="string">'🌓 تباين عالي'</span>);
-                            }
-                        }
-                        
-                        <span class="function">updateButton</span>(text) {
-                            <span class="keyword">const</span> btn = document.<span class="function">getElementById</span>(<span class="string">'contrastToggle'</span>);
-                            <span class="keyword">if</span> (btn) btn.textContent = text;
-                        }
-                        
-                        <span class="function">saveState</span>() {
-                            localStorage.<span class="function">setItem</span>(<span class="string">'highContrast'</span>, JSON.<span class="function">stringify</span>(<span class="keyword">this</span>.isHighContrast));
-                        }
-                        
-                        <span class="function">loadState</span>() {
-                            <span class="keyword">const</span> saved = localStorage.<span class="function">getItem</span>(<span class="string">'highContrast'</span>);
-                            <span class="keyword">return</span> saved ? JSON.<span class="function">parse</span>(saved) : <span class="keyword">null</span>;
-                        }
-                    }
+// ========================================
+// تهيئة التطبيق
+// ========================================
+
+const taskManager = new TaskManager();
+
+// عناصر DOM
+const tasksGrid = document.getElementById('tasksGrid');
+const totalTasksEl = document.getElementById('totalTasks');
+const completedTasksEl = document.getElementById('completedTasks');
+const pendingTasksEl = document.getElementById('pendingTasks');
+const filterBtns = document.querySelectorAll('.filter-btn');
+const searchInput = document.getElementById('searchInput');
+
+// عرض المهام في DOM
+function renderTasks(tasks) {
+    if (!tasks) {
+        tasks = taskManager.getTasksByStatus(taskManager.currentFilter);
+    }
+    
+    if (tasks.length === 0) {
+        tasksGrid.innerHTML = \`
+            <div class="empty-state">
+                <span>📭</span>
+                <h3>لا توجد مهام</h3>
+                <p>اضغط على "إضافة مهمة" لإنشاء أول مهمة لك</p>
+            </div>
+        \`;
+        return;
+    }
+    
+    tasksGrid.innerHTML = tasks.map(task => \`
+        <div class="task-card status-\${task.status}" data-id="\${task.id}">
+            <div class="task-header">
+                <h3 class="task-title">\${task.title}</h3>
+                <span class="task-priority \${task.priority}">\${getPriorityLabel(task.priority)}</span>
+            </div>
+            \${task.description ? \`<p class="task-description">\${task.description}</p>\` : ''}
+            <div class="task-footer">
+                <span class="task-date">📅 \${formatDate(task.createdAt)}</span>
+                <div class="task-actions">
+                    \${task.status !== 'completed' ? \`
+                        <button class="complete-btn" onclick="markComplete(\${task.id})">✅</button>
+                    \` : ''}
+                    <button class="delete-btn" onclick="deleteTask(\${task.id})">🗑️</button>
                 </div>
-                
-                <div class="example-box">
-                    <strong>📝 دمج الأدوات في التطبيق</strong>
-                    <div class="code-block">
-                        <span class="comment">// تهيئة الأدوات عند تحميل الصفحة</span>
-                        <span class="keyword">const</span> fontManager = <span class="keyword">new</span> <span class="function">FontManager</span>();
-                        <span class="keyword">const</span> contrastManager = <span class="keyword">new</span> <span class="function">ContrastManager</span>();
-                        
-                        <span class="comment">// ربط الأحداث</span>
-                        document.<span class="function">getElementById</span>(<span class="string">'fontInc'</span>).<span class="function">addEventListener</span>(<span class="string">'click'</span>, () => fontManager.<span class="function">increase</span>());
-                        document.<span class="function">getElementById</span>(<span class="string">'fontDec'</span>).<span class="function">addEventListener</span>(<span class="string">'click'</span>, () => fontManager.<span class="function">decrease</span>());
-                        document.<span class="function">getElementById</span>(<span class="string">'contrastToggle'</span>).<span class="function">addEventListener</span>(<span class="string">'click'</span>, () => contrastManager.<span class="function">toggle</span>());
-                        
-                        <span class="comment">// عرض الحجم الحالي</span>
-                        <span class="keyword">const</span> sizeDisplay = document.<span class="function">createElement</span>(<span class="string">'span'</span>);
-                        sizeDisplay.className = <span class="string">'font-size-display'</span>;
-                        sizeDisplay.textContent = <span class="string">\`حجم الخط: \${Math.<span class="function">round</span>(fontManager.currentSize)}px\`</span>;
-                        document.<span class="function">querySelector</span>(<span class="string">'.toolbar'</span>).<span class="function">appendChild</span>(sizeDisplay);
-                    </div>
+            </div>
+        </div>
+    \`).join('');
+}
                 </div>
                 
                 <div class="note-box">
-                    <strong>💡 نصائح لتحسين الأدوات:</strong>
+                    <strong>🎯 ملاحظات هامة:</strong>
                     <ul>
-                        <li>احفظ تفضيلات المستخدم في LocalStorage</li>
-                        <li>وفر ردود فعل بصرية لتأكيد التغييرات</li>
-                        <li>اختبر الأدوات مع مستخدمين حقيقيين</li>
-                        <li>قدم إرشادات واضحة لاستخدام الأدوات</li>
-                        <li>تأكد من أن الأدوات تعمل على جميع الأجهزة</li>
+                        <li>استخدمنا <code>class</code> لتنظيم الكود وجعله أكثر احترافية</li>
+                        <li>تم حفظ البيانات في <code>LocalStorage</code> لاستمراريتها</li>
+                        <li>جميع الدوال لها معاملات افتراضية للحماية من الأخطاء</li>
+                        <li>تم استخدام <code>try...catch</code> للتعامل مع الأخطاء</li>
                     </ul>
                 </div>
             `
         },
         {
             id: '5-5',
-            title: 'تفعيل محرك القراءة الصوتية',
+            title: 'ربط DOM والأحداث - تفاعل المستخدم',
             content: `
-                <h3>تفعيل محرك القراءة الصوتية لقراءة محتوى الدروس</h3>
-                <p>محرك القراءة الصوتية يحسن إمكانية الوصول ويساعد في التعلم السمعي.</p>
+                <h3>ربط DOM والأحداث لتفاعل المستخدم</h3>
+                <p>في هذا الدرس سنقوم بربط عناصر DOM مع الأحداث لجعل التطبيق تفاعلياً.</p>
                 
-                <h4>محرك القراءة الكامل</h4>
+                <h4>وظائف العرض والتحكم</h4>
                 <div class="code-block">
-                    <span class="comment">// محرك القراءة الصوتية المتقدم</span>
-                    <span class="keyword">class</span> <span class="function">SpeechEngine</span> {
-                        <span class="function">constructor</span>() {
-                            <span class="keyword">this</span>.utterance = <span class="keyword">null</span>;
-                            <span class="keyword">this</span>.isSpeaking = <span class="keyword">false</span>;
-                            <span class="keyword">this</span>.isPaused = <span class="keyword">false</span>;
-                            <span class="keyword">this</span>.voices = [];
-                            <span class="keyword">this</span>.selectedVoice = <span class="keyword">null</span>;
-                            <span class="keyword">this</span>.<span class="function">initVoices</span>();
-                        }
-                        
-                        <span class="function">initVoices</span>() {
-                            <span class="keyword">if</span> (<span class="string">'speechSynthesis'</span> <span class="keyword">in</span> window) {
-                                <span class="keyword">this</span>.voices = window.speechSynthesis.<span class="function">getVoices</span>();
-                                window.speechSynthesis.<span class="function">addEventListener</span>(<span class="string">'voiceschanged'</span>, () => {
-                                    <span class="keyword">this</span>.voices = window.speechSynthesis.<span class="function">getVoices</span>();
-                                    <span class="keyword">this</span>.<span class="function">selectArabicVoice</span>();
-                                });
-                                <span class="keyword">this</span>.<span class="function">selectArabicVoice</span>();
-                            }
-                        }
-                        
-                        <span class="function">selectArabicVoice</span>() {
-                            <span class="keyword">const</span> arabicVoice = <span class="keyword">this</span>.voices.<span class="function">find</span>(v => v.lang.<span class="function">startsWith</span>(<span class="string">'ar'</span>));
-                            <span class="keyword">if</span> (arabicVoice) {
-                                <span class="keyword">this</span>.selectedVoice = arabicVoice;
-                            }
-                        }
-                        
-                        <span class="function">speak</span>(text, rate = 0.9, pitch = 1) {
-                            <span class="keyword">if</span> (!text) <span class="keyword">return</span>;
-                            
-                            <span class="comment">// إيقاف أي قراءة جارية</span>
-                            <span class="keyword">this</span>.<span class="function">stop</span>();
-                            
-                            <span class="keyword">this</span>.utterance = <span class="keyword">new</span> <span class="function">SpeechSynthesisUtterance</span>(text);
-                            <span class="keyword">this</span>.utterance.lang = <span class="string">'ar-SA'</span>;
-                            <span class="keyword">this</span>.utterance.rate = rate;
-                            <span class="keyword">this</span>.utterance.pitch = pitch;
-                            <span class="keyword">this</span>.utterance.volume = 1;
-                            
-                            <span class="keyword">if</span> (<span class="keyword">this</span>.selectedVoice) {
-                                <span class="keyword">this</span>.utterance.voice = <span class="keyword">this</span>.selectedVoice;
-                            }
-                            
-                            <span class="keyword">this</span>.utterance.<span class="function">addEventListener</span>(<span class="string">'start'</span>, () => {
-                                <span class="keyword">this</span>.isSpeaking = <span class="keyword">true</span>;
-                                <span class="keyword">this</span>.<span class="function">updateUI</span>(<span class="string">'▶️ جاري القراءة...'</span>);
-                            });
-                            
-                            <span class="keyword">this</span>.utterance.<span class="function">addEventListener</span>(<span class="string">'end'</span>, () => {
-                                <span class="keyword">this</span>.isSpeaking = <span class="keyword">false</span>;
-                                <span class="keyword">this</span>.<span class="function">updateUI</span>(<span class="string">'🔊 استماع'</span>);
-                            });
-                            
-                            <span class="keyword">this</span>.utterance.<span class="function">addEventListener</span>(<span class="string">'error'</span>, (e) => {
-                                <span class="keyword">this</span>.isSpeaking = <span class="keyword">false</span>;
-                                <span class="keyword">this</span>.<span class="function">updateUI</span>(<span class="string">'⚠️ خطأ في القراءة'</span>);
-                                <span class="function">console</span>.<span class="function">error</span>(<span class="string">'خطأ في النطق:'</span>, e);
-                            });
-                            
-                            window.speechSynthesis.<span class="function">speak</span>(<span class="keyword">this</span>.utterance);
-                        }
-                        
-                        <span class="function">stop</span>() {
-                            <span class="keyword">if</span> (window.speechSynthesis) {
-                                window.speechSynthesis.<span class="function">cancel</span>();
-                                <span class="keyword">this</span>.isSpeaking = <span class="keyword">false</span>;
-                                <span class="keyword">this</span>.isPaused = <span class="keyword">false</span>;
-                                <span class="keyword">this</span>.<span class="function">updateUI</span>(<span class="string">'🔊 استماع'</span>);
-                            }
-                        }
-                        
-                        <span class="function">pause</span>() {
-                            <span class="keyword">if</span> (window.speechSynthesis && <span class="keyword">this</span>.isSpeaking) {
-                                window.speechSynthesis.<span class="function">pause</span>();
-                                <span class="keyword">this</span>.isPaused = <span class="keyword">true</span>;
-                                <span class="keyword">this</span>.<span class="function">updateUI</span>(<span class="string">'⏸️ متوقف مؤقتاً'</span>);
-                            }
-                        }
-                        
-                        <span class="function">resume</span>() {
-                            <span class="keyword">if</span> (window.speechSynthesis && <span class="keyword">this</span>.isPaused) {
-                                window.speechSynthesis.<span class="function">resume</span>();
-                                <span class="keyword">this</span>.isPaused = <span class="keyword">false</span>;
-                                <span class="keyword">this</span>.<span class="function">updateUI</span>(<span class="string">'▶️ جاري القراءة...'</span>);
-                            }
-                        }
-                        
-                        <span class="function">updateUI</span>(status) {
-                            <span class="keyword">const</span> btn = document.<span class="function">getElementById</span>(<span class="string">'speakBtn'</span>);
-                            <span class="keyword">if</span> (btn) btn.textContent = status;
-                        }
-                        
-                        <span class="function">getContentToRead</span>() {
-                            <span class="keyword">const</span> content = document.<span class="function">querySelector</span>(<span class="string">'#contentRenderer'</span>);
-                            <span class="keyword">if</span> (content) {
-                                <span class="keyword">return</span> content.textContent.<span class="function">trim</span>();
-                            }
-                            <span class="keyword">return</span> <span class="string">''</span>;
-                        }
-                    }
+// ========================================
+// دوال العرض والتحكم
+// ========================================
+
+// الحصول على تسمية الأولوية
+function getPriorityLabel(priority) {
+    const labels = {
+        high: '🔴 عالية',
+        medium: '🟡 متوسطة',
+        low: '🟢 منخفضة'
+    };
+    return labels[priority] || priority;
+}
+
+// تنسيق التاريخ
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('ar-SA', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+    });
+}
+
+// تحديث الإحصائيات
+function updateStats() {
+    const stats = taskManager.getStats();
+    totalTasksEl.textContent = stats.total;
+    completedTasksEl.textContent = stats.completed;
+    pendingTasksEl.textContent = stats.pending;
+}
+
+// عرض المهام حسب الفلتر
+function renderFilteredTasks() {
+    const tasks = taskManager.getTasksByStatus(taskManager.currentFilter);
+    renderTasks(tasks);
+}
+
+// إكمال مهمة (وظيفة عامة)
+window.markComplete = function(id) {
+    taskManager.changeStatus(id, 'completed');
+    renderFilteredTasks();
+    updateStats();
+};
+
+// حذف مهمة (وظيفة عامة)
+window.deleteTask = function(id) {
+    if (confirm('هل أنت متأكد من حذف هذه المهمة؟')) {
+        taskManager.deleteTask(id);
+        renderFilteredTasks();
+        updateStats();
+    }
+};
                 </div>
                 
-                <div class="example-box">
-                    <strong>📝 استخدام المحرك في التطبيق</strong>
-                    <div class="code-block">
-                        <span class="comment">// تهيئة محرك القراءة</span>
-                        <span class="keyword">const</span> speechEngine = <span class="keyword">new</span> <span class="function">SpeechEngine</span>();
-                        
-                        <span class="comment">// ربط الأحداث</span>
-                        document.<span class="function">getElementById</span>(<span class="string">'speakBtn'</span>).<span class="function">addEventListener</span>(<span class="string">'click'</span>, () => {
-                            <span class="keyword">const</span> text = speechEngine.<span class="function">getContentToRead</span>();
-                            <span class="keyword">if</span> (text) {
-                                speechEngine.<span class="function">speak</span>(text);
-                            } <span class="keyword">else</span> {
-                                <span class="function">alert</span>(<span class="string">'لا يوجد محتوى للقراءة'</span>);
-                            }
-                        });
-                        
-                        document.<span class="function">getElementById</span>(<span class="string">'stopSpeakBtn'</span>).<span class="function">addEventListener</span>(<span class="string">'click'</span>, () => {
-                            speechEngine.<span class="function">stop</span>();
-                        });
-                        
-                        <span class="comment">// إضافة أزرار إضافية للتحكم</span>
-                        <span class="keyword">const</span> pauseBtn = document.<span class="function">createElement</span>(<span class="string">'button'</span>);
-                        pauseBtn.textContent = <span class="string">'⏸️ إيقاف مؤقت'</span>;
-                        pauseBtn.<span class="function">addEventListener</span>(<span class="string">'click'</span>, () => speechEngine.<span class="function">pause</span>());
-                        document.<span class="function">querySelector</span>(<span class="string">'.toolbar'</span>).<span class="function">appendChild</span>(pauseBtn);
-                        
-                        <span class="keyword">const</span> resumeBtn = document.<span class="function">createElement</span>(<span class="string">'button'</span>);
-                        resumeBtn.textContent = <span class="string">'▶️ استئناف'</span>;
-                        resumeBtn.<span class="function">addEventListener</span>(<span class="string">'click'</span>, () => speechEngine.<span class="function">resume</span>());
-                        document.<span class="function">querySelector</span>(<span class="string">'.toolbar'</span>).<span class="function">appendChild</span>(resumeBtn);
-                    </div>
+                <h4>ربط الأحداث</h4>
+                <div class="code-block">
+// ========================================
+// ربط الأحداث
+// ========================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    // العرض الأولي
+    renderFilteredTasks();
+    updateStats();
+    
+    // ======== إضافة مهمة ========
+    const modal = document.getElementById('taskModal');
+    const showAddBtn = document.getElementById('showAddTask');
+    const closeModal = document.getElementById('closeModal');
+    const taskForm = document.getElementById('taskForm');
+    
+    function openModal() {
+        modal.classList.add('open');
+        document.getElementById('taskTitle').focus();
+    }
+    
+    function closeModalFn() {
+        modal.classList.remove('open');
+        taskForm.reset();
+    }
+    
+    showAddBtn.addEventListener('click', openModal);
+    closeModal.addEventListener('click', closeModalFn);
+    modal.addEventListener('click', function(e) {
+        if (e.target === this) closeModalFn();
+    });
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModalFn();
+    });
+    
+    taskForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const title = document.getElementById('taskTitle');
+        const description = document.getElementById('taskDesc');
+        const priority = document.getElementById('taskPriority');
+        const dueDate = document.getElementById('taskDueDate');
+        
+        try {
+            taskManager.addTask({
+                title: title.value,
+                description: description.value,
+                priority: priority.value,
+                dueDate: dueDate.value || null
+            });
+            
+            renderFilteredTasks();
+            updateStats();
+            closeModalFn();
+            
+            // رسالة نجاح
+            showNotification('✅ تم إضافة المهمة بنجاح!');
+            
+        } catch (error) {
+            alert(error.message);
+        }
+    });
+    
+    // ======== تصفية المهام ========
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // إزالة التفعيل من جميع الأزرار
+            filterBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            taskManager.currentFilter = this.dataset.filter;
+            renderFilteredTasks();
+        });
+    });
+    
+    // ======== البحث ========
+    let searchTimeout;
+    searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            const query = this.value;
+            if (query.trim() === '') {
+                renderFilteredTasks();
+            } else {
+                const results = taskManager.searchTasks(query);
+                renderTasks(results);
+            }
+        }, 300);
+    });
+    
+    // ======== شريط إمكانية الوصول ========
+    setupAccessibility();
+});
+
+// ======== إشعارات ========
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
+    
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 3000);
+}
                 </div>
                 
                 <div class="note-box">
-                    <strong>🎯 نصائح للقراءة الصوتية:</strong>
+                    <strong>💡 نصائح للأحداث:</strong>
                     <ul>
-                        <li>اختبر على متصفحات مختلفة (Chrome, Firefox, Safari)</li>
-                        <li>وفر تحكماً في سرعة القراءة</li>
-                        <li>أضف إشارة بصرية أثناء القراءة</li>
-                        <li>تأكد من أن النص واضح ومنظم للقراءة</li>
-                        <li>اختبر مع مستخدمين حقيقيين</li>
+                        <li>استخدم <code>DOMContentLoaded</code> لضمان تحميل DOM قبل تنفيذ الكود</li>
+                        <li>استخدم <code>debounce</code> للبحث لتقليل عدد العمليات</li>
+                        <li>أضف إشعارات لتأكيد إجراءات المستخدم</li>
+                        <li>تأكد من إغلاق المودال عند الضغط على Escape</li>
                     </ul>
                 </div>
             `
         },
         {
             id: '5-6',
-            title: 'ربط بيانات الفصول والدروس ديناميكياً',
+            title: 'إمكانية الوصول - تحسين تجربة الجميع',
             content: `
-                <h3>ربط بيانات الفصول والدروس ديناميكياً في لوحة عرض تفاعلية</h3>
-                <p>العرض الديناميكي للبيانات هو قلب أي تطبيق حديث، حيث يتم تحميل المحتوى وعرضه بدون إعادة تحميل الصفحة.</p>
+                <h3>إضافة ميزات إمكانية الوصول</h3>
+                <p>في هذا الدرس سنضيف ميزات إمكانية الوصول لتجعل التطبيق usable للجميع.</p>
                 
-                <h4>نظام إدارة المحتوى الديناميكي</h4>
+                <h4>وظائف إمكانية الوصول</h4>
                 <div class="code-block">
-                    <span class="comment">// مدير المحتوى الديناميكي</span>
-                    <span class="keyword">class</span> <span class="function">ContentManager</span> {
-                        <span class="function">constructor</span>() {
-                            <span class="keyword">this</span>.chapters = [];
-                            <span class="keyword">this</span>.currentChapter = <span class="keyword">null</span>;
-                            <span class="keyword">this</span>.currentLesson = <span class="keyword">null</span>;
-                            <span class="keyword">this</span>.<span class="function">loadChapters</span>();
-                        }
-                        
-                        <span class="function">loadChapters</span>() {
-                            <span class="keyword">this</span>.chapters = [
-                                chapter1,
-                                chapter2,
-                                chapter3,
-                                chapter4,
-                                chapter5
-                            ];
-                        }
-                        
-                        <span class="function">renderSidebar</span>() {
-                            <span class="keyword">const</span> sidebar = document.<span class="function">getElementById</span>(<span class="string">'chapterSidebar'</span>);
-                            sidebar.innerHTML = <span class="string">''</span>;
-                            
-                            <span class="keyword">this</span>.chapters.<span class="function">forEach</span>((chapter, index) => {
-                                <span class="keyword">const</span> accordion = document.<span class="function">createElement</span>(<span class="string">'div'</span>);
-                                accordion.className = <span class="string">'chapter-accordion'</span>;
-                                
-                                <span class="comment">// رأس الفصل</span>
-                                <span class="keyword">const</span> header = document.<span class="function">createElement</span>(<span class="string">'div'</span>);
-                                header.className = <span class="string">'chapter-header'</span>;
-                                header.innerHTML = <span class="string">\`
-                                    <span><span class="chapter-num">\${index + 1}.</span> \${chapter.title}</span>
-                                    <span class="arrow">▼</span>
-                                \`</span>;
-                                
-                                <span class="comment">// قائمة الدروس</span>
-                                <span class="keyword">const</span> lessonsContainer = document.<span class="function">createElement</span>(<span class="string">'div'</span>);
-                                lessonsContainer.className = <span class="string">'chapter-lessons'</span>;
-                                
-                                chapter.lessons.<span class="function">forEach</span>((lesson, lessonIndex) => {
-                                    <span class="keyword">const</span> lessonItem = document.<span class="function">createElement</span>(<span class="string">'div'</span>);
-                                    lessonItem.className = <span class="string">'lesson-item-sidebar'</span>;
-                                    lessonItem.innerHTML = <span class="string">\`
-                                        <span class="lesson-num">\${lessonIndex + 1}.</span> \${lesson.title}
-                                    \`</span>;
-                                    lessonItem.dataset.chapterId = chapter.id;
-                                    lessonItem.dataset.lessonId = lesson.id;
-                                    
-                                    lessonItem.<span class="function">addEventListener</span>(<span class="string">'click'</span>, () => {
-                                        <span class="keyword">this</span>.<span class="function">loadLesson</span>(chapter.id, lesson.id);
-                                    });
-                                    
-                                    lessonsContainer.<span class="function">appendChild</span>(lessonItem);
-                                });
-                                
-                                <span class="comment">// فتح/غلق الفصل</span>
-                                header.<span class="function">addEventListener</span>(<span class="string">'click'</span>, () => {
-                                    header.classList.<span class="function">toggle</span>(<span class="string">'active'</span>);
-                                    lessonsContainer.classList.<span class="function">toggle</span>(<span class="string">'open'</span>);
-                                    <span class="keyword">const</span> arrow = header.<span class="function">querySelector</span>(<span class="string">'.arrow'</span>);
-                                    arrow.classList.<span class="function">toggle</span>(<span class="string">'open'</span>);
-                                });
-                                
-                                accordion.<span class="function">appendChild</span>(header);
-                                accordion.<span class="function">appendChild</span>(lessonsContainer);
-                                sidebar.<span class="function">appendChild</span>(accordion);
-                            });
-                        }
-                        
-                        <span class="function">loadLesson</span>(chapterId, lessonId) {
-                            <span class="keyword">const</span> chapter = <span class="keyword">this</span>.chapters.<span class="function">find</span>(c => c.id === chapterId);
-                            <span class="keyword">if</span> (!chapter) <span class="keyword">return</span>;
-                            
-                            <span class="keyword">const</span> lesson = chapter.lessons.<span class="function">find</span>(l => l.id === lessonId);
-                            <span class="keyword">if</span> (!lesson) <span class="keyword">return</span>;
-                            
-                            <span class="keyword">this</span>.currentChapter = chapter;
-                            <span class="keyword">this</span>.currentLesson = lesson;
-                            <span class="keyword">this</span>.<span class="function">renderContent</span>(chapter, lesson);
-                            <span class="keyword">this</span>.<span class="function">highlightActiveLesson</span>(chapterId, lessonId);
-                            
-                            <span class="comment">// تحديث عنوان الصفحة</span>
-                            document.title = <span class="string">\`\${lesson.title} - أكاديمية الكومندا\`</span>;
-                        }
-                        
-                        <span class="function">renderContent</span>(chapter, lesson) {
-                            <span class="keyword">const</span> container = document.<span class="function">getElementById</span>(<span class="string">'contentRenderer'</span>);
-                            container.innerHTML = <span class="string">\`
-                                <h2>\${lesson.title}</h2>
-                                <div class="lesson-content">
-                                    \${lesson.content}
-                                </div>
-                            \`</span>;
-                            
-                            <span class="comment">// إعادة تطبيق إعدادات إمكانية الوصول</span>
-                            <span class="keyword">this</span>.<span class="function">reapplyAccessibility</span>();
-                        }
-                        
-                        <span class="function">highlightActiveLesson</span>(chapterId, lessonId) {
-                            document.<span class="function">querySelectorAll</span>(<span class="string">'.lesson-item-sidebar'</span>).<span class="function">forEach</span>(item => {
-                                item.classList.<span class="function">remove</span>(<span class="string">'active'</span>);
-                                <span class="keyword">if</span> (item.dataset.chapterId === chapterId && item.dataset.lessonId === lessonId) {
-                                    item.classList.<span class="function">add</span>(<span class="string">'active'</span>);
-                                }
-                            });
-                        }
-                        
-                        <span class="function">reapplyAccessibility</span>() {
-                            <span class="comment">// إعادة تطبيق حجم الخط</span>
-                            <span class="keyword">const</span> savedFont = localStorage.<span class="function">getItem</span>(<span class="string">'fontSize'</span>);
-                            <span class="keyword">if</span> (savedFont) {
-                                document.documentElement.style.fontSize = savedFont + <span class="string">'px'</span>;
-                            }
-                            
-                            <span class="comment">// إعادة تطبيق التباين</span>
-                            <span class="keyword">const</span> savedContrast = localStorage.<span class="function">getItem</span>(<span class="string">'highContrast'</span>);
-                            <span class="keyword">if</span> (savedContrast === <span class="string">'true'</span>) {
-                                document.body.classList.<span class="function">add</span>(<span class="string">'high-contrast'</span>);
-                            }
-                        }
-                        
-                        <span class="function">loadFirstLesson</span>() {
-                            <span class="keyword">if</span> (<span class="keyword">this</span>.chapters.length > 0 && <span class="keyword">this</span>.chapters[0].lessons.length > 0) {
-                                <span class="keyword">const</span> firstChapter = <span class="keyword">this</span>.chapters[0];
-                                <span class="keyword">const</span> firstLesson = firstChapter.lessons[0];
-                                <span class="keyword">this</span>.<span class="function">loadLesson</span>(firstChapter.id, firstLesson.id);
-                            }
-                        }
-                    }
+// ========================================
+// إعدادات إمكانية الوصول
+// ========================================
+
+function setupAccessibility() {
+    // ======== تكبير الخط ========
+    const fontInc = document.getElementById('fontInc');
+    const fontDec = document.getElementById('fontDec');
+    const fontSizeDisplay = document.getElementById('fontSizeDisplay');
+    let fontSize = parseInt(localStorage.getItem('fontSize')) || 16;
+    
+    function applyFontSize() {
+        document.documentElement.style.fontSize = fontSize + 'px';
+        fontSizeDisplay.textContent = fontSize;
+        localStorage.setItem('fontSize', fontSize);
+    }
+    
+    fontInc.addEventListener('click', function() {
+        if (fontSize < 32) {
+            fontSize += 1;
+            applyFontSize();
+        }
+    });
+    
+    fontDec.addEventListener('click', function() {
+        if (fontSize > 12) {
+            fontSize -= 1;
+            applyFontSize();
+        }
+    });
+    
+    applyFontSize();
+    
+    // ======== تبديل الثيم ========
+    const themeToggle = document.getElementById('themeToggle');
+    let isDark = localStorage.getItem('theme') !== 'light';
+    
+    function applyTheme() {
+        if (isDark) {
+            document.documentElement.removeAttribute('data-theme');
+            themeToggle.textContent = '🌙';
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            themeToggle.textContent = '☀️';
+        }
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+    
+    themeToggle.addEventListener('click', function() {
+        isDark = !isDark;
+        applyTheme();
+    });
+    
+    applyTheme();
+    
+    // ======== التباين العالي ========
+    const contrastToggle = document.getElementById('contrastToggle');
+    let isHighContrast = localStorage.getItem('highContrast') === 'true';
+    
+    function applyContrast() {
+        document.body.classList.toggle('high-contrast', isHighContrast);
+        localStorage.setItem('highContrast', isHighContrast);
+    }
+    
+    contrastToggle.addEventListener('click', function() {
+        isHighContrast = !isHighContrast;
+        applyContrast();
+    });
+    
+    applyContrast();
+    
+    // ======== القراءة الصوتية ========
+    const speakBtn = document.getElementById('speakBtn');
+    let isSpeaking = false;
+    let speechUtterance = null;
+    
+    speakBtn.addEventListener('click', function() {
+        if (isSpeaking) {
+            window.speechSynthesis.cancel();
+            isSpeaking = false;
+            speakBtn.textContent = '🔊';
+            return;
+        }
+        
+        if (!('speechSynthesis' in window)) {
+            alert('المتصفح لا يدعم القراءة الصوتية');
+            return;
+        }
+        
+        // جمع النص للقراءة
+        const tasks = taskManager.getAllTasks();
+        if (tasks.length === 0) {
+            alert('لا توجد مهام للقراءة');
+            return;
+        }
+        
+        let text = 'لديك ' + tasks.length + ' مهام. ';
+        const pending = tasks.filter(t => t.status === 'pending');
+        const completed = tasks.filter(t => t.status === 'completed');
+        const progress = tasks.filter(t => t.status === 'progress');
+        
+        if (pending.length > 0) text += pending.length + ' مهام معلقة. ';
+        if (progress.length > 0) text += progress.length + ' مهام قيد التنفيذ. ';
+        if (completed.length > 0) text += completed.length + ' مهام مكتملة. ';
+        
+        text += 'المهام: ';
+        tasks.slice(0, 5).forEach((task, i) => {
+            text += (i + 1) + '. ' + task.title + '. ';
+        });
+        if (tasks.length > 5) text += 'وغيرها. ';
+        
+        speechUtterance = new SpeechSynthesisUtterance(text);
+        speechUtterance.lang = 'ar-SA';
+        speechUtterance.rate = 0.9;
+        speechUtterance.pitch = 1;
+        
+        speechUtterance.onstart = function() {
+            isSpeaking = true;
+            speakBtn.textContent = '⏹️';
+        };
+        
+        speechUtterance.onend = function() {
+            isSpeaking = false;
+            speakBtn.textContent = '🔊';
+        };
+        
+        speechUtterance.onerror = function() {
+            isSpeaking = false;
+            speakBtn.textContent = '🔊';
+        };
+        
+        window.speechSynthesis.speak(speechUtterance);
+    });
+}
                 </div>
                 
-                <div class="example-box">
-                    <strong>📝 تهيئة وإدارة المحتوى</strong>
-                    <div class="code-block">
-                        <span class="comment">// تهيئة مدير المحتوى</span>
-                        <span class="keyword">const</span> contentManager = <span class="keyword">new</span> <span class="function">ContentManager</span>();
-                        contentManager.<span class="function">renderSidebar</span>();
-                        
-                        <span class="comment">// تحميل أول درس أو استعادة آخر درس</span>
-                        <span class="keyword">const</span> lastLesson = localStorage.<span class="function">getItem</span>(<span class="string">'lastLesson'</span>);
-                        <span class="keyword">if</span> (lastLesson) {
-                            <span class="keyword">try</span> {
-                                <span class="keyword">const</span> { chapterId, lessonId } = JSON.<span class="function">parse</span>(lastLesson);
-                                contentManager.<span class="function">loadLesson</span>(chapterId, lessonId);
-                            } <span class="keyword">catch</span> {
-                                contentManager.<span class="function">loadFirstLesson</span>();
-                            }
-                        } <span class="keyword">else</span> {
-                            contentManager.<span class="function">loadFirstLesson</span>();
-                        }
-                        
-                        <span class="comment">// حفظ آخر درس عند التغيير</span>
-                        document.<span class="function">addEventListener</span>(<span class="string">'lessonChanged'</span>, (e) => {
-                            localStorage.<span class="function">setItem</span>(<span class="string">'lastLesson'</span>, JSON.<span class="function">stringify</span>({
-                                <span class="property">chapterId</span>: e.detail.chapterId,
-                                <span class="property">lessonId</span>: e.detail.lessonId
-                            }));
-                        });
-                    </div>
+                <h4>إضافة تنسيقات للإشعارات</h4>
+                <div class="code-block">
+/* ========================================
+   إشعارات
+   ======================================== */
+
+.notification {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--gold);
+    box-shadow: var(--shadow-lg);
+    z-index: 3000;
+    opacity: 0;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ========================================
+   حالة فارغة
+   ======================================== */
+
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-secondary);
+}
+
+.empty-state span {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin-bottom: 0.3rem;
+}
+
+.empty-state p {
+    font-size: 0.95rem;
+}
                 </div>
                 
                 <div class="note-box">
-                    <strong>💡 نصائح لإدارة المحتوى الديناميكي:</strong>
+                    <strong>♿ إمكانية الوصول مهمة للجميع:</strong>
                     <ul>
-                        <li>استخدم <code>data-*</code> attributes لربط البيانات</li>
-                        <li>احفظ تقدم المستخدم في LocalStorage</li>
-                        <li>استخدم Event-driven architecture للتفاعل</li>
-                        <li>وفر تجربة سلسة بدون إعادة تحميل الصفحة</li>
-                        <li>اختبر الأداء مع كميات كبيرة من البيانات</li>
+                        <li>حوالي 15% من سكان العالم لديهم إعاقة ما</li>
+                        <li>إمكانية الوصول تحسن تجربة الجميع</li>
+                        <li>بعض ميزات الوصول مطلوبة قانونياً في بعض الدول</li>
+                        <li>التطبيقات المتاحة للجميع تحصل على تقييمات أفضل</li>
                     </ul>
                 </div>
             `
         },
         {
             id: '5-7',
-            title: 'تحسين الأداء واختبار السرعة',
+            title: 'تحسين الأداء والاختبار',
             content: `
-                <h3>تنقية الأكواد واختبار الأداء وسرعة التحميل</h3>
-                <p>تحسين الأداء هو جزء أساسي من تطوير التطبيقات الحديثة، حيث يؤثر على تجربة المستخدم بشكل كبير.</p>
+                <h3>تحسين الأداء واختبار التطبيق</h3>
+                <p>في هذا الدرس سنقوم بتحسين أداء التطبيق واختباره للتأكد من عمله بشكل صحيح.</p>
                 
-                <h4>استراتيجيات تحسين الأداء</h4>
-                <ul>
-                    <li><strong>تقليل حجم الملفات:</strong> ضغط CSS و JavaScript و HTML</li>
-                    <li><strong>تحسين الصور:</strong> استخدام صيغ حديثة (WebP) وتقليل الحجم</li>
-                    <li><strong>التحميل البطيء (Lazy Loading):</strong> تحميل المحتوى عند الحاجة</li>
-                    <li><strong>التخزين المؤقت (Caching):</strong> استخدام LocalStorage و Cache API</li>
-                    <li><strong>تحسين الشيفرة:</strong> إزالة الكود غير المستخدم وتبسيط المنطق</li>
-                </ul>
-                
-                <h4>أدوات قياس الأداء</h4>
+                <h4>تحسينات الأداء</h4>
                 <div class="code-block">
-                    <span class="comment">// 1. قياس وقت التحميل</span>
-                    <span class="keyword">const</span> loadTime = performance.<span class="function">now</span>();
-                    window.<span class="function">addEventListener</span>(<span class="string">'load'</span>, () => {
-                        <span class="keyword">const</span> endTime = performance.<span class="function">now</span>();
-                        <span class="function">console</span>.<span class="function">log</span>(<span class="string">\`وقت التحميل: \${(endTime - loadTime).<span class="function">toFixed</span>(2)}ms\`</span>);
-                    });
-                    
-                    <span class="comment">// 2. قياس وقت العرض</span>
-                    <span class="keyword">const</span> renderStart = performance.<span class="function">now</span>();
-                    <span class="comment">// ... تنفيذ عمليات العرض ...</span>
-                    <span class="keyword">const</span> renderEnd = performance.<span class="function">now</span>();
-                    <span class="function">console</span>.<span class="function">log</span>(<span class="string">\`وقت العرض: \${(renderEnd - renderStart).<span class="function">toFixed</span>(2)}ms\`</span>);
-                    
-                    <span class="comment">// 3. تحليل الذاكرة</span>
-                    <span class="keyword">if</span> (performance.memory) {
-                        <span class="function">console</span>.<span class="function">log</span>(<span class="string">\`الذاكرة المستخدمة: \${(performance.memory.usedJSHeapSize / 1024 / 1024).<span class="function">toFixed</span>(2)} MB\`</span>);
-                    }
+// ========================================
+// تحسينات الأداء
+// ========================================
+
+// 1. استخدام debounce للبحث
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// 2. تجنب التلاعب المباشر بـ DOM في الحلقات
+function renderTasksOptimized(tasks) {
+    const fragment = document.createDocumentFragment();
+    
+    tasks.forEach(task => {
+        const card = document.createElement('div');
+        card.className = \`task-card status-\${task.status}\`;
+        card.dataset.id = task.id;
+        card.innerHTML = \`
+            <div class="task-header">
+                <h3 class="task-title">\${task.title}</h3>
+                <span class="task-priority \${task.priority}">\${getPriorityLabel(task.priority)}</span>
+            </div>
+            \${task.description ? \`<p class="task-description">\${task.description}</p>\` : ''}
+            <div class="task-footer">
+                <span class="task-date">📅 \${formatDate(task.createdAt)}</span>
+                <div class="task-actions">
+                    \${task.status !== 'completed' ? \`
+                        <button class="complete-btn" onclick="markComplete(\${task.id})">✅</button>
+                    \` : ''}
+                    <button class="delete-btn" onclick="deleteTask(\${task.id})">🗑️</button>
+                </div>
+            </div>
+        \`;
+        fragment.appendChild(card);
+    });
+    
+    tasksGrid.innerHTML = '';
+    tasksGrid.appendChild(fragment);
+}
+
+// 3. تخزين مراجع العناصر
+const elements = {
+    tasksGrid: document.getElementById('tasksGrid'),
+    totalTasks: document.getElementById('totalTasks'),
+    completedTasks: document.getElementById('completedTasks'),
+    pendingTasks: document.getElementById('pendingTasks'),
+    searchInput: document.getElementById('searchInput')
+};
+
+// 4. استخدام requestAnimationFrame للحركات
+function animateTaskAddition(card) {
+    card.style.opacity = '0';
+    card.style.transform = 'translateX(-20px)';
+    
+    requestAnimationFrame(() => {
+        card.style.transition = 'all 0.3s ease';
+        card.style.opacity = '1';
+        card.style.transform = 'translateX(0)';
+    });
+}
                 </div>
                 
-                <h4>تقنيات تحسين الكود</h4>
+                <h4>اختبار التطبيق</h4>
                 <div class="code-block">
-                    <span class="comment">// 1. استخدام debounce للأحداث المتكررة</span>
-                    <span class="keyword">function</span> <span class="function">debounce</span>(func, wait) {
-                        <span class="keyword">let</span> timeout;
-                        <span class="keyword">return</span> <span class="keyword">function</span>(...args) {
-                            <span class="keyword">clearTimeout</span>(timeout);
-                            timeout = <span class="keyword">setTimeout</span>(() => func.<span class="function">apply</span>(<span class="keyword">this</span>, args), wait);
-                        };
-                    }
-                    
-                    <span class="comment">// استخدام debounce للتمرير</span>
-                    window.<span class="function">addEventListener</span>(<span class="string">'scroll'</span>, <span class="function">debounce</span>(() => {
-                        <span class="function">console</span>.<span class="function">log</span>(<span class="string">'تم التمرير'</span>);
-                    }, 200));
-                    
-                    <span class="comment">// 2. استخدام throttle للأحداث المتكررة</span>
-                    <span class="keyword">function</span> <span class="function">throttle</span>(func, limit) {
-                        <span class="keyword">let</span> inThrottle;
-                        <span class="keyword">return</span> <span class="keyword">function</span>(...args) {
-                            <span class="keyword">if</span> (!inThrottle) {
-                                func.<span class="function">apply</span>(<span class="keyword">this</span>, args);
-                                inThrottle = <span class="keyword">true</span>;
-                                <span class="keyword">setTimeout</span>(() => inThrottle = <span class="keyword">false</span>, limit);
-                            }
-                        };
-                    }
-                    
-                    <span class="comment">// 3. تجنب التلاعب المباشر بـ DOM</span>
-                    <span class="comment">// سيء:</span>
-                    <span class="keyword">for</span> (<span class="keyword">let</span> i = 0; i < 1000; i++) {
-                        document.body.innerHTML += <span class="string">'&lt;div&gt;عنصر&lt;/div&gt;'</span>;
-                    }
-                    
-                    <span class="comment">// جيد:</span>
-                    <span class="keyword">const</span> fragment = document.<span class="function">createDocumentFragment</span>();
-                    <span class="keyword">for</span> (<span class="keyword">let</span> i = 0; i < 1000; i++) {
-                        <span class="keyword">const</span> div = document.<span class="function">createElement</span>(<span class="string">'div'</span>);
-                        div.textContent = <span class="string">'عنصر'</span>;
-                        fragment.<span class="function">appendChild</span>(div);
-                    }
-                    document.body.<span class="function">appendChild</span>(fragment);
-                </div>
-                
-                <div class="example-box">
-                    <strong>📝 أدوات اختبار الأداء</strong>
-                    <div class="code-block">
-                        <span class="comment">// أداة اختبار أداء مدمجة</span>
-                        <span class="keyword">class</span> <span class="function">PerformanceTester</span> {
-                            <span class="function">constructor</span>() {
-                                <span class="keyword">this</span>.metrics = {};
-                            }
-                            
-                            <span class="function">start</span>(name) {
-                                <span class="keyword">this</span>.metrics[name] = performance.<span class="function">now</span>();
-                            }
-                            
-                            <span class="function">end</span>(name) {
-                                <span class="keyword">if</span> (<span class="keyword">this</span>.metrics[name]) {
-                                    <span class="keyword">const</span> duration = performance.<span class="function">now</span>() - <span class="keyword">this</span>.metrics[name];
-                                    <span class="function">console</span>.<span class="function">log</span>(<span class="string">\`\${name}: \${duration.<span class="function">toFixed</span>(2)}ms\`</span>);
-                                    <span class="keyword">delete</span> <span class="keyword">this</span>.metrics[name];
-                                    <span class="keyword">return</span> duration;
-                                }
-                                <span class="keyword">return</span> <span class="keyword">null</span>;
-                            }
-                            
-                            <span class="function">measure</span>(name, fn) {
-                                <span class="keyword">this</span>.<span class="function">start</span>(name);
-                                <span class="keyword">const</span> result = <span class="function">fn</span>();
-                                <span class="keyword">this</span>.<span class="function">end</span>(name);
-                                <span class="keyword">return</span> result;
-                            }
-                        }
-                        
-                        <span class="comment">// استخدام الأداة</span>
-                        <span class="keyword">const</span> tester = <span class="keyword">new</span> <span class="function">PerformanceTester</span>();
-                        tester.<span class="function">measure</span>(<span class="string">'تحميل البيانات'</span>, () => {
-                            <span class="comment">// تحميل البيانات</span>
-                            <span class="keyword">return</span> chapter1.lessons;
-                        });
-                    </div>
+// ========================================
+// اختبار التطبيق
+// ========================================
+
+// 1. اختبار إضافة مهمة
+function testAddTask() {
+    const testTask = {
+        title: 'مهمة اختبار',
+        description: 'هذه مهمة اختبارية',
+        priority: 'high'
+    };
+    
+    const result = taskManager.addTask(testTask);
+    console.assert(result.title === 'مهمة اختبار', '❌ فشل اختبار إضافة المهمة');
+    console.log('✅ اختبار إضافة المهمة نجح');
+}
+
+// 2. اختبار حذف مهمة
+function testDeleteTask() {
+    const task = taskManager.addTask({ title: 'مهمة للحذف' });
+    const result = taskManager.deleteTask(task.id);
+    console.assert(result === true, '❌ فشل اختبار حذف المهمة');
+    console.log('✅ اختبار حذف المهمة نجح');
+}
+
+// 3. اختبار تغيير الحالة
+function testChangeStatus() {
+    const task = taskManager.addTask({ title: 'مهمة لتغيير الحالة' });
+    const result = taskManager.changeStatus(task.id, 'completed');
+    console.assert(result === true, '❌ فشل اختبار تغيير الحالة');
+    const updated = taskManager.tasks.find(t => t.id === task.id);
+    console.assert(updated.status === 'completed', '❌ فشل اختبار تغيير الحالة');
+    console.log('✅ اختبار تغيير الحالة نجح');
+}
+
+// 4. اختبار البحث
+function testSearch() {
+    taskManager.addTask({ title: 'مهمة JavaScript' });
+    taskManager.addTask({ title: 'مهمة CSS' });
+    
+    const results = taskManager.searchTasks('JavaScript');
+    console.assert(results.length === 1, '❌ فشل اختبار البحث');
+    console.log('✅ اختبار البحث نجح');
+}
+
+// 5. اختبار الإحصائيات
+function testStats() {
+    taskManager.clearAllTasks();
+    taskManager.addTask({ title: 'مهمة 1' });
+    taskManager.addTask({ title: 'مهمة 2' });
+    const task3 = taskManager.addTask({ title: 'مهمة 3' });
+    taskManager.changeStatus(task3.id, 'completed');
+    
+    const stats = taskManager.getStats();
+    console.assert(stats.total === 3, '❌ فشل اختبار الإحصائيات (total)');
+    console.assert(stats.completed === 1, '❌ فشل اختبار الإحصائيات (completed)');
+    console.assert(stats.pending === 2, '❌ فشل اختبار الإحصائيات (pending)');
+    console.log('✅ اختبار الإحصائيات نجح');
+}
+
+// تشغيل جميع الاختبارات
+function runAllTests() {
+    console.log('🧪 بدء تشغيل الاختبارات...');
+    testAddTask();
+    testDeleteTask();
+    testChangeStatus();
+    testSearch();
+    testStats();
+    console.log('🎉 جميع الاختبارات نجحت!');
+}
+
+// تشغيل الاختبارات في وضع التطوير
+if (process.env.NODE_ENV === 'development') {
+    runAllTests();
+}
                 </div>
                 
                 <div class="note-box">
-                    <strong>🎯 نصائح لتحسين الأداء:</strong>
+                    <strong>📊 نصائح لتحسين الأداء:</strong>
                     <ul>
-                        <li>استخدم أدوات Chrome DevTools (Performance, Lighthouse)</li>
-                        <li>اختبر على أجهزة مختلفة (هواتف، أجهزة ضعيفة)</li>
-                        <li>راقب استخدام الذاكرة (Memory Leaks)</li>
-                        <li>استخدم CDN للمكتبات الخارجية</li>
-                        <li>قم بتقليل عدد طلبات HTTP</li>
-                        <li>استخدم Service Workers للتخزين المؤقت</li>
+                        <li>استخدم <code>DocumentFragment</code> للإضافات المتعددة للـ DOM</li>
+                        <li>استخدم <code>debounce</code> للأحداث المتكررة (بحث، تمرير)</li>
+                        <li>خزّن مراجع العناصر لتجنب البحث المتكرر</li>
+                        <li>استخدم <code>requestAnimationFrame</code> للحركات السلسة</li>
+                        <li>اختبر التطبيق على أجهزة مختلفة</li>
                     </ul>
                 </div>
             `
         },
         {
             id: '5-8',
-            title: 'رفع المشروع على الاستضافة السحابية',
+            title: 'التعليمات النهائية والنشر',
             content: `
-                <h3>رفع المشروع على الاستضافة السحابية وتفعيل النطاق الحي</h3>
-                <p>نشر المشروع على الإنترنت هو الخطوة الأخيرة لجعله متاحاً للجميع.</p>
+                <h3>التعليمات النهائية ونشر المشروع</h3>
+                <p>في هذا الدرس الأخير سنقوم بمراجعة المشروع ونشره على الإنترنت.</p>
                 
-                <h4>خطوات النشر على الاستضافة</h4>
+                <h4>مراجعة المشروع</h4>
                 <ul>
-                    <li><strong>اختيار خدمة الاستضافة:</strong> Netlify، Vercel، GitHub Pages، أو Hostinger</li>
-                    <li><strong>رفع الملفات:</strong> استخدام FTP أو Git أو السحب والإفلات</li>
-                    <li><strong>إعداد النطاق:</strong> ربط النطاق الخاص بك مع الاستضافة</li>
-                    <li><strong>تفعيل SSL:</strong> تأمين الموقع باستخدام شهادة HTTPS</li>
-                    <li><strong>اختبار الموقع:</strong> التأكد من أن كل شيء يعمل بشكل صحيح</li>
+                    <li>✅ جميع الميزات المطلوبة تعمل بشكل صحيح</li>
+                    <li>✅ واجهة مستخدم جذابة ومتجاوبة</li>
+                    <li>✅ دعم الثيم الداكن والفاتح</li>
+                    <li>✅ دعم التباين العالي</li>
+                    <li>✅ حفظ البيانات في LocalStorage</li>
+                    <li>✅ إمكانية الوصول (تكبير الخط، قراءة صوتية)</li>
+                    <li>✅ تحسين الأداء</li>
                 </ul>
                 
-                <h4>نشر على Netlify (مجاني وسهل)</h4>
+                <h4>نشر المشروع على GitHub Pages</h4>
                 <div class="code-block">
-                    <span class="comment">// 1. إنشاء حساب على Netlify</span>
-                    <span class="comment">// 2. سحب المشروع من GitHub أو رفع الملفات مباشرة</span>
-                    <span class="comment">// 3. إعدادات النشر:</span>
-                    
-                    <span class="comment">// ملف netlify.toml (اختياري)</span>
-                    <span class="string">[build]</span>
-                    <span class="string">  publish = "."</span>
-                    <span class="string">  command = "echo 'Build complete'"</span>
-                    
-                    <span class="string">[[redirects]]</span>
-                    <span class="string">  from = "/*"</span>
-                    <span class="string">  to = "/index.html"</span>
-                    <span class="string">  status = 200</span>
+# 1. إنشاء مستودع على GitHub
+# 2. رفع الملفات
+git init
+git add .
+git commit -m "إضافة مشروع إدارة المهام"
+git remote add origin https://github.com/username/task-manager.git
+git push -u origin main
+
+# 3. تفعيل GitHub Pages
+# اذهب إلى Settings → Pages → Source: main branch → Save
+
+# 4. الموقع سيكون متاحاً على:
+https://username.github.io/task-manager/
                 </div>
                 
-                <h4>نشر على GitHub Pages</h4>
+                <h4>نشر على Netlify (أسهل)</h4>
                 <div class="code-block">
-                    <span class="comment">// 1. إنشاء مستودع على GitHub</span>
-                    <span class="comment">// 2. رفع ملفات المشروع</span>
-                    <span class="comment">// 3. تفعيل GitHub Pages من الإعدادات</span>
-                    
-                    <span class="comment">// الأوامر الأساسية</span>
-                    <span class="keyword">git</span> init
-                    <span class="keyword">git</span> add .
-                    <span class="keyword">git</span> commit -m <span class="string">"Initial commit"</span>
-                    <span class="keyword">git</span> remote add origin https://github.com/username/repo.git
-                    <span class="keyword">git</span> push -u origin main
+# 1. اذهب إلى netlify.com
+# 2. اسحب مجلد المشروع إلى الموقع
+# 3. الموقع سينشر تلقائياً
+# 4. يمكنك تغيير النطاق من الإعدادات
                 </div>
                 
-                <h4>نشر على Vercel</h4>
-                <div class="code-block">
-                    <span class="comment">// تثبيت Vercel CLI</span>
-                    <span class="keyword">npm</span> install -g vercel
-                    
-                    <span class="comment">// نشر المشروع</span>
-                    <span class="keyword">vercel</span>
-                    
-                    <span class="comment">// نشر للإنتاج</span>
-                    <span class="keyword">vercel</span> --prod
-                </div>
+                <h4>قائمة التحقق النهائية</h4>
+                <ul>
+                    <li>✅ تأكد من أن جميع الملفات في مجلد واحد</li>
+                    <li>✅ اختبر الموقع على متصفحات مختلفة (Chrome, Firefox, Safari)</li>
+                    <li>✅ اختبر على أجهزة مختلفة (كمبيوتر، تابلت، هاتف)</li>
+                    <li>✅ تأكد من أن LocalStorage يعمل بشكل صحيح</li>
+                    <li>✅ تحقق من عناوين الصور والروابط</li>
+                    <li>✅ أضف تحليلات (اختياري)</li>
+                </ul>
                 
                 <div class="example-box">
-                    <strong>📝 قائمة التحقق قبل النشر</strong>
+                    <strong>📝 هيكل الملفات النهائي:</strong>
                     <div class="code-block">
-                        <span class="keyword">const</span> deploymentChecklist = {
-                            <span class="property">code</span>: {
-                                <span class="property">validation</span>: <span class="string">"✅ لا توجد أخطاء في الكود"</span>,
-                                <span class="property">optimization</span>: <span class="string">"✅ تم تحسين الأداء"</span>,
-                                <span class="property">testing</span>: <span class="string">"✅ تم اختبار الموقع"</span>
-                            },
-                            <span class="property">assets</span>: {
-                                <span class="property">images</span>: <span class="string">"✅ تم تحسين الصور"</span>,
-                                <span class="property">files</span>: <span class="string">"✅ جميع الملفات مرفوعة"</span>,
-                                <span class="property">links</span>: <span class="string">"✅ جميع الروابط تعمل"</span>
-                            },
-                            <span class="property">seo</span>: {
-                                <span class="property">title</span>: <span class="string">"✅ العنوان محسن"</span>,
-                                <span class="property">description</span>: <span class="string">"✅ الوصف محسن"</span>,
-                                <span class="property">og</span>: <span class="string">"✅ Open Graph مفعل"</span>
-                            },
-                            <span class="property">accessibility</span>: {
-                                <span class="property">contrast</span>: <span class="string">"✅ التباين مناسب"</span>,
-                                <span class="property">keyboard</span>: <span class="string">"✅ التنقل يعمل"</span>,
-                                <span class="property">screenReader</span>: <span class="string">"✅ متوافق مع قارئات الشاشة"</span>
-                            },
-                            <span class="property">performance</span>: {
-                                <span class="property">speed</span>: <span class="string">"✅ سرعة التحميل جيدة"</span>,
-                                <span class="property">mobile</span>: <span class="string">"✅ متجاوب مع الهواتف"</span>,
-                                <span class="property">caching</span>: <span class="string">"✅ التخزين المؤقت مفعل"</span>
-                            }
-                        };
-                        
-                        <span class="comment">// عرض قائمة التحقق</span>
-                        <span class="function">console</span>.<span class="function">log</span>(<span class="string">'📋 قائمة التحقق للنشر:'</span>);
-                        <span class="keyword">for</span> (<span class="keyword">const</span> category <span class="keyword">in</span> deploymentChecklist) {
-                            <span class="function">console</span>.<span class="function">log</span>(<span class="string">\`\${category}:\`</span>);
-                            <span class="keyword">const</span> items = deploymentChecklist[category];
-                            <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> items) {
-                                <span class="function">console</span>.<span class="function">log</span>(<span class="string">\`  \${items[key]}\`</span>);
-                            }
-                        }
+📁 task-manager/
+├── 📄 index.html      (الهيكل الرئيسي)
+├── 📄 style.css       (التنسيقات)
+├── 📄 app.js          (منطق التطبيق)
+├── 📄 chapter1.js     (فصول التعلم)
+├── 📄 chapter2.js
+├── 📄 chapter3.js
+├── 📄 chapter4.js
+├── 📄 chapter5.js
+├── 📄 README.md       (شرح المشروع)
+└── 📄 .gitignore      (لتجاهل الملفات غير المهمة)
                     </div>
                 </div>
                 
                 <div class="note-box">
-                    <strong>🚀 نصائح للنشر الاحترافي:</strong>
+                    <strong>🎉 تهانينا!</strong>
+                    <p>لقد أكملت بناء مشروع إدارة المهام بالكامل! أنت الآن تمتلك:</p>
                     <ul>
-                        <li>استخدم HTTPS دائماً لتأمين الموقع</li>
-                        <li>أضف Google Analytics لمراقبة الزوار</li>
-                        <li>أضف sitemap.xml لتحسين SEO</li>
-                        <li>اختبر الموقع على أجهزة ومتصفحات مختلفة</li>
-                        <li>وفر وسيلة للتواصل مع المستخدمين</li>
-                        <li>قم بعمل نسخ احتياطية منتظمة</li>
+                        <li>فهم عميق لـ HTML و CSS و JavaScript</li>
+                        <li>مشروع كامل يمكن إضافته للسيرة الذاتية</li>
+                        <li>خبرة في بناء تطبيقات تفاعلية</li>
+                        <li>معرفة بإمكانية الوصول وتحسين الأداء</li>
                     </ul>
+                    <p>🌟 استمر في التطوير وأضف ميزات جديدة بنفسك!</p>
                 </div>
+                
+                <h4>أفكار لتطوير المشروع</h4>
+                <ul>
+                    <li>إضافة تصنيفات (Tags) للمهام</li>
+                    <li>إضافة تواريخ استحقاق مع إشعارات</li>
+                    <li>إضافة وضع السحب والإفلات لترتيب المهام</li>
+                    <li>إضافة تصدير المهام إلى CSV أو PDF</li>
+                    <li>إضافة مشاركة المهام مع الآخرين</li>
+                    <li>إضافة مزامنة مع الخادم (Backend)</li>
+                </ul>
             `
         }
     ]

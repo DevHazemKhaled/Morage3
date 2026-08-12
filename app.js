@@ -2,7 +2,7 @@
     "use strict";
 
     // ========================================
-    // فتح/غلق شريط إمكانية الوصول - منسدل صغير
+    // فتح/غلق شريط إمكانية الوصول
     // ========================================
     const accessToggle = document.getElementById('accessToggle');
     const accessDropdown = document.getElementById('accessDropdown');
@@ -17,7 +17,6 @@
 
     accessToggle.addEventListener('click', toggleDropdown);
 
-    // إغلاق القائمة عند الضغط خارجها
     document.addEventListener('click', function(e) {
         if (dropdownOpen && !accessDropdown.contains(e.target) && !accessToggle.contains(e.target)) {
             dropdownOpen = false;
@@ -26,7 +25,6 @@
         }
     });
 
-    // إغلاق القائمة عند الضغط على Escape
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && dropdownOpen) {
             dropdownOpen = false;
@@ -60,7 +58,7 @@
     });
 
     // ========================================
-    // إدارة الثيم (Light/Dark)
+    // إدارة الثيم
     // ========================================
     const themeBtn = document.getElementById('themeToggle');
     let isDark = localStorage.getItem('theme') !== 'light';
@@ -122,7 +120,7 @@
     applyContrast();
 
     // ========================================
-    // محرك القراءة الصوتية المتطور
+    // محرك القراءة الصوتية
     // ========================================
     const speakBtn = document.getElementById('speakBtn');
     const stopBtn = document.getElementById('stopSpeakBtn');
@@ -130,12 +128,11 @@
     const speedUp = document.getElementById('speedUp');
     const speedDown = document.getElementById('speedDown');
     const speedDisplay = document.getElementById('speedDisplay');
-    
+
     let speechRate = parseFloat(localStorage.getItem('speechRate')) || 1.0;
     let utterance = null;
     let isSpeaking = false;
     let isPaused = false;
-    let currentText = '';
 
     speedDisplay.textContent = speechRate.toFixed(1);
 
@@ -158,12 +155,12 @@
     function getCleanContent() {
         const el = document.querySelector('#contentRenderer');
         if (!el) return '';
-        
+
         const clone = el.cloneNode(true);
         clone.querySelectorAll('.code-block, .note-box, .example-box').forEach(function(el) {
             el.remove();
         });
-        
+
         let text = clone.textContent.trim();
         text = text.replace(/[📝💡🎯⭐♿🔍📱🚀]/g, '');
         text = text.replace(/\s+/g, ' ');
@@ -252,7 +249,6 @@
             return;
         }
 
-        currentText = text;
         isPaused = false;
         speakSentences(sentences, 0);
     }
@@ -311,9 +307,9 @@
             const head = document.createElement('div');
             head.className = 'chapter-head';
             head.innerHTML = `
-                <span><span class="chapter-num">${idx + 1}.</span> ${chapter.title}</span>
-                <span class="chapter-arrow">▼</span>
-            `;
+                    <span><span class="chapter-num">${idx + 1}.</span> ${chapter.title}</span>
+                    <span class="chapter-arrow">▼</span>
+                `;
 
             const lessons = document.createElement('div');
             lessons.className = 'chapter-lessons';
@@ -352,32 +348,23 @@
         if (!lesson) return;
 
         let content = lesson.content || '';
-        content = content.replace(/<span[^>]*>/g, '');
-        content = content.replace(/<\/span>/g, '');
 
         renderer.innerHTML = `
-            <div class="lesson-header">
-                <span class="chapter-badge">${chapter.title}</span>
-                <h2>${lesson.title}</h2>
-            </div>
-            <div class="lesson-content">
-                ${content}
-            </div>
-        `;
-
-        renderer.querySelectorAll('.code-block').forEach(function(block) {
-            let html = block.innerHTML;
-            html = html.replace(/<span[^>]*>/g, '');
-            html = html.replace(/<\/span>/g, '');
-            block.innerHTML = html;
-        });
+                <div class="lesson-header">
+                    <span class="chapter-badge">${chapter.title}</span>
+                    <h2>${lesson.title}</h2>
+                </div>
+                <div class="lesson-content">
+                    ${content}
+                </div>
+            `;
 
         localStorage.setItem('lastLesson', JSON.stringify({ chapterId, lessonId }));
         document.title = `${lesson.title} - أكاديمية الكومندا`;
 
         sidebarContent.querySelectorAll('.sidebar-lesson').forEach(function(el) {
-            el.classList.toggle('active', 
-                el.dataset.chapterId === chapterId && 
+            el.classList.toggle('active',
+                el.dataset.chapterId === chapterId &&
                 el.dataset.lessonId === lessonId
             );
         });
@@ -400,7 +387,7 @@
                     loadLesson(chapterId, lessonId);
                     return;
                 }
-            } catch(e) {}
+            } catch (e) {}
         }
         if (chapters.length > 0 && chapters[0].lessons.length > 0) {
             loadLesson(chapters[0].id, chapters[0].lessons[0].id);
@@ -412,11 +399,11 @@
     // ========================================
     if (chapters.length === 0) {
         renderer.innerHTML = `
-            <div style="text-align:center;padding:3rem;">
-                <h2 style="color:var(--gold);">⚠️ لم يتم تحميل الفصول</h2>
-                <p>تأكد من وجود ملفات chapter1.js إلى chapter5.js</p>
-            </div>
-        `;
+                <div style="text-align:center;padding:3rem;">
+                    <h2 style="color:var(--gold);">⚠️ لم يتم تحميل الفصول</h2>
+                    <p>تأكد من وجود ملفات chapter1.js إلى chapter5.js</p>
+                </div>
+            `;
     } else {
         renderSidebar();
         loadLastLesson();

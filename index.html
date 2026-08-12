@@ -3,59 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة Al-Komanda التعليمية - من الصفر للاحتراف</title>
+    <title>أكاديمية Al-Komanda الشاملة - من الصفر للاحتراف</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- القائمة الجانبية الضخمة (الفصول والدروس) -->
-    <aside class="sidebar">
-        <div class="logo">
-            <h2>🚀 Al-Komanda Academy</h2>
-            <p>المنهج الشامل لتطوير الويب</p>
+    <!-- شريط إمكانية الوصول لذوي الاحتياجات الخاصة والوزير -->
+    <div class="accessibility-bar" role="region" aria-label="أدوات إمكانية الوصول">
+        <div>
+            <button onclick="increaseFont()" aria-label="تكبير الخط">➕ تكبير الخط</button>
+            <button onclick="decreaseFont()" aria-label="تصغير الخط">➖ تصغير الخط</button>
+            <button onclick="toggleHighContrast()" aria-label="وضع التباين العالي">🌓 تباين عالي</button>
         </div>
-        <div id="chapters-container" class="nav-container">
-            <!-- الـ JS هتولد الفصول والقوائم المنسدلة هنا أوتوماتيك -->
+        <div>
+            <button onclick="readPageContent()" aria-label="استماع صوتي للمحتوى">🔊 استماع للصفحة</button>
+            <button onclick="stopReading()" aria-label="إيقاف الصوت">⏹️ إيقاف</button>
         </div>
-    </aside>
+    </div>
 
-    <!-- المحتوى الرئيسي ومحرر "جرب بنفسك" -->
-    <main class="main-content">
-        <header class="top-bar">
-            <div>
-                <span id="chapter-badge">الفصل الأول</span>
-                <h1 id="lesson-title">مرحباً بك في الأكاديمية</h1>
-            </div>
-            <div class="accessibility-btns">
-                <button onclick="readCurrentContent()">🔊 استماع صوتي</button>
-                <button onclick="stopSpeech()">⏹️ إيقاف</button>
-                <button onclick="toggleDarkMode()">🌓 الوضع الليلي</button>
-            </div>
-        </header>
+    <header class="main-header">
+        <h1>🚀 أكاديمية Al-Komanda لبرمجة الويب</h1>
+        <p>المنصة الهندسية المتكاملة لتأهيل الطلاب لحل مشكلات الواقع واكتشاف عقلية المبرمج المحترف.</p>
+    </header>
 
-        <!-- عرض الدرس والشرح -->
-        <section id="lesson-content" class="content-box">
-            <!-- المحتوى الافتراضي -->
-            <p>اختر درساً من القائمة الجانبية في الفصول الخمسة للبدء في رحلة الاحتراف البرمجي.</p>
-        </section>
+    <main class="container">
+        <h2 style="color: var(--accent-color); margin-bottom: 20px; text-align: center;">اختر الفصل الدراسي للبدء في التعلم العميق:</h2>
+        
+        <div class="chapters-grid">
+            <button class="chapter-box" onclick="loadChapter(1)">
+                <h3>الفصل الأول</h3>
+                <p>مقدمة عن عالم الويب، الإنترنت، وتاريخ التكنولوجيا (30 درساً)</p>
+            </button>
+            <button class="chapter-box" onclick="loadChapter(2)">
+                <h3>الفصل الثاني</h3>
+                <p>لغة HTML، وسوم الهيكل، والـ SEO وإمكانية الوصول (30 درساً)</p>
+            </button>
+            <button class="chapter-box" onclick="loadChapter(3)">
+                <h3>الفصل الثالث</h3>
+                <p>لغة CSS المتقدمة، التنسيق، والرسوم الهندسية (30 درساً)</p>
+            </button>
+            <button class="chapter-box" onclick="loadChapter(4)">
+                <h3>الفصل الرابع</h3>
+                <p>لغة JavaScript، تفاعل الـ DOM، واللوجيك البرمجي (30 درساً)</p>
+            </button>
+            <button class="chapter-box" onclick="loadChapter(5)">
+                <h3>الفصل الخامس</h3>
+                <p>المشروع العملي النهائي وعرضه أمام لجنة التحكيم (30 درساً)</p>
+            </button>
+        </div>
 
-        <!-- قسم جرب بنفسك (محرر كود حي + كونسول وبريفيو) -->
-        <section class="playground-box">
-            <h3>💻 جرب بنفسك (Interactive Code Playground)</h3>
-            <div class="editor-container">
-                <textarea id="code-editor" placeholder="اكتب كود الـ HTML أو CSS أو JS هنا..."></textarea>
-                <div class="preview-panel">
-                    <div class="panel-header">النتيجة الحية (Live Preview) & Console</div>
-                    <iframe id="live-preview"></iframe>
-                    <div id="console-output">Console: جاهز للتنفيذ...</div>
-                </div>
-            </div>
-            <button class="run-btn" onclick="runUserCode()">▶ تنفيذ الكود الآن</button>
-        </section>
+        <div id="content-container" class="lesson-card" style="display: none; margin-top: 30px;">
+            <h2 id="chapter-title-view"></h2>
+            <div id="chapter-body-view"></div>
+        </div>
     </main>
 
-    <!-- ملفات البيانات والمحرك -->
-    <script src="data.js"></script>
+    <!-- ترتيب استدعاء ملفات الـ JS كما طلبت بالحرف -->
+    <script src="chapter1.js"></script>
+    <script src="chapter2.js"></script>
+    <script src="chapter3.js"></script>
+    <script src="chapter4.js"></script>
+    <script src="chapter5.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

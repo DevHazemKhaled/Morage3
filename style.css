@@ -1,214 +1,126 @@
 :root {
     --bg-color: #0b0f19;
     --card-bg: #131d31;
-    --border-color: #1e293b;
-    --text-color: #f1f5f9;
-    --accent-color: #d4af37; /* ذهبي فخم */
-    --hover-bg: #1e293b;
+    --text-color: #f8fafc;
+    --accent-color: #facc15; /* ذهبي مضيء وواضح جداً لضعاف البصر */
+    --border-color: #334155;
+    --font-size-multiplier: 1rem;
 }
 
-body.light-mode {
-    --bg-color: #f8fafc;
-    --card-bg: #ffffff;
-    --border-color: #cbd5e1;
-    --text-color: #0f172a;
+/* وضع إمكانية الوصول العالي (High Contrast & Accessibility Mode) */
+body.high-contrast {
+    --bg-color: #000000 !important;
+    --card-bg: #121212 !important;
+    --text-color: #ffff00 !important;
+    --accent-color: #00ffff !important;
+    --border-color: #ffffff !important;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    display: flex;
-    height: 100vh;
-    overflow: hidden;
+    font-size: var(--font-size-multiplier);
+    line-height: 2;
+    padding: 0;
+    margin: 0;
 }
 
-/* القائمة الجانبية المنسدلة */
-.sidebar {
-    width: 320px;
-    background-color: var(--card-bg);
-    border-left: 1px solid var(--border-color);
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    overflow-y: auto;
-}
-
-.logo h2 { color: var(--accent-color); font-size: 1.2rem; margin-bottom: 5px; }
-.logo p { font-size: 0.8rem; opacity: 0.7; margin-bottom: 20px; }
-
-.chapter-title {
-    background: var(--hover-bg);
-    color: var(--accent-color);
-    padding: 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: 10px;
-    border-right: 4px solid var(--accent-color);
-    font-size: 0.95rem;
-}
-
-.lessons-list {
-    list-style: none;
-    padding-right: 15px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
-}
-
-.lessons-list.active {
-    max-height: 1200px; /* لتوسيع القائمة المنسدلة للدروس الـ 30 */
-    transition: max-height 0.5s ease-in;
-}
-
-.lessons-list li a {
-    color: var(--text-color);
-    text-decoration: none;
-    display: block;
-    padding: 8px 10px;
-    font-size: 0.88rem;
-    border-radius: 5px;
-    margin: 4px 0;
-    opacity: 0.8;
-    transition: 0.2s;
-}
-
-.lessons-list li a:hover {
-    background: var(--accent-color);
-    color: #000;
-    opacity: 1;
-}
-
-/* المحتوى الرئيسي */
-.main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    overflow-y: auto;
-}
-
-.top-bar {
+/* شريط إمكانية الوصول العلوي (Accessibility Toolbar) */
+.accessibility-bar {
+    background: #020617;
+    border-bottom: 2px solid var(--accent-color);
+    padding: 10px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--card-bg);
-    padding: 15px 25px;
-    border-radius: 12px;
-    border-right: 4px solid var(--accent-color);
-    margin-bottom: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-#chapter-badge { font-size: 0.8rem; color: var(--accent-color); font-weight: bold; }
-.top-bar h1 { font-size: 1.4rem; margin-top: 5px; }
-
-.accessibility-btns button {
-    background: var(--accent-color);
-    border: none;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-right: 5px;
-}
-
-.content-box {
-    background: var(--card-bg);
-    padding: 25px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    line-height: 1.8;
-    border: 1px solid var(--border-color);
-}
-
-.content-box h3 { color: var(--accent-color); margin-bottom: 10px; }
-.content-box p, .content-box ul { margin-bottom: 15px; font-size: 1rem; }
-.connection-box {
-    background: rgba(212, 175, 55, 0.1);
-    border-right: 3px solid var(--accent-color);
-    padding: 12px;
-    border-radius: 6px;
-    margin-top: 15px;
-    font-size: 0.9rem;
-}
-
-/* قسم جرب بنفسك (المحرر والبريفيو) */
-.playground-box {
-    background: var(--card-bg);
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
-}
-
-.playground-box h3 { color: var(--accent-color); margin-bottom: 15px; }
-
-.editor-container {
-    display: flex;
-    gap: 15px;
-    height: 250px;
-}
-
-#code-editor {
-    flex: 1;
-    background: #000;
-    color: #00ffcc;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    font-family: monospace;
-    font-size: 0.95rem;
-    resize: none;
-}
-
-.preview-panel {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--border-color);
-}
-
-.panel-header {
-    background: #1e293b;
-    color: #fff;
-    padding: 8px 12px;
-    font-size: 0.85rem;
-    font-weight: bold;
-}
-
-#live-preview {
-    flex: 2;
-    width: 100%;
-    border: none;
-    background: #fff;
-}
-
-#console-output {
-    flex: 1;
-    background: #0f172a;
-    color: #38bdf8;
-    padding: 8px 12px;
-    font-family: monospace;
-    font-size: 0.8rem;
-    border-top: 1px solid #334155;
-    overflow-y: auto;
-}
-
-.run-btn {
+.accessibility-bar button {
     background: var(--accent-color);
     color: #000;
     border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
+    padding: 8px 15px;
     font-weight: bold;
+    border-radius: 6px;
     cursor: pointer;
-    margin-top: 15px;
-    display: block;
-    width: 100%;
+    font-size: 0.95rem;
+    margin-left: 10px;
+}
+.accessibility-bar button:hover { opacity: 0.85; }
+
+/* تصميم الهيدر واللوجو */
+header.main-header {
+    background: var(--card-bg);
+    padding: 40px 30px;
+    border-bottom: 3px solid var(--accent-color);
     text-align: center;
 }
-.run-btn:hover { opacity: 0.9; }
+header.main-header h1 { color: var(--accent-color); font-size: 2.2rem; margin-bottom: 10px; }
+header.main-header p { opacity: 0.9; font-size: 1.1rem; }
+
+/* تخطيط المحتوى والدروس */
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.lesson-card {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.lesson-card h2 {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    border-right: 5px solid var(--accent-color);
+    padding-right: 12px;
+}
+
+.lesson-card p, .lesson-card li {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.connection-note {
+    background: rgba(250, 204, 21, 0.1);
+    border-right: 4px solid var(--accent-color);
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+/* روابط الفصول */
+.chapters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.chapter-box {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: 0.3s;
+}
+.chapter-box:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-5px);
+}
+.chapter-box h3 { color: var(--accent-color); margin-bottom: 10px; }

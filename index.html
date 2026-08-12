@@ -2,25 +2,47 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>منصة مُراجع - التعليم للجميع</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أكاديمية المبرمج الصغير - الاحتراف من الصفر</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>منصة مُراجع التعليمية</h1>
-        <div class="accessibility-tools">
-            <button onclick="changeFontSize(2)">➕ تكبير الخط</button>
-            <button onclick="changeFontSize(-2)">➖ تصغير الخط</button>
-            <button onclick="toggleHighContrast()">🌓 تباين عالي</button>
-            <button onclick="readText()">🔊 اقرأ الدرس</button>
-        </div>
-    </header>
 
-    <main id="content">
-        <h2>ملخص درس البرمجة والذكاء الاصطناعي</h2>
-        <p class="readable-text">التعليم هو سلاح الأمم الحديثة. من خلال التكنولوجيا، يمكننا بناء مستقبل أفضل وحل مشكلات مجتمعية حقيقية بكل سهولة ويسر.</p>
+    <!-- القائمة الجانبية (Sidebar) -->
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>🚀 Al-Komanda Academy</h2>
+            <p>منهج الويب الشامل</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="loadSection('html')">🌐 لغة HTML (الأساس)</a></li>
+            <li><a href="#" onclick="loadSection('css')">🎨 لغة CSS والرسم</a></li>
+            <li><a href="#" onclick="loadSection('js')">⚡ لغة JavaScript والـ DOM</a></li>
+            <li><a href="#" onclick="loadSection('project')">🏆 المشروع التطبيقي</a></li>
+        </ul>
+    </aside>
+
+    <!-- المحتوى الرئيسي (Main Content) -->
+    <main class="main-content">
+        <header class="top-bar">
+            <h1 id="page-title">مرحباً بك في الأكاديمية</h1>
+            <div class="accessibility-btns">
+                <button onclick="readCurrentContent()">🔊 اقرأ الدرس</button>
+                <button onclick="stopSpeech()">⏹️ إيقاف</button>
+                <button onclick="toggleDarkMode()">🌓 الوضع الليلي</button>
+            </div>
+        </header>
+
+        <!-- هنا المحتوى بيتغير لوحده بالـ JavaScript -->
+        <section id="content-display" class="content-box">
+            <!-- المحتوى الافتراضي للبداية -->
+            <h2>اختر مساراً من القائمة الجانبية للبدء</h2>
+            <p>هذه المنصة صُممت خصيصاً لتعلم تطوير الويب باحترافية تامة وحل مشكلات التعليم البرمجي.</p>
+        </section>
     </main>
 
-    <script src="script.js"></script>
+    <!-- ربط ملفات الجافاسكريبت بالترتيب -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

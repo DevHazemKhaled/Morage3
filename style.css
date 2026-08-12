@@ -1,422 +1,6 @@
 /* ========================================
-   الثيمات والمتغيرات
+   القائمة الجانبية المنزلقة (محدثة)
    ======================================== */
-
-:root {
-    --bg-body: #0a0e17;
-    --bg-surface: #111927;
-    --bg-card: #1a2332;
-    --bg-hover: #243044;
-    --bg-code: #0d1420;
-    --bg-dropdown: #1a2332;
-    
-    --text-primary: #e8edf5;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    
-    --border-color: #2a3a5e;
-    --border-light: #1e2d4a;
-    
-    --gold: #fbbf24;
-    --gold-dark: #d97706;
-    --gold-glow: rgba(251, 191, 36, 0.12);
-    
-    --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.6);
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-    
-    --radius: 12px;
-    --radius-lg: 16px;
-    --radius-sm: 8px;
-    
-    --transition: all 0.3s ease;
-}
-
-/* ========================================
-   الثيم الفاتح
-   ======================================== */
-
-[data-theme="light"] {
-    --bg-body: #f0f4f8;
-    --bg-surface: #ffffff;
-    --bg-card: #ffffff;
-    --bg-hover: #e8edf5;
-    --bg-code: #f0f4f8;
-    --bg-dropdown: #ffffff;
-    
-    --text-primary: #0a0e17;
-    --text-secondary: #334155;
-    --text-muted: #64748b;
-    
-    --border-color: #cbd5e1;
-    --border-light: #e2e8f0;
-    
-    --gold: #d97706;
-    --gold-dark: #b45309;
-    --gold-glow: rgba(217, 119, 6, 0.08);
-    
-    --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
-}
-
-/* ========================================
-   التباين العالي
-   ======================================== */
-
-body.high-contrast {
-    --bg-body: #000 !important;
-    --bg-surface: #0a0a0a !important;
-    --bg-card: #1a1a1a !important;
-    --bg-hover: #2a2a2a !important;
-    --bg-code: #0a0a0a !important;
-    --bg-dropdown: #1a1a1a !important;
-    
-    --text-primary: #ffff00 !important;
-    --text-secondary: #ffff00 !important;
-    --text-muted: #ffff00 !important;
-    
-    --border-color: #ffff00 !important;
-    --border-light: #ffff00 !important;
-    
-    --gold: #ffff00 !important;
-    --gold-glow: rgba(255, 255, 0, 0.15) !important;
-}
-
-/* ========================================
-   الأساسيات
-   ======================================== */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Cairo', system-ui, -apple-system, sans-serif;
-    background: var(--bg-body);
-    color: var(--text-primary);
-    font-size: 16px;
-    line-height: 1.7;
-    transition: var(--transition);
-    min-height: 100vh;
-    padding-top: 70px;
-}
-
-::selection {
-    background: var(--gold);
-    color: var(--bg-body);
-}
-
-::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--bg-surface);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--gold);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--gold-dark);
-}
-
-/* ========================================
-   الهيدر الثابت
-   ======================================== */
-
-.main-header {
-    background: var(--bg-surface);
-    border-bottom: 1px solid var(--border-color);
-    padding: 0.5rem 1.5rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1001;
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition);
-}
-
-.header-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-}
-
-.menu-toggle {
-    background: var(--gold-glow);
-    border: 1px solid var(--gold);
-    border-radius: var(--radius);
-    padding: 0.4rem;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    min-width: 34px;
-    min-height: 34px;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-    flex-shrink: 0;
-}
-
-.menu-toggle:hover {
-    background: var(--gold);
-}
-
-.menu-toggle span {
-    display: block;
-    width: 18px;
-    height: 2px;
-    background: var(--text-primary);
-    border-radius: 2px;
-    transition: var(--transition);
-}
-
-.menu-toggle:hover span {
-    background: var(--bg-body);
-}
-
-.menu-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(3px, 3px);
-}
-
-.menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(3px, -3px);
-}
-
-.header-brand {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    flex: 1;
-}
-
-.brand-icon {
-    font-size: 1.6rem;
-    background: var(--gold-glow);
-    padding: 0.2rem;
-    border-radius: var(--radius);
-    border: 1px solid var(--gold);
-    flex-shrink: 0;
-}
-
-.header-brand h1 {
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: var(--gold);
-    line-height: 1.2;
-}
-
-.brand-subtitle {
-    font-size: 0.6rem;
-    color: var(--text-secondary);
-    display: block;
-}
-
-.header-stats {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    flex-shrink: 0;
-}
-
-.stat-item {
-    display: flex;
-    align-items: baseline;
-    gap: 0.2rem;
-}
-
-.stat-number {
-    font-size: 1rem;
-    font-weight: 800;
-    color: var(--gold);
-}
-
-.stat-label {
-    font-size: 0.55rem;
-    color: var(--text-secondary);
-}
-
-.stat-divider {
-    width: 1px;
-    height: 16px;
-    background: var(--border-color);
-}
-
-/* ========================================
-   زر وشريط إمكانية الوصول
-   ======================================== */
-
-.access-toggle {
-    background: var(--gold-glow);
-    border: 1px solid var(--gold);
-    border-radius: 50%;
-    width: 34px;
-    height: 34px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: var(--transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.access-toggle:hover {
-    background: var(--gold);
-    transform: scale(1.05);
-}
-
-.access-toggle.active {
-    background: var(--gold);
-    transform: scale(0.95);
-}
-
-.access-dropdown {
-    position: fixed;
-    top: 68px;
-    left: 50%;
-    transform: translateX(-50%) scale(0.95);
-    background: var(--bg-dropdown);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    padding: 0.6rem 0.8rem;
-    min-width: 300px;
-    max-width: 90vw;
-    width: max-content;
-    box-shadow: var(--shadow-lg);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1003;
-}
-
-.access-dropdown.open {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translateX(-50%) scale(1);
-}
-
-.access-dropdown::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--bg-dropdown);
-}
-
-.access-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-}
-
-.access-row {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.access-label {
-    font-size: 0.7rem;
-    color: var(--text-secondary);
-    font-weight: 500;
-    white-space: nowrap;
-}
-
-.access-divider {
-    width: 100%;
-    height: 1px;
-    background: var(--border-color);
-}
-
-.access-btn {
-    background: transparent;
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    padding: 0.1rem 0.5rem;
-    border-radius: 30px;
-    font-size: 0.7rem;
-    cursor: pointer;
-    transition: var(--transition);
-    font-family: inherit;
-    min-height: 24px;
-    min-width: 28px;
-    white-space: nowrap;
-}
-
-.access-btn:hover {
-    background: var(--bg-hover);
-    border-color: var(--gold);
-    color: var(--text-primary);
-}
-
-.access-btn.btn-gold {
-    background: var(--gold);
-    border-color: var(--gold);
-    color: var(--bg-body);
-}
-
-.access-btn.btn-gold:hover {
-    background: var(--gold-dark);
-}
-
-.access-btn.btn-speak {
-    background: var(--gold-glow);
-    border-color: var(--gold);
-    color: var(--gold);
-}
-
-.access-size {
-    font-size: 0.7rem;
-    color: var(--text-secondary);
-    min-width: 22px;
-    text-align: center;
-    font-weight: 600;
-}
-
-/* ========================================
-   القائمة الجانبية المنزلقة
-   ======================================== */
-
-.sidebar-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 1100;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    backdrop-filter: blur(4px);
-}
-
-.sidebar-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-}
 
 .sidebar {
     position: fixed;
@@ -424,7 +8,7 @@ body {
     right: -360px;
     width: 340px;
     max-width: 88vw;
-    height: 100vh;
+    height: 100dvh; /* 100% من ارتفاع الشاشة */
     background: var(--bg-surface);
     border-left: 1px solid var(--border-color);
     z-index: 1101;
@@ -432,6 +16,7 @@ body {
     display: flex;
     flex-direction: column;
     box-shadow: var(--shadow-lg);
+    overflow: hidden; /* منع السكرول على القائمة نفسها */
 }
 
 .sidebar.open {
@@ -444,8 +29,9 @@ body {
     align-items: center;
     padding: 0.8rem 1.2rem;
     border-bottom: 1px solid var(--border-color);
-    flex-shrink: 0;
+    flex-shrink: 0; /* يمنع الانكماش */
     background: var(--bg-surface);
+    min-height: 56px;
 }
 
 .sidebar-header span {
@@ -469,14 +55,37 @@ body {
     transform: rotate(90deg);
 }
 
+/* ========================================
+   محتوى القائمة الجانبية - السكرول هنا
+   ======================================== */
+
 .sidebar-content {
-    flex: 1;
-    overflow-y: auto;
+    flex: 1; /* يأخذ المساحة المتبقية */
+    overflow-y: auto; /* السكرول العمودي */
+    overflow-x: hidden; /* منع السكرول الأفقي */
     padding: 0.5rem;
+    min-height: 0; /* مهم لمنع التمدد الزائد */
+    
+    /* تنسيق شريط السكرول */
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold) transparent;
+}
+
+.sidebar-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.sidebar-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 10px;
 }
 
 /* ========================================
-   عناصر القائمة الجانبية
+   كل فصل على حدة - السكرول جواه
    ======================================== */
 
 .sidebar-chapter {
@@ -486,12 +95,16 @@ body {
     border: 1px solid var(--border-light);
     overflow: hidden;
     transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0; /* يمنع الانكماش */
 }
 
 .sidebar-chapter:hover {
     border-color: var(--gold);
 }
 
+/* رأس الفصل - ثابت */
 .chapter-head {
     padding: 0.6rem 1rem;
     cursor: pointer;
@@ -503,6 +116,9 @@ body {
     color: var(--text-secondary);
     transition: var(--transition);
     user-select: none;
+    flex-shrink: 0; /* يمنع الانكماش */
+    min-height: 44px;
+    background: var(--bg-card);
 }
 
 .chapter-head:hover {
@@ -523,22 +139,53 @@ body {
 .chapter-arrow {
     transition: transform 0.3s;
     font-size: 0.6rem;
+    flex-shrink: 0;
 }
 
 .chapter-arrow.open {
     transform: rotate(180deg);
 }
 
+/* ========================================
+   دروس الفصل - السكرول جواها
+   ======================================== */
+
 .chapter-lessons {
     max-height: 0;
-    overflow: hidden;
+    overflow-y: auto; /* السكرول العمودي جوا الفصل */
+    overflow-x: hidden;
     transition: max-height 0.4s ease;
     background: var(--bg-body);
+    flex-shrink: 0;
+    
+    /* تنسيق شريط السكرول جوا الفصل */
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold-dark) transparent;
 }
 
-.chapter-lessons.open {
-    max-height: 600px;
+.chapter-lessons::-webkit-scrollbar {
+    width: 3px;
 }
+
+.chapter-lessons::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chapter-lessons::-webkit-scrollbar-thumb {
+    background: var(--gold-dark);
+    border-radius: 10px;
+}
+
+/* عند فتح الفصل، يأخذ المساحة المتبقية */
+.chapter-lessons.open {
+    max-height: 300px; /* قيمة كبيرة ولكنها محدودة */
+    flex: 1; /* يأخذ المساحة المتاحة */
+    min-height: 50px; /* ارتفاع أدنى */
+}
+
+/* ========================================
+   تنسيق الدروس داخل الفصل
+   ======================================== */
 
 .sidebar-lesson {
     padding: 0.35rem 1rem 0.35rem 1.5rem;
@@ -548,6 +195,10 @@ body {
     border-right: 3px solid transparent;
     font-size: 0.75rem;
     font-weight: 500;
+    flex-shrink: 0; /* يمنع الانكماش */
+    min-height: 36px;
+    display: flex;
+    align-items: center;
 }
 
 .sidebar-lesson:hover {
@@ -568,551 +219,56 @@ body {
     margin-left: 0.3rem;
     font-weight: 700;
     font-size: 0.65rem;
+    flex-shrink: 0;
 }
 
 /* ========================================
-   المحتوى الرئيسي
+   حالة عدم وجود دروس
    ======================================== */
 
-.main-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 1rem 1.5rem;
-}
-
-.content-wrapper {
-    display: flex;
-    gap: 0;
-}
-
-.content-area {
-    flex: 1;
-    background: var(--bg-card);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem 2rem;
-    border: 1px solid var(--border-light);
-    box-shadow: var(--shadow);
-    min-height: 500px;
-    transition: var(--transition);
-}
-
-/* شاشة الترحيب */
-.welcome-screen {
-    text-align: center;
-    padding: 1rem 0;
-}
-
-.welcome-icon {
-    font-size: 3.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.welcome-screen h2 {
-    font-size: 2rem;
-    color: var(--gold);
-    margin-bottom: 0.3rem;
-}
-
-.welcome-screen > p {
-    color: var(--text-secondary);
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.welcome-screen > p strong {
-    color: var(--gold);
-}
-
-.welcome-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 1rem;
-}
-
-.welcome-card {
-    background: var(--bg-body);
-    padding: 1rem;
-    border-radius: var(--radius);
-    border: 1px solid var(--border-light);
-    transition: var(--transition);
-}
-
-.welcome-card:hover {
-    border-color: var(--gold);
-    transform: translateY(-3px);
-}
-
-.welcome-card span {
-    font-size: 1.8rem;
-    display: block;
-    margin-bottom: 0.2rem;
-}
-
-.welcome-card h4 {
-    color: var(--gold);
-    font-size: 0.9rem;
-}
-
-.welcome-card p {
-    color: var(--text-secondary);
-    font-size: 0.75rem;
-}
-
-/* ========================================
-   محتوى الدروس
-   ======================================== */
-
-.lesson-header {
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.8rem;
-    border-bottom: 2px solid var(--border-light);
-}
-
-.chapter-badge {
-    display: inline-block;
-    background: var(--gold-glow);
-    color: var(--gold);
-    padding: 0.15rem 0.8rem;
-    border-radius: 30px;
+.sidebar-lesson-empty {
+    padding: 0.5rem 1rem;
+    color: var(--text-muted);
     font-size: 0.7rem;
-    font-weight: 600;
-    margin-bottom: 0.3rem;
-    border: 1px solid var(--gold);
-}
-
-.lesson-header h2 {
-    font-size: 1.6rem;
-    color: var(--text-primary);
-    line-height: 1.3;
-}
-
-.lesson-content {
-    color: var(--text-secondary);
-}
-
-.lesson-content h3 {
-    color: var(--gold);
-    font-size: 1.2rem;
-    margin: 1.5rem 0 0.5rem 0;
-}
-
-.lesson-content h4 {
-    color: var(--text-primary);
-    font-size: 1rem;
-    margin: 1rem 0 0.3rem 0;
-}
-
-.lesson-content p {
-    margin-bottom: 0.8rem;
-    line-height: 1.9;
-}
-
-.lesson-content ul,
-.lesson-content ol {
-    margin: 0.3rem 0 0.8rem 1.5rem;
-}
-
-.lesson-content li {
-    margin-bottom: 0.3rem;
-}
-
-.lesson-content code {
-    background: var(--bg-code);
-    padding: 0.1rem 0.4rem;
-    border-radius: 4px;
-    color: var(--gold);
-    font-size: 0.85rem;
-    font-family: 'Courier New', monospace;
-    border: 1px solid var(--border-light);
-    direction: ltr;
-    display: inline-block;
-}
-
-.lesson-content .code-block {
-    background: var(--bg-code);
-    padding: 1rem 1.2rem;
-    border-radius: var(--radius);
-    border: 1px solid var(--border-light);
-    margin: 0.8rem 0;
-    overflow-x: auto;
-    font-family: 'Courier New', monospace;
-    font-size: 0.82rem;
-    line-height: 1.8;
-    color: var(--text-secondary);
-    direction: ltr;
-    text-align: left;
-    white-space: pre;
-}
-
-.lesson-content .code-block .comment {
-    color: #6b8c9e;
+    text-align: center;
     font-style: italic;
 }
 
-.lesson-content .code-block .keyword {
-    color: var(--gold);
-    font-weight: 600;
-}
-
-.lesson-content .code-block .string {
-    color: #7dd3fc;
-}
-
-.lesson-content .code-block .function {
-    color: #a78bfa;
-}
-
-.lesson-content .code-block .selector {
-    color: #34d399;
-}
-
-.lesson-content .code-block .property {
-    color: #f472b6;
-}
-
-.lesson-content .code-block .value {
-    color: #fbbf24;
-}
-
-.note-box {
-    background: var(--gold-glow);
-    border-right: 4px solid var(--gold);
-    padding: 0.8rem 1.2rem;
-    margin: 0.8rem 0;
-    border-radius: var(--radius-sm);
-}
-
-.note-box strong {
-    color: var(--gold);
-}
-
-.example-box {
-    background: var(--bg-code);
-    border-right: 4px solid #a78bfa;
-    padding: 0.8rem 1.2rem;
-    margin: 0.8rem 0;
-    border-radius: var(--radius-sm);
-}
-
-.example-box strong {
-    color: #a78bfa;
-}
-
 /* ========================================
-   الفوتر
-   ======================================== */
-
-.main-footer {
-    background: var(--bg-surface);
-    border-top: 1px solid var(--border-color);
-    padding: 0.6rem 1.5rem;
-    margin-top: 1.5rem;
-}
-
-.footer-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-}
-
-.footer-container p {
-    color: var(--text-secondary);
-    font-size: 0.7rem;
-}
-
-.footer-links {
-    display: flex;
-    gap: 1rem;
-}
-
-.footer-links a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.7rem;
-    transition: var(--transition);
-}
-
-.footer-links a:hover {
-    color: var(--gold);
-}
-
-/* ========================================
-   الاستجابة للشاشات
+   الاستجابة للشاشات الصغيرة
    ======================================== */
 
 @media (max-width: 768px) {
-    body {
-        padding-top: 60px;
-    }
-
-    .main-header {
-        padding: 0.4rem 0.8rem;
-    }
-
-    .header-brand h1 {
-        font-size: 1rem;
-    }
-
-    .brand-icon {
-        font-size: 1.2rem;
-        padding: 0.15rem;
-    }
-
-    .header-stats {
-        gap: 0.4rem;
-    }
-
-    .stat-number {
-        font-size: 0.8rem;
-    }
-
-    .stat-label {
-        font-size: 0.5rem;
-    }
-
-    .stat-divider {
-        display: none;
-    }
-
-    .access-toggle {
-        width: 30px;
-        height: 30px;
-        font-size: 0.85rem;
-    }
-
-    .menu-toggle {
-        min-width: 30px;
-        min-height: 30px;
-    }
-
-    .menu-toggle span {
-        width: 16px;
-        height: 2px;
-    }
-
-    .access-dropdown {
-        min-width: 260px;
-        max-width: 85vw;
-        padding: 0.5rem 0.6rem;
-        left: 50%;
-        transform: translateX(-50%) scale(0.95);
-        top: 62px;
-    }
-
-    .access-dropdown.open {
-        transform: translateX(-50%) scale(1);
-    }
-
-    .access-dropdown::before {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .access-btn {
-        font-size: 0.6rem;
-        min-height: 20px;
-        min-width: 22px;
-        padding: 0.05rem 0.3rem;
-    }
-
-    .access-size {
-        font-size: 0.6rem;
-        min-width: 18px;
-    }
-
-    .access-label {
-        font-size: 0.6rem;
-    }
-
-    .access-row {
-        gap: 0.2rem;
-        justify-content: center;
-    }
-
-    .content-area {
-        padding: 1rem;
-        min-height: 300px;
-    }
-
-    .welcome-screen h2 {
-        font-size: 1.4rem;
-    }
-
-    .welcome-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 0.5rem;
-    }
-
-    .welcome-card {
-        padding: 0.7rem;
-    }
-
-    .welcome-card span {
-        font-size: 1.4rem;
-    }
-
     .sidebar {
         width: 280px;
         right: -300px;
+        height: 100dvh;
     }
-
-    .footer-container {
-        flex-direction: column;
-        text-align: center;
+    
+    .chapter-lessons.open {
+        max-height: 250px;
     }
 }
 
 @media (max-width: 480px) {
-    body {
-        padding-top: 54px;
-    }
-
-    .main-header {
-        padding: 0.3rem 0.5rem;
-    }
-
-    .header-brand h1 {
-        font-size: 0.85rem;
-    }
-
-    .brand-icon {
-        font-size: 1rem;
-    }
-
-    .stat-number {
-        font-size: 0.7rem;
-    }
-
-    .stat-label {
-        font-size: 0.45rem;
-    }
-
-    .access-toggle {
-        width: 26px;
-        height: 26px;
-        font-size: 0.7rem;
-    }
-
-    .menu-toggle {
-        min-width: 26px;
-        min-height: 26px;
-    }
-
-    .menu-toggle span {
-        width: 14px;
-        height: 2px;
-    }
-
-    .access-dropdown {
-        min-width: 200px;
-        max-width: 80vw;
-        padding: 0.4rem 0.5rem;
-        left: 50%;
-        transform: translateX(-50%) scale(0.9);
-        top: 58px;
-    }
-
-    .access-dropdown.open {
-        transform: translateX(-50%) scale(1);
-    }
-
-    .access-dropdown::before {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .access-btn {
-        font-size: 0.5rem;
-        min-height: 18px;
-        min-width: 18px;
-        padding: 0.05rem 0.2rem;
-    }
-
-    .access-size {
-        font-size: 0.5rem;
-        min-width: 14px;
-    }
-
-    .access-label {
-        font-size: 0.5rem;
-    }
-
-    .access-row {
-        gap: 0.15rem;
-        justify-content: center;
-    }
-
-    .main-container {
-        padding: 0.5rem;
-    }
-
-    .content-area {
-        padding: 0.8rem;
-        border-radius: var(--radius);
-    }
-
-    .lesson-header h2 {
-        font-size: 1.1rem;
-    }
-
-    .lesson-content .code-block {
-        padding: 0.6rem 0.8rem;
-        font-size: 0.7rem;
-    }
-
     .sidebar {
         width: 260px;
         right: -280px;
     }
-}
-
-@media (max-width: 380px) {
-    .access-dropdown {
-        min-width: 160px;
-        max-width: 75vw;
-        padding: 0.3rem 0.4rem;
-        left: 50%;
-        transform: translateX(-50%) scale(0.85);
-        top: 54px;
+    
+    .chapter-lessons.open {
+        max-height: 200px;
     }
-
-    .access-dropdown.open {
-        transform: translateX(-50%) scale(1);
+    
+    .chapter-head {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.8rem;
+        min-height: 38px;
     }
-
-    .access-dropdown::before {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .access-btn {
-        font-size: 0.45rem;
-        min-height: 16px;
-        min-width: 16px;
-        padding: 0.03rem 0.15rem;
-    }
-
-    .access-size {
-        font-size: 0.45rem;
-        min-width: 12px;
-    }
-
-    .access-label {
-        font-size: 0.45rem;
-    }
-}
-
-/* ========================================
-   دعم تقليل الحركة
-   ======================================== */
-
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
+    
+    .sidebar-lesson {
+        font-size: 0.65rem;
+        padding: 0.25rem 0.8rem 0.25rem 1.2rem;
+        min-height: 32px;
     }
 }

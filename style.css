@@ -1,15 +1,17 @@
 :root {
-    --bg-color: #0f172a;
-    --card-bg: #1e293b;
-    --text-color: #e2e8f0;
+    --bg-color: #0b0f19;
+    --card-bg: #131d31;
+    --border-color: #1e293b;
+    --text-color: #f1f5f9;
     --accent-color: #d4af37; /* ذهبي فخم */
-    --hover-color: #3b82f6;
+    --hover-bg: #1e293b;
 }
 
 body.light-mode {
     --bg-color: #f8fafc;
     --card-bg: #ffffff;
-    --text-color: #1e293b;
+    --border-color: #cbd5e1;
+    --text-color: #0f172a;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
@@ -20,36 +22,63 @@ body {
     display: flex;
     height: 100vh;
     overflow: hidden;
-    transition: 0.3s;
 }
 
-/* القائمة الجانبية */
+/* القائمة الجانبية المنسدلة */
 .sidebar {
-    width: 280px;
+    width: 320px;
     background-color: var(--card-bg);
-    border-left: 1px solid rgba(255,255,255,0.1);
+    border-left: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
     padding: 20px;
+    overflow-y: auto;
 }
 
-.logo h2 { color: var(--accent-color); font-size: 1.3rem; margin-bottom: 5px; }
-.logo p { font-size: 0.85rem; opacity: 0.7; margin-bottom: 30px; }
+.logo h2 { color: var(--accent-color); font-size: 1.2rem; margin-bottom: 5px; }
+.logo p { font-size: 0.8rem; opacity: 0.7; margin-bottom: 20px; }
 
-.nav-links { list-style: none; }
-.nav-links li { margin-bottom: 15px; }
-.nav-links a {
+.chapter-title {
+    background: var(--hover-bg);
+    color: var(--accent-color);
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    border-right: 4px solid var(--accent-color);
+    font-size: 0.95rem;
+}
+
+.lessons-list {
+    list-style: none;
+    padding-right: 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.lessons-list.active {
+    max-height: 1200px; /* لتوسيع القائمة المنسدلة للدروس الـ 30 */
+    transition: max-height 0.5s ease-in;
+}
+
+.lessons-list li a {
     color: var(--text-color);
     text-decoration: none;
     display: block;
-    padding: 12px 15px;
-    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 0.88rem;
+    border-radius: 5px;
+    margin: 4px 0;
+    opacity: 0.8;
     transition: 0.2s;
-    font-weight: bold;
 }
-.nav-links a:hover {
-    background-color: var(--accent-color);
+
+.lessons-list li a:hover {
+    background: var(--accent-color);
     color: #000;
+    opacity: 1;
 }
 
 /* المحتوى الرئيسي */
@@ -57,7 +86,7 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 30px;
+    padding: 20px;
     overflow-y: auto;
 }
 
@@ -65,17 +94,20 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
     background: var(--card-bg);
     padding: 15px 25px;
     border-radius: 12px;
     border-right: 4px solid var(--accent-color);
+    margin-bottom: 20px;
 }
+
+#chapter-badge { font-size: 0.8rem; color: var(--accent-color); font-weight: bold; }
+.top-bar h1 { font-size: 1.4rem; margin-top: 5px; }
 
 .accessibility-btns button {
     background: var(--accent-color);
     border: none;
-    padding: 8px 15px;
+    padding: 8px 12px;
     border-radius: 6px;
     font-weight: bold;
     cursor: pointer;
@@ -84,32 +116,99 @@ body {
 
 .content-box {
     background: var(--card-bg);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    line-height: 1.8;
+    border: 1px solid var(--border-color);
 }
 
-.content-box h2 { color: var(--accent-color); margin-bottom: 15px; }
-.content-box p, .content-box li { line-height: 1.8; margin-bottom: 10px; font-size: 1.1rem; }
+.content-box h3 { color: var(--accent-color); margin-bottom: 10px; }
+.content-box p, .content-box ul { margin-bottom: 15px; font-size: 1rem; }
+.connection-box {
+    background: rgba(212, 175, 55, 0.1);
+    border-right: 3px solid var(--accent-color);
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
 
-/* مفاجأة الوزير: رسمة حقيقية بالـ CSS خالص من غير صور! */
-.css-art-box {
-    text-align: center;
-    margin-top: 20px;
+/* قسم جرب بنفسك (المحرر والبريفيو) */
+.playground-box {
+    background: var(--card-bg);
     padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.playground-box h3 { color: var(--accent-color); margin-bottom: 15px; }
+
+.editor-container {
+    display: flex;
+    gap: 15px;
+    height: 250px;
+}
+
+#code-editor {
+    flex: 1;
     background: #000;
-    border-radius: 10px;
+    color: #00ffcc;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    font-family: monospace;
+    font-size: 0.95rem;
+    resize: none;
 }
-.moon-art {
-    width: 80px;
-    height: 80px;
-    background: #d4af37;
-    border-radius: 50%;
-    box-shadow: 0 0 30px #d4af37;
-    margin: 0 auto;
-    animation: pulseGlow 2s infinite alternate;
+
+.preview-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
 }
-@keyframes pulseGlow {
-    0% { transform: scale(1); box-shadow: 0 0 15px #d4af37; }
-    100% { transform: scale(1.1); box-shadow: 0 0 40px #fff; }
+
+.panel-header {
+    background: #1e293b;
+    color: #fff;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    font-weight: bold;
 }
+
+#live-preview {
+    flex: 2;
+    width: 100%;
+    border: none;
+    background: #fff;
+}
+
+#console-output {
+    flex: 1;
+    background: #0f172a;
+    color: #38bdf8;
+    padding: 8px 12px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    border-top: 1px solid #334155;
+    overflow-y: auto;
+}
+
+.run-btn {
+    background: var(--accent-color);
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+.run-btn:hover { opacity: 0.9; }

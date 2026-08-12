@@ -75,81 +75,6 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
 
 /* ========================================
-   شريط إمكانية الوصول
-   ======================================== */
-
-.accessibility-bar {
-    background: var(--bg-surface);
-    border-bottom: 1px solid var(--border-color);
-    padding: 0.4rem 1rem;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    backdrop-filter: blur(12px);
-}
-
-.bar-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 0.3rem 1rem;
-}
-
-.bar-group {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    flex-wrap: wrap;
-}
-
-.bar-label { font-size: 0.8rem; color: var(--text-secondary); }
-.bar-divider { width: 1px; height: 22px; background: var(--border-color); }
-
-.bar-btn {
-    background: transparent;
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    padding: 0.2rem 0.6rem;
-    border-radius: 30px;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: var(--transition);
-    font-family: inherit;
-    min-height: 28px;
-    min-width: 32px;
-}
-
-.bar-btn:hover {
-    background: var(--bg-hover);
-    border-color: var(--gold);
-    color: var(--text-primary);
-}
-
-.bar-btn.btn-gold {
-    background: var(--gold);
-    border-color: var(--gold);
-    color: var(--bg-body);
-}
-.bar-btn.btn-gold:hover { background: var(--gold-dark); }
-
-.bar-btn.btn-primary {
-    background: var(--gold-glow);
-    border-color: var(--gold);
-    color: var(--gold);
-}
-
-.font-size-display {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    min-width: 28px;
-    text-align: center;
-    font-weight: 600;
-}
-
-/* ========================================
    الهيدر
    ======================================== */
 
@@ -158,7 +83,7 @@ body {
     border-bottom: 1px solid var(--border-color);
     padding: 0.8rem 1.5rem;
     position: sticky;
-    top: 48px;
+    top: 0;
     z-index: 999;
 }
 
@@ -187,10 +112,7 @@ body {
     flex-shrink: 0;
 }
 
-.menu-toggle:hover {
-    background: var(--gold);
-}
-
+.menu-toggle:hover { background: var(--gold); }
 .menu-toggle span {
     display: block;
     width: 22px;
@@ -199,20 +121,11 @@ body {
     border-radius: 2px;
     transition: var(--transition);
 }
+.menu-toggle:hover span { background: var(--bg-body); }
 
-.menu-toggle:hover span {
-    background: var(--bg-body);
-}
-
-.menu-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(4px, 4px);
-}
-.menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-}
-.menu-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(4px, -4px);
-}
+.menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
 
 .header-brand {
     display: flex;
@@ -273,6 +186,115 @@ body {
     background: var(--border-color);
 }
 
+/* زر إمكانية الوصول */
+.accessibility-toggle {
+    background: var(--gold-glow);
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.accessibility-toggle:hover {
+    background: var(--gold);
+    transform: scale(1.05);
+}
+
+/* ========================================
+   شريط إمكانية الوصول - منسدل
+   ======================================== */
+
+.accessibility-dropdown {
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    position: sticky;
+    top: 68px;
+    z-index: 998;
+}
+
+.accessibility-dropdown.open {
+    max-height: 200px;
+    padding: 0.5rem 1rem;
+}
+
+.dropdown-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem 1.5rem;
+}
+
+.access-group {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+}
+
+.access-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.access-divider {
+    width: 1px;
+    height: 24px;
+    background: var(--border-color);
+}
+
+.access-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 0.2rem 0.6rem;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: inherit;
+    min-height: 28px;
+    min-width: 32px;
+}
+
+.access-btn:hover {
+    background: var(--bg-hover);
+    border-color: var(--gold);
+    color: var(--text-primary);
+}
+
+.access-btn.btn-gold {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--bg-body);
+}
+.access-btn.btn-gold:hover { background: var(--gold-dark); }
+
+.access-btn.btn-speak {
+    background: var(--gold-glow);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.font-size-display {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    min-width: 28px;
+    text-align: center;
+    font-weight: 600;
+}
+
 /* ========================================
    القائمة الجانبية المنزلقة
    ======================================== */
@@ -311,9 +333,7 @@ body {
     box-shadow: var(--shadow);
 }
 
-.sidebar.open {
-    right: 0;
-}
+.sidebar.open { right: 0; }
 
 .sidebar-header {
     display: flex;
@@ -364,9 +384,7 @@ body {
     transition: var(--transition);
 }
 
-.sidebar-chapter:hover {
-    border-color: var(--gold);
-}
+.sidebar-chapter:hover { border-color: var(--gold); }
 
 .chapter-head {
     padding: 0.7rem 1rem;
@@ -401,9 +419,7 @@ body {
     font-size: 0.7rem;
 }
 
-.chapter-arrow.open {
-    transform: rotate(180deg);
-}
+.chapter-arrow.open { transform: rotate(180deg); }
 
 .chapter-lessons {
     max-height: 0;
@@ -412,9 +428,7 @@ body {
     background: var(--bg-body);
 }
 
-.chapter-lessons.open {
-    max-height: 600px;
-}
+.chapter-lessons.open { max-height: 600px; }
 
 .sidebar-lesson {
     padding: 0.4rem 1rem 0.4rem 1.5rem;
@@ -502,7 +516,7 @@ body {
 .welcome-card p { color: var(--text-secondary); font-size: 0.75rem; }
 
 /* ========================================
-   محتوى الدروس - محسن
+   محتوى الدروس - عرض الأكواد بشكل صحيح
    ======================================== */
 
 .lesson-header {
@@ -570,6 +584,7 @@ body {
     display: inline-block;
 }
 
+/* كود البرمجة - عرض نظيف */
 .lesson-content .code-block {
     background: var(--bg-code);
     padding: 1rem 1.2rem;
@@ -583,11 +598,11 @@ body {
     color: var(--text-secondary);
     direction: ltr;
     text-align: left;
-    white-space: pre-wrap;
-    word-break: break-all;
+    white-space: pre;
 }
 
-.lesson-content .code-block .comment { color: var(--text-muted); font-style: italic; }
+/* تلوين الأكواد */
+.lesson-content .code-block .comment { color: #6b8c9e; font-style: italic; }
 .lesson-content .code-block .keyword { color: var(--gold); font-weight: 600; }
 .lesson-content .code-block .string { color: #7dd3fc; }
 .lesson-content .code-block .function { color: #a78bfa; }
@@ -664,19 +679,20 @@ body {
     .header-stats { gap: 0.5rem; }
     .stat-number { font-size: 0.9rem; }
     .stat-label { font-size: 0.55rem; }
+    .stat-divider { display: none; }
     .content-area { padding: 1rem; min-height: 300px; }
     .welcome-screen h2 { font-size: 1.4rem; }
     .welcome-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
     .welcome-card { padding: 0.7rem; }
     .welcome-card span { font-size: 1.4rem; }
     .sidebar { width: 280px; right: -300px; }
-    .accessibility-bar { padding: 0.3rem 0.5rem; }
-    .bar-btn { padding: 0.15rem 0.4rem; font-size: 0.7rem; min-height: 24px; min-width: 28px; }
-    .bar-divider { display: none; }
-    .bar-container { gap: 0.2rem 0.5rem; }
+    .accessibility-dropdown.open { max-height: 300px; }
+    .dropdown-container { gap: 0.3rem; }
+    .access-btn { padding: 0.15rem 0.4rem; font-size: 0.7rem; min-height: 24px; min-width: 28px; }
+    .access-divider { display: none; }
     .menu-toggle { min-width: 34px; min-height: 34px; }
     .menu-toggle span { width: 18px; height: 2px; }
-    .stat-divider { display: none; }
+    .accessibility-toggle { width: 34px; height: 34px; font-size: 1rem; }
     .footer-container { flex-direction: column; text-align: center; }
 }
 

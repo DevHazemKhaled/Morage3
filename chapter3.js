@@ -1,8 +1,18 @@
 const chapter3 = {
+    // معرف الفصل - يستخدم للربط بين الفصول
     id: 'ch3',
+    
+    // عنوان الفصل الذي سيظهر في القائمة الجانبية
     title: 'CSS المتقدم - التصميم والتنسيق الاحترافي',
-    description: 'تعلم CSS بشكل متقدم مع Flexbox، Grid، الثيمات، والاستجابة للشاشات، مع تطبيقات عملية لمشروع إدارة المهام',
+    
+    // وصف مختصر للفصل
+    description: 'تعلم CSS بشكل متقدم مع Flexbox، Grid، الثيمات، والاستجابة للشاشات',
+    
+    // قائمة الدروس - كل درس هو كائن يحتوي على id, title, content
     lessons: [
+        // ============================================================
+        // الدرس الأول: ربط الأنماط والمحددات المتقدمة
+        // ============================================================
         {
             id: '3-1',
             title: 'ربط الأنماط والمحددات المتقدمة',
@@ -18,137 +28,176 @@ const chapter3 = {
                 </ul>
                 
                 <div class="code-block">
-/* ربط خارجي في HTML */
-&lt;link rel="stylesheet" href="style.css"&gt;
+                    /* ==========================================
+                       الطريقة الأولى: External (خارجي) - الأفضل
+                       ========================================== */
+                    /* في ملف HTML داخل وسم head */
+                    &lt;link rel="stylesheet" href="style.css"&gt;
+                    /* rel="stylesheet": يحدد أن هذا ملف تنسيق */
+                    /* href="style.css": مسار ملف CSS */
 
-/* ربط داخلي */
-&lt;style&gt;
-    body {
-        background-color: #0b0f19;
-    }
-&lt;/style&gt;
+                    /* ==========================================
+                       الطريقة الثانية: Internal (داخلي)
+                       ========================================== */
+                    /* داخل وسم head في ملف HTML */
+                    &lt;style&gt;
+                        /* محدد العنصر body */
+                        body {
+                            background-color: #0b0f19;  /* لون الخلفية */
+                            color: #f8fafc;            /* لون النص */
+                        }
+                    &lt;/style&gt;
+
+                    /* ==========================================
+                       الطريقة الثالثة: Inline (مباشر) - نادراً ما تستخدم
+                       ========================================== */
+                    /* داخل وسم HTML */
+                    &lt;p style="color: red; font-size: 20px;"&gt;نص أحمر&lt;/p&gt;
                 </div>
                 
                 <h4>المحددات المتقدمة</h4>
                 <div class="code-block">
-/* محدد العنصر */
-p {
-    color: #f8fafc;
-}
+                    /* ==========================================
+                       محدد العنصر (Element Selector)
+                       ========================================== */
+                    /* يطبق على جميع عناصر p في الصفحة */
+                    p {
+                        color: #f8fafc;  /* لون النص */
+                    }
 
-/* محدد الفئة (class) */
-.gold-text {
-    color: #facc15;
-}
+                    /* ==========================================
+                       محدد الفئة (Class Selector)
+                       ========================================== */
+                    /* يطبق على جميع العناصر التي تحمل class="gold-text" */
+                    /* النقطة . تعني أننا نختار بواسطة class */
+                    .gold-text {
+                        color: #facc15;  /* اللون الذهبي */
+                    }
 
-/* محدد المعرف (id) */
-#header {
-    background: #131d31;
-}
+                    /* ==========================================
+                       محدد المعرف (ID Selector)
+                       ========================================== */
+                    /* يطبق على العنصر الذي يحمل id="header" */
+                    /* الرمز # يعني أننا نختار بواسطة id */
+                    /* id يكون فريداً في الصفحة (يستخدم مرة واحدة) */
+                    #header {
+                        background: #131d31;  /* لون الخلفية */
+                    }
 
-/* المحددات المركبة */
-div .container p {
-    margin: 10px; /* p داخل container داخل div */
-}
+                    /* ==========================================
+                       المحددات المركبة (Combined Selectors)
+                       ========================================== */
+                    /* يطبق على عناصر p الموجودة داخل عنصر يحمل class="container" 
+                       والذي بدوره داخل عنصر div */
+                    div .container p {
+                        margin: 10px;  /* هامش خارجي 10 بكسل */
+                    }
 
-h1, h2, h3 {
-    font-weight: bold; /* عدة عناصر */
-}
+                    /* يطبق على عناصر h1 و h2 و h3 معاً */
+                    h1, h2, h3 {
+                        font-weight: bold;  /* جعل النص عريضاً */
+                    }
 
-/* المحددات المتقدمة */
-a:hover {
-    color: #facc15; /* عند تمرير الماوس */
-}
+                    /* ==========================================
+                       المحددات المتقدمة (Advanced Selectors)
+                       ========================================== */
+                    
+                    /* :hover - يطبق عند تمرير الماوس على العنصر */
+                    a:hover {
+                        color: #facc15;  /* اللون الذهبي عند التمرير */
+                    }
 
-input:focus {
-    border-color: #facc15; /* عند التركيز */
-}
+                    /* :focus - يطبق عندما يكون العنصر في حالة تركيز (مثل حقل الإدخال) */
+                    input:focus {
+                        border-color: #facc15;  /* لون الحدود عند التركيز */
+                    }
 
-p:first-child {
-    font-weight: bold; /* أول عنصر p */
-}
+                    /* :first-child - يطبق على أول عنصر من نوعه داخل الأب */
+                    p:first-child {
+                        font-weight: bold;  /* جعل أول فقرة عريضة */
+                    }
 
-div > p {
-    color: blue; /* p مباشر داخل div */
-}
+                    /* > - يطبق على العناصر المباشرة (Direct Child) */
+                    /* يطبق على عناصر p التي هي أبناء مباشرين لـ div */
+                    div > p {
+                        color: blue;  /* اللون الأزرق */
+                    }
 
-div + p {
-    margin-top: 0; /* p الذي يلي div مباشرة */
-}
+                    /* + - يطبق على العنصر الذي يلي عنصراً آخر مباشرة */
+                    /* يطبق على عنصر p الذي يلي عنصر div مباشرة */
+                    div + p {
+                        margin-top: 0;  /* إزالة الهامش العلوي */
+                    }
 
-/* محددات الصفات */
-input[type="text"] {
-    border: 1px solid #ccc;
-}
+                    /* ==========================================
+                       محددات الصفات (Attribute Selectors)
+                       ========================================== */
+                    /* يطبق على جميع عناصر input التي تحمل type="text" */
+                    input[type="text"] {
+                        border: 1px solid #ccc;  /* حدود رمادية */
+                    }
 
-a[href^="https"] {
-    color: green; /* روابط آمنة */
-}
+                    /* ^= - يطبق على الروابط التي تبدأ بـ https */
+                    a[href^="https"] {
+                        color: green;  /* اللون الأخضر للروابط الآمنة */
+                    }
 
-a[href$=".pdf"] {
-    color: red; /* روابط PDF */
-}
+                    /* $= - يطبق على الروابط التي تنتهي بـ .pdf */
+                    a[href$=".pdf"] {
+                        color: red;  /* اللون الأحمر لروابط PDF */
+                    }
                 </div>
                 
                 <div class="note-box">
                     <strong>💡 نصائح للمحددات:</strong>
                     <ul>
-                        <li>استخدم <code>class</code> للتنسيق العام</li>
-                        <li>استخدم <code>id</code> للعناصر الفريدة</li>
+                        <li>استخدم <code>class</code> للتنسيق العام - يمكن استخدامه لأكثر من عنصر</li>
+                        <li>استخدم <code>id</code> للعناصر الفريدة - يستخدم مرة واحدة فقط</li>
                         <li>تجنب المحددات العميقة للحفاظ على الأداء</li>
-                        <li>استخدم محددات الصفات للتحكم الدقيق</li>
+                        <li>استخدم محددات الصفات للتحكم الدقيق في العناصر</li>
                     </ul>
                 </div>
                 
                 <div class="example-box">
                     <strong>📝 تطبيق في مشروع إدارة المهام:</strong>
                     <div class="code-block">
-/* تنسيق بطاقة المهمة */
-.task-card {
-    background: var(--bg-card);
-    padding: 1rem;
-    border-radius: 8px;
-    border-right: 4px solid var(--gold);
-    transition: all 0.3s ease;
-}
-
-.task-card:hover {
-    transform: translateX(-4px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-.task-card.completed {
-    border-right-color: #22c55e;
-    opacity: 0.7;
-}
-
-.task-card .task-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-.task-card .task-date {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-}
-
-.task-card .delete-btn {
-    background: none;
-    border: none;
-    color: #ef4444;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: transform 0.2s;
-}
-
-.task-card .delete-btn:hover {
-    transform: scale(1.2);
-}
+                        /* تنسيق بطاقة المهمة باستخدام المحددات المختلفة */
+                        
+                        /* محدد الفئة - تنسيق البطاقة الأساسي */
+                        .task-card {
+                            background: #1a2332;      /* لون الخلفية */
+                            padding: 1rem;            /* مسافة داخلية */
+                            border-radius: 8px;       /* زوايا دائرية */
+                            border-right: 4px solid #facc15;  /* حدود جانبية ذهبية */
+                            transition: all 0.3s ease;  /* حركة سلسة عند التغيير */
+                        }
+                        
+                        /* :hover - عند تمرير الماوس على البطاقة */
+                        .task-card:hover {
+                            transform: translateX(-4px);  /* تحريك البطاقة لليسار قليلاً */
+                            box-shadow: 0 4px 12px rgba(0,0,0,0.2);  /* ظل */
+                        }
+                        
+                        /* محدد الفئة - تنسيق عنوان المهمة */
+                        .task-card .task-title {
+                            font-size: 1.1rem;    /* حجم الخط */
+                            font-weight: 600;     /* سمك الخط */
+                            color: #e8edf5;       /* لون النص */
+                        }
+                        
+                        /* محدد الفئة - تنسيق تاريخ المهمة */
+                        .task-card .task-date {
+                            font-size: 0.8rem;    /* حجم الخط صغير */
+                            color: #94a3b8;       /* لون رمادي فاتح */
+                        }
                     </div>
                 </div>
             `
         },
+        
+        // ============================================================
+        // الدرس الثاني: نموذج الصندوق (Box Model)
+        // ============================================================
         {
             id: '3-2',
             title: 'نموذج الصندوق (Box Model) - التحكم في المسافات',
@@ -158,85 +207,110 @@ a[href$=".pdf"] {
                 
                 <h4>مكونات نموذج الصندوق</h4>
                 <ul>
-                    <li><strong>Content:</strong> المحتوى الفعلي (نص، صورة، إلخ)</li>
-                    <li><strong>Padding:</strong> المسافة بين المحتوى والحدود</li>
-                    <li><strong>Border:</strong> الحدود حول المحتوى والـ Padding</li>
-                    <li><strong>Margin:</strong> المسافة خارج الصندوق عن العناصر الأخرى</li>
+                    <li><strong>Content:</strong> المحتوى الفعلي (نص، صورة، إلخ) - المنطقة الداخلية</li>
+                    <li><strong>Padding:</strong> المسافة بين المحتوى والحدود - مساحة داخلية</li>
+                    <li><strong>Border:</strong> الحدود حول المحتوى والـ Padding - خط خارجي</li>
+                    <li><strong>Margin:</strong> المسافة خارج الصندوق عن العناصر الأخرى - مسافة خارجية</li>
                 </ul>
                 
                 <div class="code-block">
-/* مثال على نموذج الصندوق */
-.box {
-    width: 300px;
-    height: 200px;
-    padding: 20px; /* داخلي */
-    border: 2px solid #facc15; /* حدود */
-    margin: 30px; /* خارجي */
-}
+                    /* ==========================================
+                       مثال على نموذج الصندوق
+                       ========================================== */
+                    .box {
+                        /* المحتوى (Content) */
+                        width: 300px;     /* عرض المحتوى */
+                        height: 200px;    /* ارتفاع المحتوى */
+                        
+                        /* المسافة الداخلية (Padding) */
+                        padding: 20px;    /* مسافة 20 بكسل من جميع الجهات */
+                        /* يمكن تحديد كل جهة على حدة: */
+                        /* padding-top: 10px;    أعلى */
+                        /* padding-right: 15px;  يمين */
+                        /* padding-bottom: 10px; أسفل */
+                        /* padding-left: 15px;   يسار */
+                        /* اختصار: padding: 10px 15px 10px 15px; */
+                        /* الترتيب: أعلى يمين أسفل يسار */
+                        
+                        /* الحدود (Border) */
+                        border: 2px solid #facc15;  /* سمك 2 بكسل، خط صلب، لون ذهبي */
+                        
+                        /* المسافة الخارجية (Margin) */
+                        margin: 30px;     /* مسافة 30 بكسل من جميع الجهات */
+                    }
 
-/* padding و margin باتجاهات محددة */
-.box {
-    padding-top: 10px;
-    padding-right: 15px;
-    padding-bottom: 10px;
-    padding-left: 15px;
-    /* اختصار: padding: 10px 15px 10px 15px; */
-}
-
-/* box-sizing: border-box لتسهيل الحسابات */
-* {
-    box-sizing: border-box;
-}
+                    /* ==========================================
+                       box-sizing: border-box - الحل السحري
+                       ========================================== */
+                    /* بشكل افتراضي، width و height يحددان حجم المحتوى فقط */
+                    /* box-sizing: border-box يجعلهما يشملان padding و border */
+                    * {
+                        box-sizing: border-box;  /* يطبق على جميع العناصر */
+                    }
+                    /* الآن عند تحديد width: 300px، هذا يشمل padding و border */
+                    /* يصبح حساب الحجم: content + padding + border = 300px */
                 </div>
                 
                 <div class="note-box">
                     <strong>🎯 قاعدة ذهبية:</strong>
-                    <p>استخدم <code>box-sizing: border-box</code> لجعل العرض والارتفاع يشملان الـ padding والـ border، مما يسهل التخطيط.</p>
+                    <p>استخدم <code>box-sizing: border-box</code> لجعل العرض والارتفاع يشملان الـ padding والـ border، مما يسهل التخطيط بشكل كبير.</p>
                 </div>
                 
                 <div class="example-box">
                     <strong>📝 تطبيق في مشروع إدارة المهام:</strong>
                     <div class="code-block">
-/* تصميم بطاقة المهمة باستخدام Box Model */
-.task-card {
-    background: var(--bg-card);
-    padding: 1rem 1.2rem;
-    margin-bottom: 0.8rem;
-    border-radius: 8px;
-    border: 1px solid var(--border-light);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-}
-
-/* مسافات داخلية لعناصر البطاقة */
-.task-card .task-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-}
-
-.task-card .task-title {
-    margin: 0;
-    font-size: 1rem;
-}
-
-.task-card .task-actions {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.task-card .task-actions button {
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    font-size: 0.8rem;
-}
+                        /* ==========================================
+                           تصميم بطاقة المهمة باستخدام Box Model
+                           ========================================== */
+                        .task-card {
+                            /* المحتوى - سيتم تحديده تلقائياً حسب المحتوى */
+                            /* المسافة الداخلية - لإعطاء مساحة حول النص */
+                            padding: 1rem 1.2rem;  /* أعلى/أسفل 1rem، يمين/يسار 1.2rem */
+                            
+                            /* المسافة الخارجية - لفصل البطاقات عن بعضها */
+                            margin-bottom: 0.8rem;  /* مسافة أسفل كل بطاقة */
+                            
+                            /* الحدود - لتحديد البطاقة */
+                            border: 1px solid #2a3a5e;  /* حدود بسيطة */
+                            border-radius: 8px;         /* زوايا دائرية */
+                            
+                            /* الظل - لإعطاء عمق للبطاقة */
+                            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                        }
+                        
+                        /* مسافات داخلية لعناصر البطاقة */
+                        .task-card .task-header {
+                            display: flex;               /* توزيع مرن */
+                            justify-content: space-between;  /* توزيع بين الطرفين */
+                            align-items: center;        /* توسيط عمودي */
+                            margin-bottom: 0.5rem;      /* مسافة أسفل الرأس */
+                        }
+                        
+                        .task-card .task-title {
+                            margin: 0;  /* إزالة الهوامش الافتراضية */
+                            font-size: 1rem;
+                        }
+                        
+                        .task-card .task-actions {
+                            display: flex;
+                            gap: 0.5rem;  /* مسافة بين الأزرار */
+                        }
+                        
+                        .task-card .task-actions button {
+                            padding: 0.2rem 0.6rem;  /* مساحة داخلية للأزرار */
+                            border-radius: 4px;
+                            border: none;
+                            cursor: pointer;
+                            font-size: 0.8rem;
+                        }
                     </div>
                 </div>
             `
         },
+        
+        // ============================================================
+        // الدرس الثالث: خصائص العرض و Flexbox
+        // ============================================================
         {
             id: '3-3',
             title: 'خصائص العرض (Display) و Flexbox',
@@ -246,105 +320,187 @@ a[href$=".pdf"] {
                 
                 <h4>خصائص العرض الأساسية</h4>
                 <div class="code-block">
-/* block - يأخذ عرض الصفحة بالكامل */
-div {
-    display: block;
-}
+                    /* ==========================================
+                       display: block - يأخذ عرض الصفحة بالكامل
+                       ========================================== */
+                    /* العناصر التي تأخذ عرض الصفحة بالكامل */
+                    /* مثل: div, p, h1, section, header, footer */
+                    div {
+                        display: block;  /* هذا هو الوضع الافتراضي */
+                        /* العنصر يأخذ عرض الصفحة بالكامل */
+                        /* يبدأ في سطر جديد */
+                    }
 
-/* inline - يأخذ حجم المحتوى فقط */
-span {
-    display: inline;
-}
+                    /* ==========================================
+                       display: inline - يأخذ حجم المحتوى فقط
+                       ========================================== */
+                    /* العناصر التي تأخذ حجم المحتوى فقط */
+                    /* مثل: span, a, strong, em */
+                    span {
+                        display: inline;  /* هذا هو الوضع الافتراضي */
+                        /* العنصر يأخذ حجم المحتوى فقط */
+                        /* لا يبدأ في سطر جديد */
+                        /* لا يمكن تحديد width و height */
+                    }
 
-/* inline-block - يجمع بين خصائص inline و block */
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-}
+                    /* ==========================================
+                       display: inline-block - يجمع بين خصائص inline و block
+                       ========================================== */
+                    .btn {
+                        display: inline-block;
+                        /* يأخذ حجم المحتوى لكن يمكن تحديد width و height */
+                        /* لا يبدأ في سطر جديد */
+                        padding: 10px 20px;  /* يمكن إضافة padding */
+                    }
                 </div>
                 
                 <h4>Flexbox الأساسيات</h4>
                 <div class="code-block">
-/* الحاوية الرئيسية (Flex Container) */
-.flex-container {
-    display: flex;
-    flex-direction: row; /* row, column, row-reverse, column-reverse */
-    justify-content: center; /* توزيع أفقي: flex-start, flex-end, center, space-between, space-around, space-evenly */
-    align-items: center; /* توزيع عمودي: stretch, flex-start, flex-end, center, baseline */
-    flex-wrap: wrap; /* wrap, nowrap, wrap-reverse */
-    gap: 1rem; /* المسافة بين العناصر */
-}
+                    /* ==========================================
+                       الحاوية الرئيسية (Flex Container)
+                       ========================================== */
+                    .flex-container {
+                        display: flex;  /* تفعيل نظام Flexbox */
+                        
+                        /* ==========================================
+                           flex-direction - اتجاه العناصر
+                           ========================================== */
+                        flex-direction: row;  /* افتراضي: من اليسار لليمين */
+                        /* flex-direction: row-reverse;  من اليمين لليسار */
+                        /* flex-direction: column;  من الأعلى للأسفل */
+                        /* flex-direction: column-reverse;  من الأسفل للأعلى */
+                        
+                        /* ==========================================
+                           justify-content - توزيع أفقي
+                           ========================================== */
+                        justify-content: center;  /* توسيط */
+                        /* justify-content: flex-start;  بداية (افتراضي) */
+                        /* justify-content: flex-end;  نهاية */
+                        /* justify-content: space-between;  توزيع متساوٍ */
+                        /* justify-content: space-around;  مسافات متساوية حول العناصر */
+                        /* justify-content: space-evenly;  مسافات متساوية تماماً */
+                        
+                        /* ==========================================
+                           align-items - توزيع عمودي
+                           ========================================== */
+                        align-items: center;  /* توسيط عمودي */
+                        /* align-items: stretch;  تمدد (افتراضي) */
+                        /* align-items: flex-start;  بداية */
+                        /* align-items: flex-end;  نهاية */
+                        /* align-items: baseline;  محاذاة حسب النص */
+                        
+                        /* ==========================================
+                           flex-wrap - التحكم في الالتفاف
+                           ========================================== */
+                        flex-wrap: wrap;  /* يسمح بالالتفاف للأسطر التالية */
+                        /* flex-wrap: nowrap;  لا يسمح بالالتفاف (افتراضي) */
+                        /* flex-wrap: wrap-reverse;  يلتف ولكن بعكس الاتجاه */
+                        
+                        /* ==========================================
+                           gap - المسافة بين العناصر
+                           ========================================== */
+                        gap: 1rem;  /* مسافة بين جميع العناصر */
+                    }
 
-/* العناصر الفرعية (Flex Items) */
-.flex-item {
-    flex: 1; /* يأخذ مساحة متساوية */
-    flex-grow: 1; /* يسمح بالنمو */
-    flex-shrink: 0; /* يمنع الانكماش */
-    flex-basis: 200px; /* الحجم الأساسي */
-    align-self: flex-start; /* تجاوز align-items */
-}
+                    /* ==========================================
+                       العناصر الفرعية (Flex Items)
+                       ========================================== */
+                    .flex-item {
+                        /* ==========================================
+                           flex: 1 - يأخذ مساحة متساوية
+                           ========================================== */
+                        flex: 1;  /* يوزع المساحة بالتساوي بين العناصر */
+                        
+                        /* ==========================================
+                           flex-grow - يسمح بالنمو
+                           ========================================== */
+                        flex-grow: 1;  /* يسمح للعنصر بالنمو لملء المساحة */
+                        
+                        /* ==========================================
+                           flex-shrink - يمنع الانكماش
+                           ========================================== */
+                        flex-shrink: 0;  /* يمنع العنصر من الانكماش */
+                        
+                        /* ==========================================
+                           flex-basis - الحجم الأساسي
+                           ========================================== */
+                        flex-basis: 200px;  /* الحجم الأساسي للعنصر */
+                        
+                        /* ==========================================
+                           align-self - تجاوز align-items للحاوية
+                           ========================================== */
+                        align-self: flex-start;  /* محاذاة مختلفة عن باقي العناصر */
+                    }
                 </div>
                 
                 <div class="example-box">
                     <strong>📝 تطبيق في مشروع إدارة المهام:</strong>
                     <div class="code-block">
-/* توزيع بطاقات المهام */
-.tasks-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 1rem 0;
-}
+                        /* ==========================================
+                           توزيع بطاقات المهام باستخدام Flexbox
+                           ========================================== */
+                        .tasks-grid {
+                            display: flex;          /* تفعيل Flexbox */
+                            flex-wrap: wrap;       /* السماح بالالتفاف */
+                            gap: 1rem;             /* مسافة بين البطاقات */
+                            padding: 1rem 0;       /* مسافة داخلية */
+                        }
+                        
+                        /* كل بطاقة تأخذ مساحة مرنة */
+                        .tasks-grid .task-card {
+                            flex: 1 1 280px;  /* flex-grow: 1, flex-shrink: 1, flex-basis: 280px */
+                            /* ينمو ليأخذ مساحة، وينكمش عند الحاجة، وحجمه الأساسي 280 بكسل */
+                            max-width: 100%;  /* لا يتجاوز عرض الحاوية */
+                        }
 
-.tasks-grid .task-card {
-    flex: 1 1 280px; /* grow shrink basis */
-    max-width: 100%;
-}
+                        /* ==========================================
+                           شريط التنقل العلوي باستخدام Flexbox
+                           ========================================== */
+                        .navbar {
+                            display: flex;                /* تفعيل Flexbox */
+                            justify-content: space-between;  /* توزيع بين الطرفين */
+                            align-items: center;         /* توسيط عمودي */
+                            padding: 0.8rem 1.5rem;      /* مسافة داخلية */
+                            background: #111927;         /* لون الخلفية */
+                            border-bottom: 1px solid #2a3a5e;
+                        }
+                        
+                        .navbar .nav-links {
+                            display: flex;     /* جعل الروابط في صف واحد */
+                            gap: 1.5rem;       /* مسافة بين الروابط */
+                            list-style: none;  /* إزالة النقاط من القائمة */
+                        }
+                        
+                        .navbar .nav-links a {
+                            color: #94a3b8;    /* لون النص */
+                            text-decoration: none;  /* إزالة الخط السفلي */
+                            transition: color 0.3s;
+                        }
+                        
+                        .navbar .nav-links a:hover {
+                            color: #facc15;    /* اللون الذهبي عند التمرير */
+                        }
 
-/* شريط التنقل العلوي */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8rem 1.5rem;
-    background: var(--bg-surface);
-    border-bottom: 1px solid var(--border-color);
-}
-
-.navbar .nav-links {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-}
-
-.navbar .nav-links a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.navbar .nav-links a:hover {
-    color: var(--gold);
-}
-
-/* توزيع أزرار التحكم */
-.task-actions {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-}
-
-.task-actions button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.3rem 0.8rem;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    font-size: 0.8rem;
-    transition: all 0.2s;
-}
+                        /* ==========================================
+                           أزرار التحكم في المهمة
+                           ========================================== */
+                        .task-actions {
+                            display: flex;    /* أزرار في صف واحد */
+                            gap: 0.5rem;      /* مسافة بين الأزرار */
+                            align-items: center;
+                        }
+                        
+                        .task-actions button {
+                            display: inline-flex;  /* مرن مع الحفاظ على الخصائص */
+                            align-items: center;
+                            justify-content: center;
+                            padding: 0.3rem 0.8rem;
+                            border-radius: 4px;
+                            border: none;
+                            cursor: pointer;
+                            font-size: 0.8rem;
+                            transition: all 0.2s;
+                        }
                     </div>
                 </div>
                 
@@ -359,6 +515,10 @@ span {
                 </div>
             `
         },
+        
+        // ============================================================
+        // الدرس الرابع: CSS Grid
+        // ============================================================
         {
             id: '3-4',
             title: 'CSS Grid - التخطيط ثنائي الأبعاد',
@@ -368,113 +528,159 @@ span {
                 
                 <h4>أساسيات CSS Grid</h4>
                 <div class="code-block">
-/* تعريف الشبكة */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 أعمدة متساوية */
-    grid-template-rows: auto 200px auto; /* 3 صفوف بأحجام مختلفة */
-    gap: 1.5rem; /* المسافات بين الصفوف والأعمدة */
-}
+                    /* ==========================================
+                       تعريف الشبكة
+                       ========================================== */
+                    .grid-container {
+                        display: grid;  /* تفعيل نظام Grid */
+                        
+                        /* ==========================================
+                           grid-template-columns - تحديد الأعمدة
+                           ========================================== */
+                        /* 3 أعمدة متساوية الحجم */
+                        grid-template-columns: repeat(3, 1fr);
+                        /* 1fr = 1 جزء من المساحة المتاحة */
+                        
+                        /* تحديد أعمدة بأحجام مختلفة */
+                        /* grid-template-columns: 200px 1fr 2fr; */
+                        /* العمود الأول: 200 بكسل، الثاني: جزء واحد، الثالث: جزأين */
+                        
+                        /* ==========================================
+                           grid-template-rows - تحديد الصفوف
+                           ========================================== */
+                        grid-template-rows: auto 200px auto;
+                        /* الصف الأول: حسب المحتوى، الثاني: 200 بكسل، الثالث: حسب المحتوى */
+                        
+                        /* ==========================================
+                           gap - المسافات بين الصفوف والأعمدة
+                           ========================================== */
+                        gap: 1.5rem;  /* مسافة بين كل الصفوف والأعمدة */
+                        /* gap: 1rem 2rem;  الصفوف: 1rem، الأعمدة: 2rem */
+                    }
 
-/* تخصيص العناصر داخل الشبكة */
-.grid-item-1 {
-    grid-column: 1 / 3; /* يبدأ من العمود 1 وينتهي عند 3 (يمتد لعمودين) */
-    grid-row: 1 / 2; /* يبدأ من الصف 1 وينتهي عند 2 */
-}
+                    /* ==========================================
+                       تخصيص العناصر داخل الشبكة
+                       ========================================== */
+                    .grid-item-1 {
+                        /* ==========================================
+                           grid-column - تحديد امتداد العمود
+                           ========================================== */
+                        grid-column: 1 / 3;  /* يبدأ من العمود 1 وينتهي عند 3 */
+                        /* يمتد لعمودين (1 و 2) */
+                        
+                        /* ==========================================
+                           grid-row - تحديد امتداد الصف
+                           ========================================== */
+                        grid-row: 1 / 2;  /* يبدأ من الصف 1 وينتهي عند 2 */
+                        /* يمتد لصف واحد (الصف 1) */
+                    }
                 </div>
                 
                 <h4>أنماط الشبكات الشائعة</h4>
                 <div class="code-block">
-/* شبكة متجاوبة */
-.responsive-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
+                    /* ==========================================
+                       شبكة متجاوبة (Responsive Grid)
+                       ========================================== */
+                    .responsive-grid {
+                        display: grid;
+                        /* auto-fit: يضبط عدد الأعمدة تلقائياً */
+                        /* minmax(250px, 1fr): كل عمود لا يقل عن 250 بكسل ويمتد لملء المساحة */
+                        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                        gap: 1.5rem;
+                    }
 
-/* تخطيط صفحة كاملة (header, main, sidebar, footer) */
-.page-layout {
-    display: grid;
-    grid-template-areas: 
-        "header header header"
-        "main main sidebar"
-        "footer footer footer";
-    grid-template-columns: 1fr 2fr 1fr;
-    gap: 1rem;
-    min-height: 100vh;
-}
-
-.header {
-    grid-area: header;
-    background: var(--bg-surface);
-    padding: 1rem;
-}
-
-.main {
-    grid-area: main;
-    background: var(--bg-body);
-    padding: 1rem;
-}
-
-.sidebar {
-    grid-area: sidebar;
-    background: var(--bg-card);
-    padding: 1rem;
-}
-
-.footer {
-    grid-area: footer;
-    background: var(--bg-surface);
-    padding: 1rem;
-}
+                    /* ==========================================
+                       تخطيط صفحة كاملة (Full Page Layout)
+                       ========================================== */
+                    .page-layout {
+                        display: grid;
+                        /* تحديد مناطق الشبكة بأسماء */
+                        grid-template-areas: 
+                            "header header header"   /* الصف الأول: header في الأعمدة الثلاثة */
+                            "main main sidebar"      /* الصف الثاني: main في عمودين، sidebar في عمود */
+                            "footer footer footer";  /* الصف الثالث: footer في الأعمدة الثلاثة */
+                        grid-template-columns: 1fr 2fr 1fr;  /* 3 أعمدة بأحجام مختلفة */
+                        gap: 1rem;
+                        min-height: 100vh;  /* ارتفاع الصفحة بالكامل */
+                    }
+                    
+                    /* توزيع العناصر حسب المناطق المحددة */
+                    .header {
+                        grid-area: header;  /* يضع العنصر في منطقة header */
+                        background: #111927;
+                        padding: 1rem;
+                    }
+                    
+                    .main {
+                        grid-area: main;  /* يضع العنصر في منطقة main */
+                        background: #0b0f19;
+                        padding: 1rem;
+                    }
+                    
+                    .sidebar {
+                        grid-area: sidebar;  /* يضع العنصر في منطقة sidebar */
+                        background: #131d31;
+                        padding: 1rem;
+                    }
+                    
+                    .footer {
+                        grid-area: footer;  /* يضع العنصر في منطقة footer */
+                        background: #111927;
+                        padding: 1rem;
+                    }
                 </div>
                 
                 <div class="example-box">
                     <strong>📝 تطبيق في مشروع إدارة المهام:</strong>
                     <div class="code-block">
-/* تخطيط صفحة إدارة المهام */
-.task-dashboard {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 1.5rem;
-    padding: 1.5rem;
-    min-height: 80vh;
-}
+                        /* ==========================================
+                           تخطيط صفحة إدارة المهام باستخدام Grid
+                           ========================================== */
+                        .task-dashboard {
+                            display: grid;
+                            grid-template-columns: 280px 1fr;  /* عمودين: الأول 280 بكسل، الثاني مرن */
+                            gap: 1.5rem;
+                            padding: 1.5rem;
+                            min-height: 80vh;
+                        }
 
-/* قائمة المهام الجانبية */
-.task-sidebar {
-    background: var(--bg-card);
-    border-radius: 12px;
-    padding: 1.2rem;
-    border: 1px solid var(--border-light);
-}
+                        /* القائمة الجانبية */
+                        .task-sidebar {
+                            background: #1a2332;
+                            border-radius: 12px;
+                            padding: 1.2rem;
+                            border: 1px solid #1e2d4a;
+                        }
 
-/* منطقة المهام الرئيسية */
-.task-main {
-    background: var(--bg-card);
-    border-radius: 12px;
-    padding: 1.2rem;
-    border: 1px solid var(--border-light);
-}
+                        /* منطقة المهام الرئيسية */
+                        .task-main {
+                            background: #1a2332;
+                            border-radius: 12px;
+                            padding: 1.2rem;
+                            border: 1px solid #1e2d4a;
+                        }
 
-/* شبكة المهام */
-.tasks-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
-    margin-top: 1rem;
-}
+                        /* شبكة المهام داخل المنطقة الرئيسية */
+                        .tasks-grid {
+                            display: grid;
+                            /* أعمدة مرنة: كل عمود لا يقل عن 300 بكسل */
+                            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                            gap: 1rem;
+                            margin-top: 1rem;
+                        }
 
-/* استجابة للشاشات الصغيرة */
-@media (max-width: 768px) {
-    .task-dashboard {
-        grid-template-columns: 1fr;
-    }
-    
-    .tasks-grid {
-        grid-template-columns: 1fr;
-    }
-}
+                        /* ==========================================
+                           الاستجابة للشاشات الصغيرة
+                           ========================================== */
+                        @media (max-width: 768px) {
+                            .task-dashboard {
+                                grid-template-columns: 1fr;  /* عمود واحد */
+                            }
+                            
+                            .tasks-grid {
+                                grid-template-columns: 1fr;  /* عمود واحد */
+                            }
+                        }
                     </div>
                 </div>
                 
@@ -487,6 +693,10 @@ span {
                 </div>
             `
         },
+        
+        // ============================================================
+        // الدرس الخامس: التموضع (Positioning)
+        // ============================================================
         {
             id: '3-5',
             title: 'التموضع (Positioning) والثبات (Sticky)',
@@ -496,92 +706,121 @@ span {
                 
                 <h4>أنواع التموضع</h4>
                 <div class="code-block">
-/* position: static (الوضع الافتراضي) */
-.static-element {
-    position: static; /* يتبع تدفق الصفحة الطبيعي */
-}
+                    /* ==========================================
+                       position: static (الوضع الافتراضي)
+                       ========================================== */
+                    .static-element {
+                        position: static;  /* الوضع الافتراضي */
+                        /* يتبع تدفق الصفحة الطبيعي */
+                        /* لا يمكن استخدام top, right, bottom, left */
+                    }
 
-/* position: relative (نسبي) */
-.relative-element {
-    position: relative;
-    top: 10px; /* يتحرك 10px للأسفل */
-    left: 20px; /* يتحرك 20px لليمين */
-}
+                    /* ==========================================
+                       position: relative (نسبي)
+                       ========================================== */
+                    .relative-element {
+                        position: relative;  /* نسبي إلى موقعه الأصلي */
+                        top: 10px;   /* يتحرك 10 بكسل للأسفل من موقعه الأصلي */
+                        left: 20px;  /* يتحرك 20 بكسل لليمين من موقعه الأصلي */
+                        /* يمكن استخدام: top, right, bottom, left */
+                        /* العناصر الأخرى لا تتأثر بتحريكه */
+                    }
 
-/* position: absolute (مطلق) */
-.absolute-element {
-    position: absolute;
-    top: 0;
-    right: 0; /* يتوضع في أعلى يمين أقرب عنصر relative */
-}
+                    /* ==========================================
+                       position: absolute (مطلق)
+                       ========================================== */
+                    .absolute-element {
+                        position: absolute;  /* مطلق بالنسبة لأقرب عنصر relative */
+                        top: 0;    /* أعلى العنصر الأب */
+                        right: 0;  /* يمين العنصر الأب */
+                        /* يتوضع في أعلى يمين أقرب عنصر relative */
+                        /* إذا لم يوجد عنصر relative، يتوضع بالنسبة للصفحة */
+                    }
 
-/* position: fixed (ثابت) */
-.fixed-element {
-    position: fixed;
-    bottom: 20px;
-    right: 20px; /* يثبت في مكانه حتى عند التمرير */
-    z-index: 1000;
-}
+                    /* ==========================================
+                       position: fixed (ثابت)
+                       ========================================== */
+                    .fixed-element {
+                        position: fixed;  /* ثابت في مكانه */
+                        bottom: 20px;  /* 20 بكسل من أسفل الصفحة */
+                        right: 20px;   /* 20 بكسل من يمين الصفحة */
+                        z-index: 1000;  /* يظهر فوق العناصر الأخرى */
+                        /* يثبت في مكانه حتى عند التمرير */
+                    }
 
-/* position: sticky (لاصق) - مزيج بين relative و fixed */
-.sticky-element {
-    position: sticky;
-    top: 0; /* يلتصق بأعلى الصفحة عند التمرير */
-    background: var(--bg-surface);
-    padding: 1rem;
-    z-index: 100;
-}
+                    /* ==========================================
+                       position: sticky (لاصق)
+                       ========================================== */
+                    .sticky-element {
+                        position: sticky;  /* مزيج بين relative و fixed */
+                        top: 0;  /* يلتصق بأعلى الصفحة عند التمرير */
+                        background: #111927;
+                        padding: 1rem;
+                        z-index: 100;
+                        /* يبدأ كـ relative، وعند التمرير يتحول إلى fixed */
+                    }
                 </div>
                 
                 <div class="example-box">
                     <strong>📝 تطبيق في مشروع إدارة المهام:</strong>
                     <div class="code-block">
-/* زر "إضافة مهمة" ثابت */
-.add-task-btn {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background: var(--gold);
-    color: var(--bg-body);
-    border: none;
-    padding: 1rem 1.5rem;
-    border-radius: 50px;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 4px 16px rgba(251, 191, 36, 0.3);
-    transition: all 0.3s;
-    z-index: 100;
-}
+                        /* ==========================================
+                           زر "إضافة مهمة" ثابت (Fixed)
+                           ========================================== */
+                        .add-task-btn {
+                            position: fixed;      /* ثابت في مكانه */
+                            bottom: 2rem;         /* 2rem من الأسفل */
+                            right: 2rem;          /* 2rem من اليمين */
+                            background: #facc15;  /* لون ذهبي */
+                            color: #0b0f19;       /* لون النص */
+                            border: none;
+                            padding: 1rem 1.5rem;
+                            border-radius: 50px;
+                            font-weight: 700;
+                            cursor: pointer;
+                            box-shadow: 0 4px 16px rgba(251, 191, 36, 0.3);
+                            transition: all 0.3s;
+                            z-index: 100;  /* يظهر فوق المحتوى */
+                        }
+                        
+                        .add-task-btn:hover {
+                            transform: scale(1.05);  /* تكبير عند التمرير */
+                            box-shadow: 0 6px 24px rgba(251, 191, 36, 0.4);
+                        }
 
-.add-task-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 24px rgba(251, 191, 36, 0.4);
-}
+                        /* ==========================================
+                           رأس القائمة الثابت (Sticky)
+                           ========================================== */
+                        .task-header-sticky {
+                            position: sticky;    /* لاصق */
+                            top: 0;              /* يلتصق بالأعلى */
+                            background: #1a2332;  /* لون الخلفية */
+                            padding: 0.8rem 1rem;
+                            border-bottom: 2px solid #2a3a5e;
+                            z-index: 10;         /* يظهر فوق المحتوى */
+                            backdrop-filter: blur(8px);  /* تأثير زجاجي */
+                        }
 
-/* رأس القائمة الثابت */
-.task-header-sticky {
-    position: sticky;
-    top: 0;
-    background: var(--bg-card);
-    padding: 0.8rem 1rem;
-    border-bottom: 2px solid var(--border-color);
-    z-index: 10;
-    backdrop-filter: blur(8px);
-}
-
-/* مؤشرات حالة المهام */
-.status-badge {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: #22c55e;
-    color: white;
-    font-size: 0.6rem;
-    padding: 0.1rem 0.4rem;
-    border-radius: 50%;
-    min-width: 18px;
-    text-align: center;
-}
+                        /* ==========================================
+                           وضع شارة الحالة (Absolute)
+                           ========================================== */
+                        .task-card {
+                            position: relative;  /* لتكون مرجعاً للعناصر المطلقة */
+                            padding: 1rem;
+                        }
+                        
+                        .status-badge {
+                            position: absolute;  /* مطلق بالنسبة للبطاقة */
+                            top: -8px;           /* 8px فوق البطاقة */
+                            right: -8px;         /* 8px يمين البطاقة */
+                            background: #22c55e;  /* لون أخضر */
+                            color: white;
+                            font-size: 0.6rem;
+                            padding: 0.1rem 0.4rem;
+                            border-radius: 50%;
+                            min-width: 18px;
+                            text-align: center;
+                        }
                     </div>
                 </div>
                 
@@ -596,6 +835,10 @@ span {
                 </div>
             `
         },
+        
+        // ============================================================
+        // الدرس السادس: المتغيرات في CSS والثيمات
+        // ============================================================
         {
             id: '3-6',
             title: 'المتغيرات في CSS والثيمات',
@@ -605,116 +848,140 @@ span {
                 
                 <h4>تعريف واستخدام المتغيرات</h4>
                 <div class="code-block">
-/* تعريف المتغيرات في الجذر */
-:root {
-    /* الألوان الرئيسية */
-    --gold: #facc15;
-    --bg-dark: #0b0f19;
-    --bg-card: #131d31;
-    --text-light: #f8fafc;
-    --text-muted: #94a3b8;
-    
-    /* الأحجام */
-    --radius: 12px;
-    --shadow: 0 8px 32px rgba(0,0,0,0.4);
-    
-    /* الخطوط */
-    --font-base: 1rem;
-    --font-heading: 2.5rem;
-}
+                    /* ==========================================
+                       تعريف المتغيرات في الجذر (:root)
+                       ========================================== */
+                    :root {
+                        /* المتغيرات تبدأ بـ -- */
+                        /* الألوان الرئيسية */
+                        --gold: #facc15;       /* لون ذهبي */
+                        --bg-dark: #0b0f19;    /* خلفية داكنة */
+                        --bg-card: #131d31;    /* خلفية البطاقات */
+                        --text-light: #f8fafc; /* لون نص فاتح */
+                        --text-muted: #94a3b8; /* لون نص باهت */
+                        
+                        /* الأحجام */
+                        --radius: 12px;        /* نصف قطر الزوايا */
+                        --shadow: 0 8px 32px rgba(0,0,0,0.4);  /* الظل */
+                        
+                        /* الخطوط */
+                        --font-base: 1rem;     /* حجم الخط الأساسي */
+                        --font-heading: 2.5rem; /* حجم العناوين الرئيسية */
+                    }
 
-/* استخدام المتغيرات */
-body {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-    font-size: var(--font-base);
-}
+                    /* ==========================================
+                       استخدام المتغيرات
+                       ========================================== */
+                    body {
+                        background-color: var(--bg-dark);  /* استخدام المتغير */
+                        color: var(--text-light);
+                        font-size: var(--font-base);
+                    }
 
-.card {
-    background: var(--bg-card);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: 1px solid var(--gold);
-}
+                    .card {
+                        background: var(--bg-card);
+                        border-radius: var(--radius);
+                        box-shadow: var(--shadow);
+                        border: 1px solid var(--gold);
+                    }
                 </div>
                 
                 <h4>بناء الثيمات باستخدام المتغيرات</h4>
                 <div class="code-block">
-/* الثيم الافتراضي (داكن) */
-:root {
-    --bg-primary: #0b0f19;
-    --text-primary: #f8fafc;
-    --bg-card: #131d31;
-}
+                    /* ==========================================
+                       الثيم الافتراضي (داكن)
+                       ========================================== */
+                    :root {
+                        --bg-primary: #0b0f19;    /* خلفية رئيسية داكنة */
+                        --text-primary: #f8fafc;  /* نص فاتح */
+                        --bg-card: #131d31;       /* خلفية البطاقات */
+                    }
 
-/* الثيم الفاتح */
-[data-theme="light"] {
-    --bg-primary: #f8fafc;
-    --text-primary: #0b0f19;
-    --bg-card: #ffffff;
-}
+                    /* ==========================================
+                       الثيم الفاتح
+                       ========================================== */
+                    /* [data-theme="light"] يعني: العنصر الذي يحمل data-theme="light" */
+                    /* يمكن تطبيقه على body أو html */
+                    [data-theme="light"] {
+                        --bg-primary: #f8fafc;    /* خلفية فاتحة */
+                        --text-primary: #0b0f19;  /* نص داكن */
+                        --bg-card: #ffffff;       /* خلفية بطاقات بيضاء */
+                    }
 
-/* الثيم عالي التباين */
-.high-contrast {
-    --bg-primary: #000000 !important;
-    --text-primary: #ffff00 !important;
-    --bg-card: #1a1a1a !important;
-}
+                    /* ==========================================
+                       الثيم عالي التباين
+                       ========================================== */
+                    /* عند إضافة class="high-contrast" على body */
+                    .high-contrast {
+                        --bg-primary: #000000 !important;    /* خلفية سوداء */
+                        --text-primary: #ffff00 !important;  /* نص أصفر */
+                        --bg-card: #1a1a1a !important;       /* خلفية بطاقات داكنة */
+                    }
 
-/* استخدام المتغيرات في العناصر */
-body {
-    background: var(--bg-primary);
-    color: var(--text-primary);
-}
+                    /* ==========================================
+                       استخدام المتغيرات في العناصر
+                       ========================================== */
+                    body {
+                        background: var(--bg-primary);
+                        color: var(--text-primary);
+                    }
 
-.card {
-    background: var(--bg-card);
-}
+                    .card {
+                        background: var(--bg-card);
+                    }
                 </div>
                 
                 <div class="example-box">
                     <strong>📝 تطبيق في مشروع إدارة المهام:</strong>
                     <div class="code-block">
-/* متغيرات مخصصة لمشروع المهام */
-:root {
-    /* ألوان الحالات */
-    --status-pending: #facc15;
-    --status-progress: #3b82f6;
-    --status-completed: #22c55e;
-    --status-overdue: #ef4444;
-    
-    /* أحجام المهام */
-    --task-padding: 0.8rem 1.2rem;
-    --task-radius: 8px;
-}
+                        /* ==========================================
+                           متغيرات مخصصة لمشروع المهام
+                           ========================================== */
+                        :root {
+                            /* ألوان الحالات */
+                            --status-pending: #facc15;    /* معلقة - أصفر */
+                            --status-progress: #3b82f6;   /* قيد التنفيذ - أزرق */
+                            --status-completed: #22c55e;  /* مكتملة - أخضر */
+                            --status-overdue: #ef4444;    /* متأخرة - أحمر */
+                            
+                            /* أحجام المهام */
+                            --task-padding: 0.8rem 1.2rem;
+                            --task-radius: 8px;
+                        }
 
-/* استخدام المتغيرات */
-.task-card.pending {
-    border-right-color: var(--status-pending);
-}
+                        /* ==========================================
+                           استخدام المتغيرات لتلوين المهام حسب الحالة
+                           ========================================== */
+                        .task-card.pending {
+                            border-right-color: var(--status-pending);
+                        }
+                        
+                        .task-card.progress {
+                            border-right-color: var(--status-progress);
+                        }
+                        
+                        .task-card.completed {
+                            border-right-color: var(--status-completed);
+                        }
+                        
+                        .task-card.overdue {
+                            border-right-color: var(--status-overdue);
+                        }
 
-.task-card.progress {
-    border-right-color: var(--status-progress);
-}
-
-.task-card.completed {
-    border-right-color: var(--status-completed);
-}
-
-.task-card.overdue {
-    border-right-color: var(--status-overdue);
-}
-
-/* تغيير الثيم ديناميكياً */
-[data-theme="light"] .task-card {
-    background: #ffffff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-[data-theme="dark"] .task-card {
-    background: #1a2332;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
+                        /* ==========================================
+                           تغيير الثيم ديناميكياً
+                           ========================================== */
+                        /* في الثيم الفاتح، البطاقات تكون بيضاء */
+                        [data-theme="light"] .task-card {
+                            background: #ffffff;
+                            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+                        }
+                        
+                        /* في الثيم الداكن، البطاقات تكون داكنة */
+                        [data-theme="dark"] .task-card {
+                            background: #1a2332;
+                            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+                        }
                     </div>
                 </div>
                 
@@ -729,6 +996,10 @@ body {
                 </div>
             `
         },
+        
+        // ============================================================
+        // الدرس السابع: الاستجابة للشاشات (Media Queries)
+        // ============================================================
         {
             id: '3-7',
             title: 'الاستجابة للشاشات (Media Queries)',
@@ -738,145 +1009,168 @@ body {
                 
                 <h4>أساسيات Media Queries</h4>
                 <div class="code-block">
-/* نقاط التوقف الشائعة */
+                    /* ==========================================
+                       نقاط التوقف الشائعة (Breakpoints)
+                       ========================================== */
 
-/* الهواتف (أقل من 600px) */
-@media (max-width: 600px) {
-    body {
-        font-size: 14px;
-    }
-    .container {
-        padding: 0.5rem;
-    }
-}
+                    /* ==========================================
+                       الهواتف (أقل من 600px)
+                       ========================================== */
+                    @media (max-width: 600px) {
+                        body {
+                            font-size: 14px;  /* خط أصغر للهواتف */
+                        }
+                        .container {
+                            padding: 0.5rem;  /* مسافة أقل */
+                        }
+                    }
 
-/* الأجهزة اللوحية (601px - 900px) */
-@media (min-width: 601px) and (max-width: 900px) {
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
+                    /* ==========================================
+                       الأجهزة اللوحية (601px - 900px)
+                       ========================================== */
+                    @media (min-width: 601px) and (max-width: 900px) {
+                        .grid {
+                            grid-template-columns: repeat(2, 1fr);  /* عمودين */
+                        }
+                    }
 
-/* أجهزة الكمبيوتر (أكثر من 900px) */
-@media (min-width: 901px) {
-    .grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
+                    /* ==========================================
+                       أجهزة الكمبيوتر (أكثر من 900px)
+                       ========================================== */
+                    @media (min-width: 901px) {
+                        .grid {
+                            grid-template-columns: repeat(4, 1fr);  /* 4 أعمدة */
+                        }
+                    }
                 </div>
                 
                 <h4>استراتيجيات التصميم المتجاوب</h4>
                 <div class="code-block">
-/* 1. Mobile-first (تبدأ بالهواتف ثم تكبر) */
-/* أنماط الهواتف (افتراضية) */
-.container {
-    width: 100%;
-    padding: 1rem;
-}
+                    /* ==========================================
+                       1. Mobile-first (تبدأ بالهواتف ثم تكبر)
+                       ========================================== */
+                    /* أنماط الهواتف (افتراضية) - تعمل لكل الشاشات */
+                    .container {
+                        width: 100%;    /* عرض كامل */
+                        padding: 1rem;  /* مسافة داخلية */
+                    }
 
-/* تحسينات للأجهزة اللوحية */
-@media (min-width: 768px) {
-    .container {
-        max-width: 720px;
-        margin: 0 auto;
-    }
-}
+                    /* تحسينات للأجهزة اللوحية - تزيد على الأنماط السابقة */
+                    @media (min-width: 768px) {
+                        .container {
+                            max-width: 720px;  /* عرض محدد */
+                            margin: 0 auto;    /* توسيط */
+                        }
+                    }
 
-/* تحسينات للكمبيوتر */
-@media (min-width: 1024px) {
-    .container {
-        max-width: 960px;
-    }
-}
+                    /* تحسينات للكمبيوتر - تزيد على الأنماط السابقة */
+                    @media (min-width: 1024px) {
+                        .container {
+                            max-width: 960px;  /* عرض أكبر */
+                        }
+                    }
 
-/* 2. توجيه الشاشة (Portrait / Landscape) */
-@media (orientation: portrait) {
-    .sidebar {
-        display: none; /* إخفاء القائمة الجانبية في الوضع الرأسي */
-    }
-}
+                    /* ==========================================
+                       2. توجيه الشاشة (Portrait / Landscape)
+                       ========================================== */
+                    /* الوضع الرأسي (الهاتف عمودي) */
+                    @media (orientation: portrait) {
+                        .sidebar {
+                            display: none;  /* إخفاء القائمة الجانبية */
+                        }
+                    }
 
-@media (orientation: landscape) {
-    .header {
-        flex-direction: row;
-    }
-}
+                    /* الوضع الأفقي (الهاتف أفقي) */
+                    @media (orientation: landscape) {
+                        .header {
+                            flex-direction: row;  /* عناصر في صف واحد */
+                        }
+                    }
                 </div>
                 
                 <div class="example-box">
                     <strong>📝 تطبيق في مشروع إدارة المهام:</strong>
                     <div class="code-block">
-/* تصميم متجاوب لإدارة المهام */
+                        /* ==========================================
+                           تصميم متجاوب لإدارة المهام
+                           ========================================== */
 
-/* الشاشات الكبيرة (ديسكتوب) */
-.task-dashboard {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 1.5rem;
-    padding: 1.5rem;
-}
+                        /* الشاشات الكبيرة (ديسكتوب) - الوضع الافتراضي */
+                        .task-dashboard {
+                            display: grid;
+                            grid-template-columns: 280px 1fr;
+                            gap: 1.5rem;
+                            padding: 1.5rem;
+                        }
 
-/* الأجهزة اللوحية */
-@media (max-width: 1024px) {
-    .task-dashboard {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .task-sidebar {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 0.5rem;
-    }
-}
+                        /* ==========================================
+                           الأجهزة اللوحية (أقل من 1024px)
+                           ========================================== */
+                        @media (max-width: 1024px) {
+                            .task-dashboard {
+                                grid-template-columns: 1fr;  /* عمود واحد */
+                                gap: 1rem;
+                            }
+                            
+                            .task-sidebar {
+                                display: grid;
+                                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                                gap: 0.5rem;
+                            }
+                        }
 
-/* الهواتف */
-@media (max-width: 600px) {
-    .task-dashboard {
-        padding: 0.5rem;
-    }
-    
-    .tasks-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .task-card {
-        padding: 0.6rem;
-    }
-    
-    .task-card .task-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.3rem;
-    }
-    
-    .task-actions {
-        width: 100%;
-        justify-content: flex-start;
-    }
-    
-    .add-task-btn {
-        bottom: 1rem;
-        right: 1rem;
-        padding: 0.8rem 1.2rem;
-        font-size: 0.9rem;
-    }
-}
+                        /* ==========================================
+                           الهواتف (أقل من 600px)
+                           ========================================== */
+                        @media (max-width: 600px) {
+                            .task-dashboard {
+                                padding: 0.5rem;
+                            }
+                            
+                            .tasks-grid {
+                                grid-template-columns: 1fr;  /* عمود واحد */
+                            }
+                            
+                            .task-card {
+                                padding: 0.6rem;  /* مسافة أقل */
+                            }
+                            
+                            .task-card .task-header {
+                                flex-direction: column;  /* عمودي */
+                                align-items: flex-start;
+                                gap: 0.3rem;
+                            }
+                            
+                            .task-actions {
+                                width: 100%;
+                                justify-content: flex-start;
+                            }
+                            
+                            /* زر إضافة المهمة */
+                            .add-task-btn {
+                                bottom: 1rem;
+                                right: 1rem;
+                                padding: 0.8rem 1.2rem;
+                                font-size: 0.9rem;
+                            }
+                        }
 
-/* الشاشات الصغيرة جداً */
-@media (max-width: 400px) {
-    body {
-        font-size: 14px;
-    }
-    
-    .task-card .task-title {
-        font-size: 0.9rem;
-    }
-    
-    .task-card .task-date {
-        font-size: 0.7rem;
-    }
-}
+                        /* ==========================================
+                           الشاشات الصغيرة جداً (أقل من 400px)
+                           ========================================== */
+                        @media (max-width: 400px) {
+                            body {
+                                font-size: 14px;  /* خط أصغر */
+                            }
+                            
+                            .task-card .task-title {
+                                font-size: 0.9rem;
+                            }
+                            
+                            .task-card .task-date {
+                                font-size: 0.7rem;
+                            }
+                        }
                     </div>
                 </div>
                 
@@ -892,6 +1186,10 @@ body {
                 </div>
             `
         },
+        
+        // ============================================================
+        // الدرس الثامن: الأنيميشن والترانزيشن
+        // ============================================================
         {
             id: '3-8',
             title: 'الأنيميشن والترانزيشن - تحريك العناصر',
@@ -901,167 +1199,203 @@ body {
                 
                 <h4>الترانزيشن (Transition)</h4>
                 <div class="code-block">
-/* transition: property duration timing-function delay */
-.button {
-    background: #131d31;
-    color: #f8fafc;
-    padding: 10px 20px;
-    border: 2px solid #facc15;
-    transition: all 0.3s ease;
-}
+                    /* ==========================================
+                       transition: property duration timing-function delay
+                       ========================================== */
+                    .button {
+                        background: #131d31;
+                        color: #f8fafc;
+                        padding: 10px 20px;
+                        border: 2px solid #facc15;
+                        /* transition: الخاصية المدة دالة_الحركة التأخير */
+                        transition: all 0.3s ease;
+                        /* all: جميع الخصائص تتغير بسلاسة */
+                        /* 0.3s: مدة التغيير 0.3 ثانية */
+                        /* ease: حركة بطيئة في البداية والنهاية */
+                    }
+                    
+                    /* عندما يمرر المستخدم الماوس */
+                    .button:hover {
+                        background: #facc15;  /* خلفية ذهبية */
+                        color: #0b0f19;       /* نص داكن */
+                        transform: scale(1.05);  /* تكبير 5% */
+                        box-shadow: 0 4px 20px rgba(250,204,21,0.3);
+                    }
 
-.button:hover {
-    background: #facc15;
-    color: #0b0f19;
-    transform: scale(1.05);
-    box-shadow: 0 4px 20px rgba(250,204,21,0.3);
-}
-
-/* transition متعددة */
-.card {
-    transition: 
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        opacity 0.5s ease-in;
-}
+                    /* ==========================================
+                       transition متعددة الخصائص
+                       ========================================== */
+                    .card {
+                        transition: 
+                            transform 0.3s ease,    /* حركة التحويل */
+                            box-shadow 0.3s ease,   /* حركة الظل */
+                            opacity 0.5s ease-in;   /* حركة الشفافية */
+                    }
                 </div>
                 
                 <h4>الأنيميشن (Keyframes Animation)</h4>
                 <div class="code-block">
-/* تعريف الحركة باستخدام keyframes */
-@keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+                    /* ==========================================
+                       تعريف الحركة باستخدام keyframes
+                       ========================================== */
+                    
+                    /* حركة الظهور من الأسفل */
+                    @keyframes fadeInUp {
+                        0% {   /* بداية الحركة */
+                            opacity: 0;           /* شفاف */
+                            transform: translateY(20px);  /* تحريك للأسفل */
+                        }
+                        100% {  /* نهاية الحركة */
+                            opacity: 1;           /* مرئي */
+                            transform: translateY(0);  /* مكانه الطبيعي */
+                        }
+                    }
 
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-}
+                    /* حركة النبض */
+                    @keyframes pulse {
+                        0%, 100% {
+                            transform: scale(1);  /* حجم طبيعي */
+                        }
+                        50% {
+                            transform: scale(1.05);  /* تكبير 5% */
+                        }
+                    }
 
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
+                    /* حركة الدوران */
+                    @keyframes spin {
+                        0% {
+                            transform: rotate(0deg);  /* بداية الدوران */
+                        }
+                        100% {
+                            transform: rotate(360deg);  /* دورة كاملة */
+                        }
+                    }
 
-/* استخدام الأنيميشن */
-.hero-text {
-    animation: fadeInUp 0.8s ease-out;
-}
+                    /* ==========================================
+                       استخدام الأنيميشن
+                       ========================================== */
+                    .hero-text {
+                        animation: fadeInUp 0.8s ease-out;
+                        /* name: fadeInUp, duration: 0.8s, timing: ease-out */
+                    }
 
-.notification-badge {
-    animation: pulse 2s ease-in-out infinite;
-}
+                    .notification-badge {
+                        animation: pulse 2s ease-in-out infinite;
+                        /* infinite: يتكرر إلى ما لا نهاية */
+                    }
 
-.loading-spinner {
-    animation: spin 1s linear infinite;
-}
+                    .loading-spinner {
+                        animation: spin 1s linear infinite;
+                        /* linear: حركة منتظمة */
+                    }
                 </div>
                 
                 <div class="example-box">
                     <strong>📝 تطبيق في مشروع إدارة المهام:</strong>
                     <div class="code-block">
-/* تأثيرات المهام */
+                        /* ==========================================
+                           تأثيرات المهام
+                           ========================================== */
 
-/* إضافة مهمة جديدة */
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
+                        /* ==========================================
+                           1. إضافة مهمة جديدة - انزلاق من اليسار
+                           ========================================== */
+                        @keyframes slideIn {
+                            from {
+                                opacity: 0;
+                                transform: translateX(-20px);
+                            }
+                            to {
+                                opacity: 1;
+                                transform: translateX(0);
+                            }
+                        }
+                        
+                        .task-card {
+                            animation: slideIn 0.3s ease-out;
+                        }
 
-.task-card {
-    animation: slideIn 0.3s ease-out;
-}
+                        /* ==========================================
+                           2. حذف مهمة - انزلاق لليمين
+                           ========================================== */
+                        @keyframes slideOut {
+                            from {
+                                opacity: 1;
+                                transform: translateX(0);
+                            }
+                            to {
+                                opacity: 0;
+                                transform: translateX(20px);
+                            }
+                        }
+                        
+                        .task-card.removing {
+                            animation: slideOut 0.3s ease-in forwards;
+                            /* forwards: يبقى في الحالة النهائية */
+                        }
 
-/* حذف مهمة */
-@keyframes slideOut {
-    from {
-        opacity: 1;
-        transform: translateX(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateX(20px);
-    }
-}
+                        /* ==========================================
+                           3. تأثير hover على المهام
+                           ========================================== */
+                        .task-card {
+                            transition: all 0.3s ease;
+                        }
+                        
+                        .task-card:hover {
+                            transform: translateX(-4px);
+                            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+                        }
 
-.task-card.removing {
-    animation: slideOut 0.3s ease-in forwards;
-}
+                        /* ==========================================
+                           4. إكمال المهمة - تأثير تكبير
+                           ========================================== */
+                        @keyframes completeTask {
+                            0% {
+                                transform: scale(1);
+                            }
+                            50% {
+                                transform: scale(0.95);
+                            }
+                            100% {
+                                transform: scale(1);
+                            }
+                        }
+                        
+                        .task-card.completing {
+                            animation: completeTask 0.4s ease;
+                        }
 
-/* تأثير hover على المهام */
-.task-card {
-    transition: all 0.3s ease;
-}
+                        /* ==========================================
+                           5. المهام المكتملة - شطب وشفافية
+                           ========================================== */
+                        .task-card.completed {
+                            opacity: 0.7;
+                            border-right-color: #22c55e;
+                        }
+                        
+                        .task-card.completed .task-title {
+                            text-decoration: line-through;  /* خط في النص */
+                            color: #94a3b8;  /* لون باهت */
+                        }
 
-.task-card:hover {
-    transform: translateX(-4px);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-}
-
-/* إكمال المهمة */
-@keyframes completeTask {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(0.95);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.task-card.completing {
-    animation: completeTask 0.4s ease;
-}
-
-.task-card.completed {
-    opacity: 0.7;
-    border-right-color: #22c55e;
-}
-
-.task-card.completed .task-title {
-    text-decoration: line-through;
-    color: var(--text-muted);
-}
-
-/* تقدم المهمة */
-.progress-bar {
-    width: 100%;
-    height: 4px;
-    background: var(--border-color);
-    border-radius: 2px;
-    overflow: hidden;
-    margin-top: 0.5rem;
-}
-
-.progress-bar .progress-fill {
-    height: 100%;
-    background: var(--gold);
-    border-radius: 2px;
-    transition: width 0.5s ease;
-}
+                        /* ==========================================
+                           6. شريط التقدم
+                           ========================================== */
+                        .progress-bar {
+                            width: 100%;
+                            height: 4px;
+                            background: #2a3a5e;
+                            border-radius: 2px;
+                            overflow: hidden;
+                            margin-top: 0.5rem;
+                        }
+                        
+                        .progress-bar .progress-fill {
+                            height: 100%;
+                            background: #facc15;
+                            border-radius: 2px;
+                            transition: width 0.5s ease;  /* حركة سلسة */
+                        }
                     </div>
                 </div>
                 

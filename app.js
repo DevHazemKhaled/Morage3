@@ -405,10 +405,9 @@
     }
 
     // ========================================
-    // دوال المعاينة والتنزيل (للفصل الخامس)
+    // أكواد المشروع النهائي للتنزيل
     // ========================================
 
-    // أكواد المشروع النهائي
     const projectFiles = {
         'index.html': `<!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -1313,29 +1312,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // دوال المعاينة والتنزيل
     // ========================================
 
+    // دالة المعاينة - تفتح الرابط في نافذة جديدة
     function previewProject() {
-        const previewWindow = window.open('', '_blank', 'width=1200,height=800');
-        if (!previewWindow) {
-            alert('الرجاء السماح للنوافذ المنبثقة');
-            return;
-        }
-        
-        const htmlContent = `<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مدير المهام - أكاديمية الكومندا</title>
-    <style>${projectFiles['style.css']}</style>
-</head>
-<body>
-    ${projectFiles['index.html'].replace('<link rel="stylesheet" href="style.css">', '').replace('<script src="app.js"></script>', '')}
-    <script>${projectFiles['app.js']}</script>
-</body>
-</html>`;
-        
-        previewWindow.document.write(htmlContent);
-        previewWindow.document.close();
+        window.open('https://ww-hazemo-tasks.kesug.com/', '_blank');
     }
 
     function downloadProject() {
@@ -1450,6 +1429,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('🔊 محرك القراءة الصوتية مفعل');
         console.log('💾 تفضيلات المستخدم محفوظة');
         console.log('✅ دوال المعاينة والتنزيل جاهزة!');
+        console.log('👁️ زر المعاينة يفتح الرابط: https://ww-hazemo-tasks.kesug.com/');
     }
 
 })();

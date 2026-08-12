@@ -3,45 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أكاديمية المبرمج الصغير - الاحتراف من الصفر</title>
+    <title>منصة Al-Komanda التعليمية - من الصفر للاحتراف</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- القائمة الجانبية (Sidebar) -->
+    <!-- القائمة الجانبية الضخمة (الفصول والدروس) -->
     <aside class="sidebar">
         <div class="logo">
             <h2>🚀 Al-Komanda Academy</h2>
-            <p>منهج الويب الشامل</p>
+            <p>المنهج الشامل لتطوير الويب</p>
         </div>
-        <ul class="nav-links">
-            <li><a href="#" onclick="loadSection('html')">🌐 لغة HTML (الأساس)</a></li>
-            <li><a href="#" onclick="loadSection('css')">🎨 لغة CSS والرسم</a></li>
-            <li><a href="#" onclick="loadSection('js')">⚡ لغة JavaScript والـ DOM</a></li>
-            <li><a href="#" onclick="loadSection('project')">🏆 المشروع التطبيقي</a></li>
-        </ul>
+        <div id="chapters-container" class="nav-container">
+            <!-- الـ JS هتولد الفصول والقوائم المنسدلة هنا أوتوماتيك -->
+        </div>
     </aside>
 
-    <!-- المحتوى الرئيسي (Main Content) -->
+    <!-- المحتوى الرئيسي ومحرر "جرب بنفسك" -->
     <main class="main-content">
         <header class="top-bar">
-            <h1 id="page-title">مرحباً بك في الأكاديمية</h1>
+            <div>
+                <span id="chapter-badge">الفصل الأول</span>
+                <h1 id="lesson-title">مرحباً بك في الأكاديمية</h1>
+            </div>
             <div class="accessibility-btns">
-                <button onclick="readCurrentContent()">🔊 اقرأ الدرس</button>
+                <button onclick="readCurrentContent()">🔊 استماع صوتي</button>
                 <button onclick="stopSpeech()">⏹️ إيقاف</button>
                 <button onclick="toggleDarkMode()">🌓 الوضع الليلي</button>
             </div>
         </header>
 
-        <!-- هنا المحتوى بيتغير لوحده بالـ JavaScript -->
-        <section id="content-display" class="content-box">
-            <!-- المحتوى الافتراضي للبداية -->
-            <h2>اختر مساراً من القائمة الجانبية للبدء</h2>
-            <p>هذه المنصة صُممت خصيصاً لتعلم تطوير الويب باحترافية تامة وحل مشكلات التعليم البرمجي.</p>
+        <!-- عرض الدرس والشرح -->
+        <section id="lesson-content" class="content-box">
+            <!-- المحتوى الافتراضي -->
+            <p>اختر درساً من القائمة الجانبية في الفصول الخمسة للبدء في رحلة الاحتراف البرمجي.</p>
+        </section>
+
+        <!-- قسم جرب بنفسك (محرر كود حي + كونسول وبريفيو) -->
+        <section class="playground-box">
+            <h3>💻 جرب بنفسك (Interactive Code Playground)</h3>
+            <div class="editor-container">
+                <textarea id="code-editor" placeholder="اكتب كود الـ HTML أو CSS أو JS هنا..."></textarea>
+                <div class="preview-panel">
+                    <div class="panel-header">النتيجة الحية (Live Preview) & Console</div>
+                    <iframe id="live-preview"></iframe>
+                    <div id="console-output">Console: جاهز للتنفيذ...</div>
+                </div>
+            </div>
+            <button class="run-btn" onclick="runUserCode()">▶ تنفيذ الكود الآن</button>
         </section>
     </main>
 
-    <!-- ربط ملفات الجافاسكريبت بالترتيب -->
+    <!-- ملفات البيانات والمحرك -->
     <script src="data.js"></script>
     <script src="app.js"></script>
 </body>

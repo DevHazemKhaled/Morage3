@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أكاديمية الكومندا | Al-Komanda Academy</title>
+    <title>أكاديمية الكومندا | التعلم الذاتي المتكامل</title>
     <meta property="og:title" content="أكاديمية الكومندا - منهج تطوير ويب متكامل">
-    <meta property="og:description" content="خريطة تكيفية لفصول أكاديمية الكومندا مع أدوات وصول وقراءة صوتية.">
+    <meta property="og:description" content="منصة تعلم ذاتي متكاملة مع شرح تفصيلي وأمثلة عملية">
     <meta property="og:type" content="website">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="container">
 
+    <!-- شريط إمكانية الوصول -->
     <div class="toolbar" id="accessibilityToolbar" role="toolbar" aria-label="شريط إمكانية الوصول">
         <div class="btn-group">
             <button id="fontDec" aria-label="تصغير حجم الخط">أ-</button>
@@ -26,23 +27,64 @@
         </div>
     </div>
 
+    <!-- الهيدر -->
     <header>
-        <h1><span>⚡</span> أكاديمية الكومندا <span>Al-Komanda Academy</span></h1>
-        <p>خريطة تكيفية · 5 فصول · وصول شامل</p>
+        <div class="header-content">
+            <h1>⚡ أكاديمية الكومندا</h1>
+            <p class="subtitle">منصة التعلم الذاتي المتكاملة - من الصفر حتى الاحتراف</p>
+            <div class="header-stats">
+                <span>📚 5 فصول</span>
+                <span>📖 45+ درس</span>
+                <span>💻 مشاريع عملية</span>
+                <span>🎯 شهادة إتمام</span>
+            </div>
+        </div>
     </header>
 
+    <!-- المحتوى الرئيسي -->
     <div class="academy-grid">
+        <!-- القائمة الجانبية -->
         <aside class="sidebar" id="chapterSidebar" role="navigation" aria-label="فصول الأكاديمية">
+            <!-- سيتم إنشاؤها بواسطة JavaScript -->
         </aside>
 
+        <!-- منطقة عرض المحتوى -->
         <main class="main-content" id="mainContent" role="main" aria-live="polite">
             <div id="contentRenderer">
-                <h2>🏁 مرحباً في الكومندا</h2>
-                <p>اختر فصلاً من القائمة الجانبية لعرض الدروس والتفاصيل.</p>
-                <p class="gold-text">🧠 5 فصول · 43 درساً · مشروع نهائي</p>
+                <div class="welcome-message">
+                    <h2>🏁 مرحباً في أكاديمية الكومندا</h2>
+                    <p>اختر فصلاً من القائمة الجانبية، ثم اختر درساً لبدء التعلم</p>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <span>🎯</span>
+                            <h3>تعلم منظم</h3>
+                            <p>خمسة فصول متكاملة تغطي كل ما تحتاجه</p>
+                        </div>
+                        <div class="feature-card">
+                            <span>💡</span>
+                            <h3>أمثلة عملية</h3>
+                            <p>شرح مع أكواد وتطبيقات واقعية</p>
+                        </div>
+                        <div class="feature-card">
+                            <span>♿</span>
+                            <h3>إمكانية وصول</h3>
+                            <p>أدوات دعم للجميع (تكبير، تباين، قراءة صوتية)</p>
+                        </div>
+                        <div class="feature-card">
+                            <span>🚀</span>
+                            <h3>مشاريع نهائية</h3>
+                            <p>تطبيق عملي لكل ما تعلمته</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
+
+    <!-- الفوتر -->
+    <footer>
+        <p>© 2026 أكاديمية الكومندا - بناء الجيل القادم من المبرمجين</p>
+    </footer>
 </div>
 
 <script src="chapter1.js"></script>

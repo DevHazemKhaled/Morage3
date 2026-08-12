@@ -4,15 +4,28 @@
     // ========================================
     // فتح/غلق شريط إمكانية الوصول
     // ========================================
-    const accessToggle = document.getElementById('accessibilityToggle');
-    const accessDropdown = document.getElementById('accessibilityDropdown');
-    let accessOpen = false;
+    const accessToggle = document.getElementById('accessToggle');
+    const accessBar = document.getElementById('accessibilityBar');
+    const barClose = document.getElementById('barClose');
+    const mainHeader = document.getElementById('mainHeader');
+    let barOpen = false;
 
-    accessToggle.addEventListener('click', function() {
-        accessOpen = !accessOpen;
-        accessDropdown.classList.toggle('open', accessOpen);
-        this.textContent = accessOpen ? '✕' : '♿';
-    });
+    function toggleBar() {
+        barOpen = !barOpen;
+        accessBar.classList.toggle('open', barOpen);
+        mainHeader.classList.toggle('shifted', barOpen);
+        accessToggle.classList.toggle('active', barOpen);
+        accessToggle.textContent = barOpen ? '✕' : '♿';
+        
+        localStorage.setItem('accessBarOpen', barOpen);
+    }
+
+    accessToggle.addEventListener('click', toggleBar);
+    barClose.addEventListener('click', toggleBar);
+
+    if (localStorage.getItem('accessBarOpen') === 'true') {
+        toggleBar();
+    }
 
     // ========================================
     // فتح/غلق القائمة الجانبية
@@ -116,12 +129,12 @@
     let isPaused = false;
     let currentText = '';
 
-    speedDisplay.textContent = speechRate.toFixed(1) + 'x';
+    speedDisplay.textContent = speechRate.toFixed(1);
 
     speedUp.addEventListener('click', function() {
         if (speechRate < 2.0) {
             speechRate += 0.1;
-            speedDisplay.textContent = speechRate.toFixed(1) + 'x';
+            speedDisplay.textContent = speechRate.toFixed(1);
             localStorage.setItem('speechRate', speechRate);
         }
     });
@@ -129,17 +142,15 @@
     speedDown.addEventListener('click', function() {
         if (speechRate > 0.5) {
             speechRate -= 0.1;
-            speedDisplay.textContent = speechRate.toFixed(1) + 'x';
+            speedDisplay.textContent = speechRate.toFixed(1);
             localStorage.setItem('speechRate', speechRate);
         }
     });
 
-    // الحصول على النص وتنظيفه
     function getCleanContent() {
         const el = document.querySelector('#contentRenderer');
         if (!el) return '';
         
-        // نسخ المحتوى وإزالة العلامات
         const clone = el.cloneNode(true);
         clone.querySelectorAll('.code-block, .note-box, .example-box').forEach(function(el) {
             el.remove();
@@ -152,14 +163,11 @@
         return text;
     }
 
-    // تقسيم النص إلى جمل
     function splitIntoSentences(text) {
-        // تقسيم حسب النقاط وعلامات الترقيم
         const sentences = text.split(/(?<=[.۔!؟])\s+/);
         return sentences.filter(s => s.trim().length > 0);
     }
 
-    // قراءة الجمل بالتتابع
     function speakSentences(sentences, index) {
         if (index >= sentences.length) {
             isSpeaking = false;
@@ -191,7 +199,6 @@
 
         utterance.onend = function() {
             if (!isPaused) {
-                // توقف مؤقت بين الجمل
                 setTimeout(function() {
                     speakSentences(sentences, index + 1);
                 }, 300);
@@ -366,6 +373,14 @@
                 el.dataset.lessonId === lessonId
             );
         });
+
+        // إيقاف القراءة الصوتية عند تغيير الدرس
+        if (window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+            isSpeaking = false;
+            isPaused = false;
+            speakBtn.textContent = '🔊';
+        }
     }
 
     function loadLastLesson() {
@@ -385,6 +400,9 @@
         }
     }
 
+    // ========================================
+    // تهيئة التطبيق
+    // ========================================
     if (chapters.length === 0) {
         renderer.innerHTML = `
             <div style="text-align:center;padding:3rem;">
@@ -398,6 +416,9 @@
         console.log('🚀 أكاديمية الكومندا جاهزة!');
         console.log(`📚 ${chapters.length} فصول`);
         console.log(`📖 ${chapters.reduce((acc, ch) => acc + ch.lessons.length, 0)} درس`);
+        console.log('♿ دعم كامل لإمكانية الوصول');
+        console.log('🔊 محرك القراءة الصوتية مفعل');
+        console.log('💾 تفضيلات المستخدم محفوظة');
     }
 
 })();

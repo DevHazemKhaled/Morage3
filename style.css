@@ -70,7 +70,7 @@ body {
     line-height: 1.7;
     transition: var(--transition);
     min-height: 100vh;
-    padding-top: 120px; /* مساحة للهيدر وشريط الوصول */
+    padding-top: 70px;
 }
 
 ::-webkit-scrollbar { width: 6px; }
@@ -78,23 +78,32 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
 
 /* ========================================
-   شريط إمكانية الوصول - ثابت
+   شريط إمكانية الوصول - ثابت ومخفي/ظاهر
    ======================================== */
 
-.accessibility-dropdown {
+.accessibility-bar {
     background: var(--bg-surface);
-    border-bottom: 1px solid var(--border-color);
-    padding: 0.3rem 1rem;
+    border-bottom: 2px solid var(--gold);
+    padding: 0.4rem 1rem;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1002;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
+    box-shadow: var(--shadow-lg);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
 }
 
-.dropdown-container {
+.accessibility-bar.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.bar-container {
     max-width: 1400px;
     margin: 0 auto;
     display: flex;
@@ -102,28 +111,30 @@ body {
     align-items: center;
     justify-content: center;
     gap: 0.3rem 1rem;
+    position: relative;
+    padding-right: 30px;
 }
 
-.access-group {
+.bar-group {
     display: flex;
     align-items: center;
     gap: 0.3rem;
     flex-wrap: wrap;
 }
 
-.access-label {
+.bar-label {
     font-size: 0.7rem;
     color: var(--text-secondary);
     font-weight: 500;
 }
 
-.access-divider {
+.bar-divider {
     width: 1px;
     height: 20px;
     background: var(--border-color);
 }
 
-.access-btn {
+.bar-btn {
     background: transparent;
     border: 1px solid var(--border-color);
     color: var(--text-secondary);
@@ -133,35 +144,54 @@ body {
     cursor: pointer;
     transition: var(--transition);
     font-family: inherit;
-    min-height: 24px;
-    min-width: 28px;
+    min-height: 26px;
+    min-width: 30px;
 }
 
-.access-btn:hover {
+.bar-btn:hover {
     background: var(--bg-hover);
     border-color: var(--gold);
     color: var(--text-primary);
 }
 
-.access-btn.btn-gold {
+.bar-btn.btn-gold {
     background: var(--gold);
     border-color: var(--gold);
     color: var(--bg-body);
 }
-.access-btn.btn-gold:hover { background: var(--gold-dark); }
+.bar-btn.btn-gold:hover { background: var(--gold-dark); }
 
-.access-btn.btn-speak {
+.bar-btn.btn-speak {
     background: var(--gold-glow);
     border-color: var(--gold);
     color: var(--gold);
 }
 
-.font-size-display {
+.bar-size {
     font-size: 0.7rem;
     color: var(--text-secondary);
     min-width: 24px;
     text-align: center;
     font-weight: 600;
+}
+
+.bar-close {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+    transition: var(--transition);
+}
+
+.bar-close:hover {
+    color: var(--text-primary);
+    transform: translateY(-50%) rotate(90deg);
 }
 
 /* ========================================
@@ -173,12 +203,17 @@ body {
     border-bottom: 1px solid var(--border-color);
     padding: 0.5rem 1.5rem;
     position: fixed;
-    top: 38px;
+    top: 0;
     left: 0;
     right: 0;
     z-index: 1001;
     box-shadow: var(--shadow);
-    transition: var(--transition);
+    transition: all 0.3s ease;
+}
+
+/* عندما يكون شريط الوصول مفتوح، الهيدر يتحرك للأسفل */
+.main-header.shifted {
+    top: 56px;
 }
 
 .header-container {
@@ -280,7 +315,7 @@ body {
     background: var(--border-color);
 }
 
-.accessibility-toggle {
+.access-toggle {
     background: var(--gold-glow);
     border: 1px solid var(--gold);
     border-radius: 50%;
@@ -292,13 +327,18 @@ body {
     flex-shrink: 0;
 }
 
-.accessibility-toggle:hover {
+.access-toggle:hover {
     background: var(--gold);
     transform: scale(1.05);
 }
 
+.access-toggle.active {
+    background: var(--gold);
+    transform: scale(0.95);
+}
+
 /* ========================================
-   القائمة الجانبية الثابتة مع شادو
+   القائمة الجانبية الثابتة
    ======================================== */
 
 .sidebar-overlay {
@@ -491,7 +531,7 @@ body {
 }
 
 /* ========================================
-   باقي التنسيقات (نفس السابق)
+   باقي التنسيقات
    ======================================== */
 
 .welcome-screen { text-align: center; padding: 1rem 0; }
@@ -673,40 +713,79 @@ body {
    الاستجابة
    ======================================== */
 
+@media (max-width: 1024px) {
+    .bar-container {
+        gap: 0.3rem 0.6rem;
+        padding-right: 25px;
+    }
+    .bar-label { font-size: 0.65rem; }
+    .bar-btn { font-size: 0.7rem; min-height: 24px; min-width: 26px; padding: 0.1rem 0.4rem; }
+    .bar-size { font-size: 0.65rem; min-width: 20px; }
+}
+
 @media (max-width: 768px) {
-    body { padding-top: 100px; }
-    .main-header { top: 34px; padding: 0.4rem 0.8rem; }
-    .accessibility-dropdown { padding: 0.2rem 0.5rem; }
+    body { padding-top: 60px; }
+    .main-header { padding: 0.4rem 0.8rem; top: 0; }
+    .main-header.shifted { top: 48px; }
+    
+    .accessibility-bar { padding: 0.3rem 0.5rem; }
+    .accessibility-bar.open { transform: translateY(0); }
+    
+    .bar-container {
+        gap: 0.2rem 0.4rem;
+        padding-right: 20px;
+    }
+    .bar-divider { display: none; }
+    .bar-label { font-size: 0.55rem; }
+    .bar-btn { font-size: 0.6rem; min-height: 20px; min-width: 22px; padding: 0.1rem 0.3rem; }
+    .bar-size { font-size: 0.55rem; min-width: 16px; }
+    .bar-close { font-size: 0.8rem; }
+    
     .header-brand h1 { font-size: 1rem; }
     .brand-icon { font-size: 1.2rem; padding: 0.15rem; }
     .header-stats { gap: 0.4rem; }
     .stat-number { font-size: 0.8rem; }
     .stat-label { font-size: 0.5rem; }
     .stat-divider { display: none; }
+    .access-toggle { width: 30px; height: 30px; font-size: 0.85rem; }
+    .menu-toggle { min-width: 30px; min-height: 30px; }
+    .menu-toggle span { width: 16px; height: 2px; }
+    
     .content-area { padding: 1rem; min-height: 300px; }
     .welcome-screen h2 { font-size: 1.4rem; }
     .welcome-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
     .welcome-card { padding: 0.7rem; }
     .welcome-card span { font-size: 1.4rem; }
     .sidebar { width: 280px; right: -300px; }
-    .access-btn { padding: 0.1rem 0.3rem; font-size: 0.65rem; min-height: 20px; min-width: 24px; }
-    .access-divider { display: none; }
-    .menu-toggle { min-width: 30px; min-height: 30px; }
-    .menu-toggle span { width: 16px; height: 2px; }
-    .accessibility-toggle { width: 30px; height: 30px; font-size: 0.85rem; }
     .footer-container { flex-direction: column; text-align: center; }
 }
 
 @media (max-width: 480px) {
-    body { padding-top: 90px; }
-    .main-header { top: 30px; padding: 0.3rem 0.5rem; }
+    body { padding-top: 54px; }
+    .main-header { padding: 0.3rem 0.5rem; }
+    .main-header.shifted { top: 44px; }
+    
+    .accessibility-bar { padding: 0.2rem 0.3rem; }
+    .accessibility-bar.open { transform: translateY(0); }
+    .bar-container { gap: 0.15rem 0.3rem; padding-right: 16px; }
+    .bar-btn { font-size: 0.5rem; min-height: 18px; min-width: 18px; padding: 0.05rem 0.2rem; }
+    .bar-size { font-size: 0.5rem; min-width: 14px; }
+    .bar-label { font-size: 0.5rem; }
+    .bar-close { font-size: 0.7rem; }
+    
+    .header-brand h1 { font-size: 0.85rem; }
+    .brand-icon { font-size: 1rem; }
+    .stat-number { font-size: 0.7rem; }
+    .stat-label { font-size: 0.45rem; }
+    .access-toggle { width: 26px; height: 26px; font-size: 0.7rem; }
+    .menu-toggle { min-width: 26px; min-height: 26px; }
+    .menu-toggle span { width: 14px; height: 2px; }
+    
     .main-container { padding: 0.5rem; }
     .content-area { padding: 0.8rem; border-radius: var(--radius); }
     .lesson-header h2 { font-size: 1.1rem; }
     .lesson-content .code-block { padding: 0.6rem 0.8rem; font-size: 0.7rem; }
     .sidebar { width: 260px; right: -280px; }
-    .accessibility-dropdown { padding: 0.15rem 0.3rem; }
-    .access-label { font-size: 0.6rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -3,126 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أكاديمية الكومندا | منصة التعلم المتكاملة</title>
+    <title>مدير المهام - أكاديمية الكومندا</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- ======================================== -->
+    <!-- شريط إمكانية الوصول -->
+    <!-- ======================================== -->
+    <div class="accessibility-bar" id="accessBar">
+        <button id="fontDec" aria-label="تصغير حجم الخط">أ-</button>
+        <span id="fontSizeDisplay">16</span>
+        <button id="fontInc" aria-label="تكبير حجم الخط">أ+</button>
+        <button id="themeToggle" aria-label="تبديل الثيم">🌙</button>
+        <button id="contrastToggle" aria-label="تبديل التباين العالي">♿</button>
+        <button id="speakBtn" aria-label="تشغيل القراءة الصوتية">🔊</button>
+    </div>
 
-    <!-- الهيدر الثابت -->
-    <header class="main-header" id="mainHeader">
-        <div class="header-container">
-            <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة">
-                <span></span><span></span><span></span>
-            </button>
-            
-            <div class="header-brand">
-                <span class="brand-icon">⚡</span>
-                <div>
-                    <h1>أكاديمية الكومندا</h1>
-                    <span class="brand-subtitle">تعلم البرمجة من الصفر</span>
-                </div>
-            </div>
-            
+    <!-- ======================================== -->
+    <!-- الهيدر الرئيسي -->
+    <!-- ======================================== -->
+    <header class="main-header">
+        <div class="header-content">
+            <h1>📋 مدير المهام</h1>
             <div class="header-stats">
-                <div class="stat-item">
-                    <span class="stat-number">5</span>
-                    <span class="stat-label">فصول</span>
+                <div class="stat">
+                    <span id="totalTasks">0</span>
+                    <label>الإجمالي</label>
                 </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-number">42</span>
-                    <span class="stat-label">دروس</span>
+                <div class="stat">
+                    <span id="completedTasks">0</span>
+                    <label>مكتملة</label>
                 </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-number">🏆</span>
-                    <span class="stat-label">مشروع</span>
-                </div>
-            </div>
-            
-            <!-- زر إمكانية الوصول -->
-            <div class="access-wrapper">
-                <button class="access-toggle" id="accessToggle" aria-label="فتح شريط إمكانية الوصول">
-                    ♿
-                </button>
-                <!-- شريط إمكانية الوصول - منسدل -->
-                <div class="access-dropdown" id="accessDropdown">
-                    <div class="access-inner">
-                        <div class="access-row">
-                            <span class="access-label">📐</span>
-                            <button id="fontDec" class="access-btn">أ-</button>
-                            <span class="access-size" id="fontSizeDisplay">16</span>
-                            <button id="fontInc" class="access-btn">أ+</button>
-                        </div>
-                        <div class="access-divider"></div>
-                        <div class="access-row">
-                            <button id="themeToggle" class="access-btn btn-gold">🌙</button>
-                            <button id="contrastToggle" class="access-btn">♿</button>
-                            <button id="speakBtn" class="access-btn btn-speak">🔊</button>
-                        </div>
-                        <div class="access-divider"></div>
-                        <div class="access-row">
-                            <span class="access-label">سرعة</span>
-                            <button id="speedDown" class="access-btn">-</button>
-                            <span class="access-size" id="speedDisplay">1.0</span>
-                            <button id="speedUp" class="access-btn">+</button>
-                            <button id="stopSpeakBtn" class="access-btn">⏹️</button>
-                            <button id="pauseSpeakBtn" class="access-btn">⏸️</button>
-                        </div>
-                    </div>
+                <div class="stat">
+                    <span id="pendingTasks">0</span>
+                    <label>معلقة</label>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- القائمة الجانبية -->
-    <aside class="sidebar-overlay" id="sidebarOverlay"></aside>
-    <aside class="sidebar" id="chapterSidebar" role="navigation">
-        <div class="sidebar-header">
-            <span>📚 الفصول</span>
-            <button class="sidebar-close" id="sidebarClose">✕</button>
-        </div>
-        <div class="sidebar-content" id="sidebarContent"></div>
-    </aside>
-
+    <!-- ======================================== -->
     <!-- المحتوى الرئيسي -->
-    <main class="main-container">
-        <div class="content-wrapper">
-            <section class="content-area" id="mainContent" role="main">
-                <div id="contentRenderer">
-                    <div class="welcome-screen">
-                        <div class="welcome-icon">🚀</div>
-                        <h2>مرحباً في أكاديمية الكومندا</h2>
-                        <p>اضغط على <strong>☰</strong> في الأعلى لاختيار درس</p>
-                        <div class="welcome-grid">
-                            <div class="welcome-card"><span>📚</span><h4>5 فصول</h4><p>محتوى منظم</p></div>
-                            <div class="welcome-card"><span>💻</span><h4>42 درس</h4><p>أمثلة عملية</p></div>
-                            <div class="welcome-card"><span>♿</span><h4>إمكانية وصول</h4><p>أدوات دعم</p></div>
-                            <div class="welcome-card"><span>🏆</span><h4>مشروع</h4><p>تطبيق نهائي</p></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
+    <!-- ======================================== -->
+    <main class="main-content">
+        <!-- شريط التحكم -->
+        <section class="control-bar">
+            <button id="showAddTask" class="btn-primary">➕ إضافة مهمة</button>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">الكل</button>
+                <button class="filter-btn" data-filter="pending">معلقة</button>
+                <button class="filter-btn" data-filter="progress">قيد التنفيذ</button>
+                <button class="filter-btn" data-filter="completed">مكتملة</button>
+            </div>
+            <input type="text" id="searchInput" placeholder="🔍 بحث عن مهمة...">
+        </section>
 
-    <footer class="main-footer">
-        <div class="footer-container">
-            <p>© 2026 أكاديمية الكومندا</p>
-            <div class="footer-links">
-                <a href="#">📧 تواصل</a>
-                <a href="#">📖 عن الأكاديمية</a>
-                <a href="#">⭐ دعم</a>
+        <!-- نافذة إضافة مهمة (مودال) -->
+        <div class="modal" id="taskModal">
+            <div class="modal-content">
+                <span class="close" id="closeModal">&times;</span>
+                <h2>إضافة مهمة جديدة</h2>
+                <form id="taskForm">
+                    <input type="text" id="taskTitle" placeholder="عنوان المهمة" required>
+                    <textarea id="taskDesc" placeholder="وصف المهمة (اختياري)"></textarea>
+                    <select id="taskPriority">
+                        <option value="high">🔴 عالية</option>
+                        <option value="medium" selected>🟡 متوسطة</option>
+                        <option value="low">🟢 منخفضة</option>
+                    </select>
+                    <input type="date" id="taskDueDate">
+                    <button type="submit" class="btn-primary">💾 حفظ المهمة</button>
+                </form>
             </div>
         </div>
+
+        <!-- قائمة المهام -->
+        <section class="tasks-container">
+            <div class="tasks-grid" id="tasksGrid">
+                <!-- سيتم عرض المهام هنا بواسطة JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- ======================================== -->
+    <!-- الفوتر -->
+    <!-- ======================================== -->
+    <footer class="main-footer">
+        <p>© 2026 أكاديمية الكومندا - مشروع إدارة المهام</p>
     </footer>
 
-    <script src="chapter1.js"></script>
-    <script src="chapter2.js"></script>
-    <script src="chapter3.js"></script>
-    <script src="chapter4.js"></script>
-    <script src="chapter5.js"></script>
+    <!-- ======================================== -->
+    <!-- ملفات JavaScript -->
+    <!-- ======================================== -->
     <script src="app.js"></script>
 </body>
 </html>

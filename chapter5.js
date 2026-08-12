@@ -25,17 +25,12 @@ const chapter5 = {
                     <li>تصميم متجاوب مع جميع الأجهزة</li>
                 </ul>
                 
-                <h4>هيكل المشروع</h4>
+                <h4>هيكل مشروع الطالب</h4>
                 <div class="code-block">
 📁 مشروع-إدارة-المهام/
 ├── 📄 index.html      (الهيكل الرئيسي)
 ├── 📄 style.css       (التنسيقات والثيمات)
-├── 📄 app.js          (منطق التطبيق)
-├── 📄 chapter1.js     (فصول التعلم)
-├── 📄 chapter2.js
-├── 📄 chapter3.js
-├── 📄 chapter4.js
-└── 📄 chapter5.js     (هذا الملف)
+└── 📄 app.js          (منطق التطبيق)
                 </div>
                 
                 <h4>هيكل واجهة المستخدم</h4>
@@ -59,22 +54,6 @@ const chapter5 = {
                         <li>✅ اختبار وتحسين الأداء</li>
                     </ul>
                 </div>
-                
-                <div class="example-box">
-                    <strong>📝 نموذج بيانات المهمة:</strong>
-                    <div class="code-block">
-{
-    id: 1234567890,           // معرف فريد
-    title: "تعلم JavaScript",  // عنوان المهمة
-    description: "دراسة الفصل الرابع", // وصف المهمة
-    status: "pending",         // الحالة: pending, progress, completed
-    priority: "high",          // الأولوية: high, medium, low
-    createdAt: "2026-01-15T10:30:00.000Z", // تاريخ الإنشاء
-    dueDate: "2026-01-20",     // تاريخ الاستحقاق
-    tags: ["برمجة", "مهم"]     // وسم (اختياري)
-}
-                    </div>
-                </div>
             `
         },
         {
@@ -84,7 +63,7 @@ const chapter5 = {
                 <h3>بناء الهيكل الأساسي باستخدام HTML</h3>
                 <p>في هذا الدرس سنبني الهيكل الكامل لتطبيق إدارة المهام باستخدام HTML5 الدلالي.</p>
                 
-                <h4>الهيكل الكامل</h4>
+                <h4>الهيكل الكامل للتطبيق</h4>
                 <div class="code-block">
 &lt;!DOCTYPE html&gt;
 &lt;html lang="ar" dir="rtl"&gt;
@@ -1142,7 +1121,7 @@ function setupAccessibility() {
 }
                 </div>
                 
-                <h4>إضافة تنسيقات للإشعارات</h4>
+                <h4>إضافة تنسيقات للإشعارات والحالة الفارغة</h4>
                 <div class="code-block">
 /* ========================================
    إشعارات
@@ -1359,11 +1338,6 @@ function runAllTests() {
     testStats();
     console.log('🎉 جميع الاختبارات نجحت!');
 }
-
-// تشغيل الاختبارات في وضع التطوير
-if (process.env.NODE_ENV === 'development') {
-    runAllTests();
-}
                 </div>
                 
                 <div class="note-box">
@@ -1380,10 +1354,10 @@ if (process.env.NODE_ENV === 'development') {
         },
         {
             id: '5-8',
-            title: 'التعليمات النهائية والنشر',
+            title: 'نشر المشروع والخطوات النهائية',
             content: `
-                <h3>التعليمات النهائية ونشر المشروع</h3>
-                <p>في هذا الدرس الأخير سنقوم بمراجعة المشروع ونشره على الإنترنت.</p>
+                <h3>نشر المشروع والخطوات النهائية</h3>
+                <p>في هذا الدرس سنقوم بمراجعة المشروع ونشره على الإنترنت.</p>
                 
                 <h4>مراجعة المشروع</h4>
                 <ul>
@@ -1438,11 +1412,6 @@ https://username.github.io/task-manager/
 ├── 📄 index.html      (الهيكل الرئيسي)
 ├── 📄 style.css       (التنسيقات)
 ├── 📄 app.js          (منطق التطبيق)
-├── 📄 chapter1.js     (فصول التعلم)
-├── 📄 chapter2.js
-├── 📄 chapter3.js
-├── 📄 chapter4.js
-├── 📄 chapter5.js
 ├── 📄 README.md       (شرح المشروع)
 └── 📄 .gitignore      (لتجاهل الملفات غير المهمة)
                     </div>

@@ -259,7 +259,7 @@ body {
 .access-dropdown {
     position: absolute;
     top: calc(100% + 8px);
-    left: 100px;
+    left: 110px;
     margin: 10%;
     transform: translateX(-50%) scale(0.95);
     background: var(--bg-dropdown);

@@ -9,8 +9,38 @@
 </head>
 <body>
 
-    <!-- الهيدر مع زر القائمة -->
-    <header class="main-header">
+    <!-- شريط إمكانية الوصول - ثابت -->
+    <div class="accessibility-dropdown" id="accessibilityDropdown">
+        <div class="dropdown-container">
+            <div class="access-group">
+                <span class="access-label">📐</span>
+                <button id="fontDec" class="access-btn">أ-</button>
+                <span class="font-size-display" id="fontSizeDisplay">16</span>
+                <button id="fontInc" class="access-btn">أ+</button>
+            </div>
+            <div class="access-divider"></div>
+            <div class="access-group">
+                <button id="themeToggle" class="access-btn btn-gold">🌙</button>
+                <button id="contrastToggle" class="access-btn">♿</button>
+            </div>
+            <div class="access-divider"></div>
+            <div class="access-group">
+                <button id="speakBtn" class="access-btn btn-speak">🔊</button>
+                <button id="pauseSpeakBtn" class="access-btn">⏸️</button>
+                <button id="stopSpeakBtn" class="access-btn">⏹️</button>
+            </div>
+            <div class="access-divider"></div>
+            <div class="access-group">
+                <span class="access-label">سرعة</span>
+                <button id="speedDown" class="access-btn">-</button>
+                <span class="font-size-display" id="speedDisplay">1.0x</span>
+                <button id="speedUp" class="access-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- الهيدر الثابت -->
+    <header class="main-header" id="mainHeader">
         <div class="header-container">
             <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة">
                 <span></span><span></span><span></span>
@@ -41,50 +71,25 @@
                 </div>
             </div>
             
-            <!-- زر إمكانية الوصول -->
             <button class="accessibility-toggle" id="accessibilityToggle" aria-label="إظهار شريط إمكانية الوصول">
                 ♿
             </button>
         </div>
     </header>
 
-    <!-- شريط إمكانية الوصول - قائمة منسدلة -->
-    <div class="accessibility-dropdown" id="accessibilityDropdown">
-        <div class="dropdown-container">
-            <div class="access-group">
-                <span class="access-label">📐 حجم الخط</span>
-                <button id="fontDec" class="access-btn">أ-</button>
-                <span class="font-size-display" id="fontSizeDisplay">16</span>
-                <button id="fontInc" class="access-btn">أ+</button>
-            </div>
-            <div class="access-divider"></div>
-            <div class="access-group">
-                <button id="themeToggle" class="access-btn btn-gold">🌙</button>
-                <button id="contrastToggle" class="access-btn">♿</button>
-            </div>
-            <div class="access-divider"></div>
-            <div class="access-group">
-                <button id="speakBtn" class="access-btn btn-speak">🔊</button>
-                <button id="pauseSpeakBtn" class="access-btn">⏸️</button>
-                <button id="stopSpeakBtn" class="access-btn">⏹️</button>
-            </div>
+    <!-- القائمة الجانبية الثابتة -->
+    <aside class="sidebar-overlay" id="sidebarOverlay"></aside>
+    <aside class="sidebar" id="chapterSidebar" role="navigation">
+        <div class="sidebar-header">
+            <span>📚 الفصول</span>
+            <button class="sidebar-close" id="sidebarClose">✕</button>
         </div>
-    </div>
+        <div class="sidebar-content" id="sidebarContent"></div>
+    </aside>
 
-    <!-- المحتوى -->
-    <main class="main-container">
+    <!-- المحتوى الرئيسي -->
+    <main class="main-container" id="mainContainer">
         <div class="content-wrapper">
-            <!-- القائمة الجانبية المنزلقة -->
-            <aside class="sidebar-overlay" id="sidebarOverlay"></aside>
-            <aside class="sidebar" id="chapterSidebar" role="navigation">
-                <div class="sidebar-header">
-                    <span>📚 الفصول</span>
-                    <button class="sidebar-close" id="sidebarClose">✕</button>
-                </div>
-                <div class="sidebar-content" id="sidebarContent"></div>
-            </aside>
-
-            <!-- منطقة المحتوى -->
             <section class="content-area" id="mainContent" role="main">
                 <div id="contentRenderer">
                     <div class="welcome-screen">

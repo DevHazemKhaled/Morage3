@@ -14,8 +14,8 @@ const chapter1 = {
                 <p>الكمبيوتر يفهم لغة واحدة فقط: <strong>لغة الآلة</strong> (Machine Language) والتي تتكون من 0 و 1 فقط. كل شيء نراه على الشاشة هو في النهاية ترجمة لهذه الأصفار والواحدات.</p>
                 
                 <div class="code-block">
-                    <span class="comment">// مثال: تمثيل الحرف "A" في لغة الآلة</span>
-                    <span class="string">01000001</span>
+// مثال: تمثيل الحرف "A" في لغة الآلة
+01000001
                 </div>
                 
                 <div class="note-box">
@@ -46,10 +46,10 @@ const chapter1 = {
                 <p>لغات البرمجة هي وسيط بين لغة الإنسان ولغة الآلة. نكتب كود بلغة قريبة من البشر (مثل JavaScript، Python)، ثم يترجمها الكمبيوتر إلى 0 و 1.</p>
                 
                 <div class="code-block">
-                    <span class="comment">// مثال: كود JavaScript بسيط</span>
-                    <span class="keyword">let</span> name = <span class="string">"أحمد"</span>;
-                    <span class="function">console.log</span>(<span class="string">"مرحباً " + name</span>);
-                    <span class="comment">// الناتج: مرحباً أحمد</span>
+// مثال: كود JavaScript بسيط
+let name = "أحمد";
+console.log("مرحباً " + name);
+// الناتج: مرحباً أحمد
                 </div>
             `
         },
@@ -85,7 +85,7 @@ const chapter1 = {
                 
                 <div class="example-box">
                     <strong>📊 إحصائية مهمة:</strong>
-                    <p>متوسط رواتب المبرمجين في العالم يتراوح بين 70,000 - 150,000 دولار سنوياً، مع فرص نمو كبيرة.</p>
+                    <p>متوسط رواتب المبرمجين في العالم يتراوح بين 70,000 - 150,000 دولار سنوياً.</p>
                 </div>
             `
         },
@@ -123,20 +123,20 @@ const chapter1 = {
                 <p>في البرمجة، نكتب الخوارزميات باستخدام الكود. مثال بسيط: خوارزمية لإيجاد أكبر رقم في قائمة:</p>
                 
                 <div class="code-block">
-                    <span class="comment">// خوارزمية إيجاد الرقم الأكبر</span>
-                    <span class="keyword">function</span> <span class="function">findMax</span>(numbers) {
-                        <span class="keyword">let</span> max = numbers[0];
-                        <span class="keyword">for</span> (<span class="keyword">let</span> i = 1; i < numbers.length; i++) {
-                            <span class="keyword">if</span> (numbers[i] > max) {
-                                max = numbers[i];
-                            }
-                        }
-                        <span class="keyword">return</span> max;
-                    }
-                    
-                    <span class="comment">// استخدام الخوارزمية</span>
-                    <span class="keyword">let</span> result = <span class="function">findMax</span>([3, 7, 2, 9, 5]);
-                    <span class="function">console</span>.<span class="function">log</span>(result); <span class="comment">// الناتج: 9</span>
+// خوارزمية إيجاد الرقم الأكبر
+function findMax(numbers) {
+    let max = numbers[0];
+    for (let i = 1; i < numbers.length; i++) {
+        if (numbers[i] > max) {
+            max = numbers[i];
+        }
+    }
+    return max;
+}
+
+// استخدام الخوارزمية
+let result = findMax([3, 7, 2, 9, 5]);
+console.log(result); // الناتج: 9
                 </div>
                 
                 <div class="note-box">
@@ -171,14 +171,14 @@ const chapter1 = {
                 </ol>
                 
                 <div class="code-block">
-                    <span class="comment">// مثال: طلب HTTP بسيط</span>
-                    <span class="function">fetch</span>(<span class="string">'https://api.example.com/data'</span>)
-                        .<span class="function">then</span>(response => response.<span class="function">json</span>())
-                        .<span class="function">then</span>(data => <span class="function">console</span>.<span class="function">log</span>(data));
+// مثال: طلب HTTP بسيط
+fetch('https://api.example.com/data')
+    .then(response => response.json())
+    .then(data => console.log(data));
                 </div>
                 
                 <div class="note-box">
-                    <strong>🌐 معلومة مثيرة:</strong> هناك أكثر من 5 مليار مستخدم للإنترنت في العالم، وهذا الرقم في تزايد!
+                    <strong>🌐 معلومة مثيرة:</strong> هناك أكثر من 5 مليار مستخدم للإنترنت في العالم!
                 </div>
                 
                 <div class="example-box">
@@ -213,23 +213,23 @@ const chapter1 = {
                 </ul>
                 
                 <div class="code-block">
-                    <span class="comment">// نفس المهمة بلغات مختلفة</span>
-                    
-                    <span class="comment">// JavaScript</span>
-                    <span class="keyword">let</span> message = <span class="string">"مرحباً بالعالم"</span>;
-                    <span class="function">console</span>.<span class="function">log</span>(message);
-                    
-                    <span class="comment">// Python</span>
-                    message = <span class="string">"مرحباً بالعالم"</span>
-                    <span class="function">print</span>(message)
-                    
-                    <span class="comment">// Java</span>
-                    <span class="keyword">public class</span> Hello {
-                        <span class="keyword">public static void</span> <span class="function">main</span>(String[] args) {
-                            String message = <span class="string">"مرحباً بالعالم"</span>;
-                            System.<span class="function">out</span>.<span class="function">println</span>(message);
-                        }
-                    }
+// نفس المهمة بلغات مختلفة
+
+// JavaScript
+let message = "مرحباً بالعالم";
+console.log(message);
+
+// Python
+message = "مرحباً بالعالم"
+print(message)
+
+// Java
+public class Hello {
+    public static void main(String[] args) {
+        String message = "مرحباً بالعالم";
+        System.out.println(message);
+    }
+}
                 </div>
                 
                 <div class="note-box">

@@ -9,37 +9,6 @@
 </head>
 <body>
 
-    <!-- شريط إمكانية الوصول - ثابت ومخفي/ظاهر -->
-    <div class="accessibility-bar" id="accessibilityBar">
-        <div class="bar-container">
-            <div class="bar-group">
-                <span class="bar-label">📐 حجم</span>
-                <button id="fontDec" class="bar-btn">أ-</button>
-                <span class="bar-size" id="fontSizeDisplay">16</span>
-                <button id="fontInc" class="bar-btn">أ+</button>
-            </div>
-            <div class="bar-divider"></div>
-            <div class="bar-group">
-                <button id="themeToggle" class="bar-btn btn-gold">🌙</button>
-                <button id="contrastToggle" class="bar-btn">♿</button>
-            </div>
-            <div class="bar-divider"></div>
-            <div class="bar-group">
-                <button id="speakBtn" class="bar-btn btn-speak">🔊</button>
-                <button id="pauseSpeakBtn" class="bar-btn">⏸️</button>
-                <button id="stopSpeakBtn" class="bar-btn">⏹️</button>
-            </div>
-            <div class="bar-divider"></div>
-            <div class="bar-group">
-                <span class="bar-label">سرعة</span>
-                <button id="speedDown" class="bar-btn">-</button>
-                <span class="bar-size" id="speedDisplay">1.0</span>
-                <button id="speedUp" class="bar-btn">+</button>
-            </div>
-            <button class="bar-close" id="barClose" aria-label="إغلاق شريط الوصول">✕</button>
-        </div>
-    </div>
-
     <!-- الهيدر الثابت -->
     <header class="main-header" id="mainHeader">
         <div class="header-container">
@@ -77,7 +46,38 @@
             </button>
         </div>
     </header>
-
+  
+    <!-- شريط إمكانية الوصول - ثابت ومخفي/ظاهر -->
+    <div class="accessibility-bar" id="accessibilityBar">
+        <div class="bar-container">
+            <div class="bar-group">
+                <span class="bar-label">📐 حجم</span>
+                <button id="fontDec" class="bar-btn">أ-</button>
+                <span class="bar-size" id="fontSizeDisplay">16</span>
+                <button id="fontInc" class="bar-btn">أ+</button>
+            </div>
+            <div class="bar-divider"></div>
+            <div class="bar-group">
+                <button id="themeToggle" class="bar-btn btn-gold">🌙</button>
+                <button id="contrastToggle" class="bar-btn">♿</button>
+            </div>
+            <div class="bar-divider"></div>
+            <div class="bar-group">
+                <button id="speakBtn" class="bar-btn btn-speak">🔊</button>
+                <button id="pauseSpeakBtn" class="bar-btn">⏸️</button>
+                <button id="stopSpeakBtn" class="bar-btn">⏹️</button>
+            </div>
+            <div class="bar-divider"></div>
+            <div class="bar-group">
+                <span class="bar-label">سرعة</span>
+                <button id="speedDown" class="bar-btn">-</button>
+                <span class="bar-size" id="speedDisplay">1.0</span>
+                <button id="speedUp" class="bar-btn">+</button>
+            </div>
+            <button class="bar-close" id="barClose" aria-label="إغلاق شريط الوصول">✕</button>
+        </div>
+    </div>
+    
     <!-- القائمة الجانبية الثابتة -->
     <aside class="sidebar-overlay" id="sidebarOverlay"></aside>
     <aside class="sidebar" id="chapterSidebar" role="navigation">

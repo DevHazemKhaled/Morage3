@@ -260,7 +260,7 @@ body {
     position: absolute;
     top: calc(100% + 8px);
     left: 200px;
-    margin: 55%;
+    margin: 10%;
     transform: translateX(-50%) scale(0.95);
     background: var(--bg-dropdown);
     border: 1px solid var(--border-color);

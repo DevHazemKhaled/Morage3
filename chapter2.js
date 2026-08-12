@@ -426,4 +426,110 @@ const chapter2 = {
                         <span class="keyword">&lt;/section&gt;</span>
                         
                         <span class="keyword">&lt;aside&gt;</span>
-                            <span class="keyword">&lt;
+                            <span class="keyword">&lt;h3&gt;</span>معلومات جانبية<span class="keyword">&lt;/h3&gt;</span>
+                            <span class="keyword">&lt;p&gt;</span>محتويات جانبية مثل الإعلانات أو روابط مفيدة<span class="keyword">&lt;/p&gt;</span>
+                        <span class="keyword">&lt;/aside&gt;</span>
+                    <span class="keyword">&lt;/main&gt;</span>
+                    
+                    <span class="keyword">&lt;footer&gt;</span>
+                        <span class="keyword">&lt;p&gt;</span>جميع الحقوق محفوظة © 2026<span class="keyword">&lt;/p&gt;</span>
+                    <span class="keyword">&lt;/footer&gt;</span>
+                </div>
+                
+                <h4>شرح كل عنصر</h4>
+                <ul>
+                    <li><strong>&lt;header&gt;:</strong> رأس الصفحة أو القسم (يحتوي على شعار، عنوان، قوائم)</li>
+                    <li><strong>&lt;nav&gt;:</strong> قائمة التنقل الرئيسية</li>
+                    <li><strong>&lt;main&gt;:</strong> المحتوى الرئيسي للصفحة (يوجد مرة واحدة فقط)</li>
+                    <li><strong>&lt;section&gt;:</strong> قسم منطقي من المحتوى (له موضوع محدد)</li>
+                    <li><strong>&lt;article&gt;:</strong> محتوى مستقل وقائم بذاته (مقال، منشور)</li>
+                    <li><strong>&lt;aside&gt;:</strong> محتوى جانبي مرتبط بشكل غير مباشر</li>
+                    <li><strong>&lt;footer&gt;:</strong> تذييل الصفحة أو القسم</li>
+                    <li><strong>&lt;figure&gt;:</strong> محتوى توضيحي (صورة مع caption)</li>
+                    <li><strong>&lt;figcaption&gt;:</strong> شرح للشكل أو الصورة</li>
+                </ul>
+                
+                <div class="note-box">
+                    <strong>🔍 فوائد العناصر الدلالية:</strong>
+                    <ul>
+                        <li>تحسين ظهور الموقع في محركات البحث (SEO)</li>
+                        <li>تسهيل التنقل لقارئات الشاشة (إمكانية الوصول)</li>
+                        <li>جعل الكود أكثر قابلية للقراءة والصيانة</li>
+                    </ul>
+                </div>
+                
+                <div class="example-box">
+                    <strong>📝 مشروع عملي:</strong>
+                    <p>قم ببناء صفحة مدونة باستخدام العناصر الدلالية: header مع nav، main يحتوي على عدة articles، aside للمعلومات الجانبية، وfooter.</p>
+                </div>
+            `
+        },
+        {
+            id: '2-8',
+            title: 'تحسين محركات البحث (SEO) وأوبن جراف',
+            content: `
+                <h3>تحسين محركات البحث التقني والأوبن جراف</h3>
+                <p>SEO يجعل موقعك يظهر في نتائج البحث. الأوبن جراف يتحكم في مظهر الرابط عند المشاركة في وسائل التواصل.</p>
+                
+                <h4>عناصر SEO الأساسية في الـ Head</h4>
+                <div class="code-block">
+                    <span class="keyword">&lt;head&gt;</span>
+                        <span class="comment">&lt;!-- الترميز واللغة --&gt;</span>
+                        <span class="keyword">&lt;meta</span> <span class="function">charset</span>=<span class="string">"UTF-8"</span><span class="keyword">&gt;</span>
+                        <span class="keyword">&lt;meta</span> <span class="function">name</span>=<span class="string">"language"</span> <span class="function">content</span>=<span class="string">"ar"</span><span class="keyword">&gt;</span>
+                        
+                        <span class="comment">&lt;!-- العنوان والوصف --&gt;</span>
+                        <span class="keyword">&lt;title&gt;</span>أكاديمية الكومندا - تعلم البرمجة من الصفر<span class="keyword">&lt;/title&gt;</span>
+                        <span class="keyword">&lt;meta</span> <span class="function">name</span>=<span class="string">"description"</span> 
+                              <span class="function">content</span>=<span class="string">"منصة تعلم برمجة متكاملة للمبتدئين والمحترفين"</span><span class="keyword">&gt;</span>
+                        
+                        <span class="comment">&lt;!-- الكلمات المفتاحية --&gt;</span>
+                        <span class="keyword">&lt;meta</span> <span class="function">name</span>=<span class="string">"keywords"</span> 
+                              <span class="function">content</span>=<span class="string">"برمجة, ويب, HTML, CSS, JavaScript, أكاديمية"</span><span class="keyword">&gt;</span>
+                        
+                        <span class="comment">&lt;!-- الروبوتات --&gt;</span>
+                        <span class="keyword">&lt;meta</span> <span class="function">name</span>=<span class="string">"robots"</span> <span class="function">content</span>=<span class="string">"index, follow"</span><span class="keyword">&gt;</span>
+                        
+                        <span class="comment">&lt;!-- Open Graph (لوسائل التواصل) --&gt;</span>
+                        <span class="keyword">&lt;meta</span> <span class="function">property</span>=<span class="string">"og:title"</span> 
+                              <span class="function">content</span>=<span class="string">"أكاديمية الكومندا - تعلم البرمجة"</span><span class="keyword">&gt;</span>
+                        <span class="keyword">&lt;meta</span> <span class="function">property</span>=<span class="string">"og:description"</span> 
+                              <span class="function">content</span>=<span class="string">"منصة تعلم برمجة متكاملة مع شروحات وأمثلة عملية"</span><span class="keyword">&gt;</span>
+                        <span class="keyword">&lt;meta</span> <span class="function">property</span>=<span class="string">"og:image"</span> 
+                              <span class="function">content</span>=<span class="string">"https://academy.com/logo.jpg"</span><span class="keyword">&gt;</span>
+                        <span class="keyword">&lt;meta</span> <span class="function">property</span>=<span class="string">"og:url"</span> 
+                              <span class="function">content</span>=<span class="string">"https://academy.com"</span><span class="keyword">&gt;</span>
+                        <span class="keyword">&lt;meta</span> <span class="function">property</span>=<span class="string">"og:type"</span> 
+                              <span class="function">content</span>=<span class="string">"website"</span><span class="keyword">&gt;</span>
+                        
+                        <span class="comment">&lt;!-- Twitter Card --&gt;</span>
+                        <span class="keyword">&lt;meta</span> <span class="function">name</span>=<span class="string">"twitter:card"</span> 
+                              <span class="function">content</span>=<span class="string">"summary_large_image"</span><span class="keyword">&gt;</span>
+                        <span class="keyword">&lt;meta</span> <span class="function">name</span>=<span class="string">"twitter:title"</span> 
+                              <span class="function">content</span>=<span class="string">"أكاديمية الكومندا"</span><span class="keyword">&gt;</span>
+                    <span class="keyword">&lt;/head&gt;</span>
+                </div>
+                
+                <h4>نصائح ذهبية لتحسين SEO</h4>
+                <ul>
+                    <li><strong>العنوان (Title):</strong> اجعله بين 50-60 حرفاً، يحتوي على الكلمات المفتاحية</li>
+                    <li><strong>الوصف (Description):</strong> بين 150-160 حرفاً، يشرح محتوى الصفحة بدقة</li>
+                    <li><strong>العناوين (Headings):</strong> استخدم h1 للموضوع الرئيسي، h2 للأقسام، h3 للتفاصيل</li>
+                    <li><strong>الروابط (Links):</strong> استخدم نصوص وصفية للروابط (لا تستخدم "اضغط هنا")</li>
+                    <li><strong>الصور (Images):</strong> استخدم alt وصفي واسم ملف مناسب</li>
+                    <li><strong>السرعة:</strong> حسّن أداء الصفحة باستخدام lazy loading وتقليل حجم الملفات</li>
+                </ul>
+                
+                <div class="note-box">
+                    <strong>📱 أهمية الأوبن جراف:</strong>
+                    <p>عند مشاركة رابط موقعك على فيسبوك أو تويتر أو واتساب، الأوبن جراف يتحكم في كيفية ظهور المعاينة (العنوان، الوصف، الصورة).</p>
+                </div>
+                
+                <div class="example-box">
+                    <strong>🚀 مشروع عملي:</strong>
+                    <p>أضف جميع عناصر SEO و Open Graph لموقعك الشخصي أو مشروعك التعليمي. جرب مشاركة الرابط على وسائل التواصل وشاهد المعاينة.</p>
+                </div>
+            `
+        }
+    ]
+};

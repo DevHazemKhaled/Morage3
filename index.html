@@ -9,30 +9,7 @@
 </head>
 <body>
 
-    <!-- شريط إمكانية الوصول -->
-    <nav class="accessibility-bar" id="accessibilityBar">
-        <div class="bar-container">
-            <div class="bar-group">
-                <span class="bar-label">📐</span>
-                <button id="fontDec" class="bar-btn">أ-</button>
-                <span class="font-size-display" id="fontSizeDisplay">16</span>
-                <button id="fontInc" class="bar-btn">أ+</button>
-            </div>
-            <div class="bar-divider"></div>
-            <div class="bar-group">
-                <button id="themeToggle" class="bar-btn btn-primary">🌙</button>
-                <button id="contrastToggle" class="bar-btn">♿</button>
-            </div>
-            <div class="bar-divider"></div>
-            <div class="bar-group">
-                <button id="speakBtn" class="bar-btn btn-gold">🔊</button>
-                <button id="pauseSpeakBtn" class="bar-btn">⏸️</button>
-                <button id="stopSpeakBtn" class="bar-btn">⏹️</button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- الهيدر -->
+    <!-- الهيدر مع زر القائمة -->
     <header class="main-header">
         <div class="header-container">
             <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة">
@@ -63,8 +40,36 @@
                     <span class="stat-label">مشروع</span>
                 </div>
             </div>
+            
+            <!-- زر إمكانية الوصول -->
+            <button class="accessibility-toggle" id="accessibilityToggle" aria-label="إظهار شريط إمكانية الوصول">
+                ♿
+            </button>
         </div>
     </header>
+
+    <!-- شريط إمكانية الوصول - قائمة منسدلة -->
+    <div class="accessibility-dropdown" id="accessibilityDropdown">
+        <div class="dropdown-container">
+            <div class="access-group">
+                <span class="access-label">📐 حجم الخط</span>
+                <button id="fontDec" class="access-btn">أ-</button>
+                <span class="font-size-display" id="fontSizeDisplay">16</span>
+                <button id="fontInc" class="access-btn">أ+</button>
+            </div>
+            <div class="access-divider"></div>
+            <div class="access-group">
+                <button id="themeToggle" class="access-btn btn-gold">🌙</button>
+                <button id="contrastToggle" class="access-btn">♿</button>
+            </div>
+            <div class="access-divider"></div>
+            <div class="access-group">
+                <button id="speakBtn" class="access-btn btn-speak">🔊</button>
+                <button id="pauseSpeakBtn" class="access-btn">⏸️</button>
+                <button id="stopSpeakBtn" class="access-btn">⏹️</button>
+            </div>
+        </div>
+    </div>
 
     <!-- المحتوى -->
     <main class="main-container">
@@ -76,9 +81,7 @@
                     <span>📚 الفصول</span>
                     <button class="sidebar-close" id="sidebarClose">✕</button>
                 </div>
-                <div class="sidebar-content" id="sidebarContent">
-                    <!-- سيتم إنشاؤها بواسطة JS -->
-                </div>
+                <div class="sidebar-content" id="sidebarContent"></div>
             </aside>
 
             <!-- منطقة المحتوى -->
@@ -100,7 +103,6 @@
         </div>
     </main>
 
-    <!-- الفوتر -->
     <footer class="main-footer">
         <div class="footer-container">
             <p>© 2026 أكاديمية الكومندا</p>

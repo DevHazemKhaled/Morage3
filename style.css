@@ -1,121 +1,78 @@
 /* ========================================
-   المتغيرات العامة والثيمات
+   الثيمات والمتغيرات
    ======================================== */
 
 :root {
-    /* الثيم الداكن (افتراضي) */
-    --bg-primary: #0a0e17;
-    --bg-secondary: #111927;
+    /* الثيم الداكن */
+    --bg-body: #0a0e17;
+    --bg-surface: #111927;
     --bg-card: #1a2332;
     --bg-hover: #243044;
-    --bg-input: #0d1420;
+    --bg-code: #0d1420;
     
     --text-primary: #e8edf5;
     --text-secondary: #94a3b8;
     --text-muted: #64748b;
-    --text-inverse: #0a0e17;
     
     --border-color: #2a3a5e;
     --border-light: #1e2d4a;
     
     --gold: #fbbf24;
-    --gold-light: #fcd34d;
     --gold-dark: #d97706;
-    --gold-glow: rgba(251, 191, 36, 0.15);
+    --gold-glow: rgba(251, 191, 36, 0.12);
     
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
-    --shadow-gold: 0 4px 20px rgba(251, 191, 36, 0.2);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
     
-    --radius-sm: 8px;
-    --radius-md: 12px;
+    --radius: 12px;
     --radius-lg: 16px;
     --radius-xl: 24px;
     
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    
+    --transition: all 0.3s ease;
     --font-base: 16px;
-    --font-family: 'Cairo', system-ui, -apple-system, sans-serif;
 }
 
-/* ========================================
-   الثيم الفاتح
-   ======================================== */
-
+/* الثيم الفاتح */
 [data-theme="light"] {
-    --bg-primary: #f0f4f8;
-    --bg-secondary: #ffffff;
+    --bg-body: #f0f4f8;
+    --bg-surface: #ffffff;
     --bg-card: #ffffff;
     --bg-hover: #e8edf5;
-    --bg-input: #f0f4f8;
+    --bg-code: #f0f4f8;
     
     --text-primary: #0a0e17;
     --text-secondary: #334155;
     --text-muted: #64748b;
-    --text-inverse: #f8fafc;
     
     --border-color: #cbd5e1;
     --border-light: #e2e8f0;
     
     --gold: #d97706;
-    --gold-light: #f59e0b;
     --gold-dark: #b45309;
-    --gold-glow: rgba(217, 119, 6, 0.1);
+    --gold-glow: rgba(217, 119, 6, 0.08);
     
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-    --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.1);
-    --shadow-gold: 0 4px 20px rgba(217, 119, 6, 0.15);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-/* ========================================
-   الثيم عالي التباين
-   ======================================== */
-
+/* التباين العالي */
 body.high-contrast {
-    --bg-primary: #000000 !important;
-    --bg-secondary: #0a0a0a !important;
+    --bg-body: #000000 !important;
+    --bg-surface: #0a0a0a !important;
     --bg-card: #1a1a1a !important;
     --bg-hover: #2a2a2a !important;
-    --bg-input: #0a0a0a !important;
+    --bg-code: #0a0a0a !important;
     
     --text-primary: #ffff00 !important;
     --text-secondary: #ffff00 !important;
     --text-muted: #ffff00 !important;
-    --text-inverse: #000000 !important;
     
     --border-color: #ffff00 !important;
     --border-light: #ffff00 !important;
     
     --gold: #ffff00 !important;
-    --gold-light: #ffff00 !important;
     --gold-dark: #ffff00 !important;
-    --gold-glow: rgba(255, 255, 0, 0.2) !important;
-    
-    --shadow-sm: 0 2px 8px rgba(255, 255, 0, 0.1) !important;
-    --shadow-md: 0 8px 32px rgba(255, 255, 0, 0.1) !important;
-}
-
-body.high-contrast .code-block {
-    border-color: #ffff00 !important;
-}
-
-body.high-contrast .code-block .comment {
-    color: #00ffff !important;
-}
-
-body.high-contrast .code-block .keyword {
-    color: #ffff00 !important;
-}
-
-body.high-contrast .code-block .string {
-    color: #ff00ff !important;
-}
-
-body.high-contrast .code-block .function {
-    color: #00ffff !important;
+    --gold-glow: rgba(255, 255, 0, 0.15) !important;
 }
 
 /* ========================================
@@ -129,37 +86,25 @@ body.high-contrast .code-block .function {
 }
 
 body {
-    font-family: var(--font-family);
-    background-color: var(--bg-primary);
+    font-family: 'Cairo', system-ui, sans-serif;
+    background: var(--bg-body);
     color: var(--text-primary);
-    line-height: 1.7;
     font-size: var(--font-base);
-    transition: var(--transition-slow);
+    line-height: 1.7;
+    transition: var(--transition);
     min-height: 100vh;
 }
 
-::selection {
-    background: var(--gold);
-    color: var(--text-inverse);
-}
-
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
 }
-
 ::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
-    border-radius: 10px;
+    background: var(--bg-surface);
 }
-
 ::-webkit-scrollbar-thumb {
     background: var(--gold);
     border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--gold-dark);
 }
 
 /* ========================================
@@ -167,16 +112,14 @@ body {
    ======================================== */
 
 .accessibility-bar {
-    background: var(--bg-secondary);
+    background: var(--bg-surface);
     border-bottom: 1px solid var(--border-color);
     padding: 0.5rem 1rem;
     position: sticky;
     top: 0;
     z-index: 1000;
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     box-shadow: var(--shadow-sm);
-    transition: var(--transition);
 }
 
 .bar-container {
@@ -189,23 +132,22 @@ body {
     gap: 0.5rem 1.5rem;
 }
 
-.bar-section {
+.bar-group {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.3rem;
     flex-wrap: wrap;
 }
 
 .bar-label {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--text-secondary);
     font-weight: 500;
-    margin-left: 0.2rem;
 }
 
 .bar-divider {
     width: 1px;
-    height: 28px;
+    height: 24px;
     background: var(--border-color);
 }
 
@@ -213,70 +155,55 @@ body {
     background: transparent;
     border: 1px solid var(--border-color);
     color: var(--text-secondary);
-    padding: 0.3rem 0.8rem;
+    padding: 0.25rem 0.7rem;
     border-radius: 30px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
-    font-family: var(--font-family);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    min-height: 34px;
+    font-family: inherit;
+    min-height: 30px;
 }
 
 .bar-btn:hover {
     background: var(--bg-hover);
     border-color: var(--gold);
     color: var(--text-primary);
-    transform: translateY(-1px);
-}
-
-.bar-btn:active {
-    transform: scale(0.95);
 }
 
 .bar-btn.btn-gold {
     background: var(--gold);
     border-color: var(--gold);
-    color: var(--text-inverse);
+    color: var(--bg-body);
 }
 
 .bar-btn.btn-gold:hover {
-    background: var(--gold-light);
-    border-color: var(--gold-light);
-    box-shadow: var(--shadow-gold);
+    background: var(--gold-dark);
+    border-color: var(--gold-dark);
 }
 
-.bar-btn.btn-speak {
+.bar-btn.btn-primary {
     background: var(--gold-glow);
     border-color: var(--gold);
     color: var(--gold);
 }
 
-.bar-btn.btn-speak:hover {
-    background: var(--gold);
-    color: var(--text-inverse);
-}
-
 .font-size-display {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--text-secondary);
-    min-width: 40px;
+    min-width: 35px;
     text-align: center;
     font-weight: 600;
 }
 
 /* ========================================
-   الهيدر الرئيسي
+   الهيدر
    ======================================== */
 
 .main-header {
-    background: var(--bg-secondary);
+    background: var(--bg-surface);
     border-bottom: 1px solid var(--border-color);
-    padding: 1.5rem 2rem;
-    transition: var(--transition);
+    padding: 1rem 2rem;
 }
 
 .header-container {
@@ -286,43 +213,33 @@ body {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 .header-brand {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.8rem;
 }
 
 .brand-icon {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     background: var(--gold-glow);
-    padding: 0.5rem;
-    border-radius: var(--radius-md);
+    padding: 0.4rem;
+    border-radius: var(--radius);
     border: 1px solid var(--gold);
-    animation: pulse-icon 3s ease-in-out infinite;
-}
-
-@keyframes pulse-icon {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
 }
 
 .header-brand h1 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 800;
-    background: linear-gradient(135deg, var(--gold), var(--gold-light));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    letter-spacing: -0.5px;
+    color: var(--gold);
+    line-height: 1.2;
 }
 
 .brand-subtitle {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-secondary);
-    -webkit-text-fill-color: var(--text-secondary);
 }
 
 .header-stats {
@@ -338,36 +255,35 @@ body {
 }
 
 .stat-number {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 800;
     color: var(--gold);
 }
 
 .stat-label {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--text-secondary);
-    font-weight: 500;
 }
 
 .stat-divider {
     width: 1px;
-    height: 30px;
+    height: 24px;
     background: var(--border-color);
 }
 
 /* ========================================
-   الشبكة الرئيسية
+   المحتوى الرئيسي
    ======================================== */
 
 .main-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 1.5rem 1.5rem;
+    padding: 1.5rem;
 }
 
 .content-grid {
     display: grid;
-    grid-template-columns: 320px 1fr;
+    grid-template-columns: 300px 1fr;
     gap: 1.5rem;
     min-height: 70vh;
 }
@@ -380,29 +296,14 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    max-height: calc(100vh - 280px);
+    max-height: calc(100vh - 300px);
     overflow-y: auto;
-    padding-right: 0.5rem;
-    scroll-behavior: smooth;
-}
-
-.sidebar::-webkit-scrollbar {
-    width: 5px;
-}
-
-.sidebar::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
-    border-radius: 10px;
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-    background: var(--gold);
-    border-radius: 10px;
+    padding-right: 0.3rem;
 }
 
 .chapter-accordion {
     background: var(--bg-card);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius);
     overflow: hidden;
     border: 1px solid var(--border-light);
     transition: var(--transition);
@@ -410,21 +311,19 @@ body {
 
 .chapter-accordion:hover {
     border-color: var(--gold);
-    box-shadow: var(--shadow-sm);
 }
 
 .chapter-header {
-    padding: 0.9rem 1.2rem;
+    padding: 0.7rem 1rem;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: var(--text-secondary);
     transition: var(--transition);
     user-select: none;
-    gap: 0.5rem;
 }
 
 .chapter-header:hover {
@@ -435,22 +334,19 @@ body {
 .chapter-header.active {
     background: var(--bg-hover);
     color: var(--gold);
-    border-bottom: 1px solid var(--border-light);
 }
 
-.chapter-header .chapter-num {
+.chapter-num {
     color: var(--gold);
     margin-left: 0.3rem;
-    font-size: 0.85rem;
 }
 
-.chapter-header .arrow {
-    transition: transform 0.3s ease;
-    font-size: 0.8rem;
-    color: var(--text-muted);
+.chapter-arrow {
+    transition: transform 0.3s;
+    font-size: 0.7rem;
 }
 
-.chapter-header .arrow.open {
+.chapter-arrow.open {
     transform: rotate(180deg);
 }
 
@@ -458,41 +354,41 @@ body {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease;
-    background: var(--bg-primary);
+    background: var(--bg-body);
 }
 
 .chapter-lessons.open {
     max-height: 800px;
 }
 
-.lesson-item-sidebar {
-    padding: 0.6rem 1.2rem 0.6rem 2rem;
+.lesson-item {
+    padding: 0.5rem 1rem 0.5rem 1.5rem;
     cursor: pointer;
     color: var(--text-muted);
     transition: var(--transition);
     border-right: 3px solid transparent;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 500;
 }
 
-.lesson-item-sidebar:hover {
+.lesson-item:hover {
     background: var(--bg-hover);
     color: var(--text-primary);
     border-right-color: var(--gold);
 }
 
-.lesson-item-sidebar.active {
+.lesson-item.active {
     background: var(--gold-glow);
     color: var(--gold);
     border-right-color: var(--gold);
     font-weight: 600;
 }
 
-.lesson-item-sidebar .lesson-num {
+.lesson-num {
     color: var(--gold);
     margin-left: 0.3rem;
     font-weight: 700;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
 }
 
 /* ========================================
@@ -502,78 +398,68 @@ body {
 .content-area {
     background: var(--bg-card);
     border-radius: var(--radius-lg);
-    padding: 2rem 2.5rem;
+    padding: 2rem;
     border: 1px solid var(--border-light);
-    box-shadow: var(--shadow-md);
-    transition: var(--transition);
+    box-shadow: var(--shadow);
     min-height: 500px;
 }
 
 /* شاشة الترحيب */
 .welcome-screen {
     text-align: center;
-    padding: 2rem 0;
+    padding: 1rem 0;
 }
 
 .welcome-icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .welcome-screen h2 {
-    font-size: 2.2rem;
+    font-size: 2rem;
     color: var(--gold);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
 }
 
 .welcome-screen > p {
     color: var(--text-secondary);
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
 }
 
-.welcome-features {
+.welcome-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
 }
 
-.welcome-feature {
-    background: var(--bg-primary);
-    padding: 1.5rem;
-    border-radius: var(--radius-md);
+.welcome-card {
+    background: var(--bg-body);
+    padding: 1.2rem;
+    border-radius: var(--radius);
     border: 1px solid var(--border-light);
     transition: var(--transition);
 }
 
-.welcome-feature:hover {
-    transform: translateY(-4px);
+.welcome-card:hover {
     border-color: var(--gold);
-    box-shadow: var(--shadow-gold);
+    transform: translateY(-3px);
 }
 
-.welcome-feature span {
-    font-size: 2rem;
+.welcome-card span {
+    font-size: 1.8rem;
     display: block;
-    margin-bottom: 0.5rem;
-}
-
-.welcome-feature h4 {
-    color: var(--gold);
-    font-size: 1rem;
     margin-bottom: 0.3rem;
 }
 
-.welcome-feature p {
+.welcome-card h4 {
+    color: var(--gold);
+    font-size: 0.9rem;
+}
+
+.welcome-card p {
     color: var(--text-secondary);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
 }
 
 /* ========================================
@@ -588,16 +474,16 @@ body {
     display: inline-block;
     background: var(--gold-glow);
     color: var(--gold);
-    padding: 0.2rem 1rem;
+    padding: 0.15rem 0.8rem;
     border-radius: 30px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
     border: 1px solid var(--gold);
 }
 
 .lesson-header h2 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: var(--text-primary);
     line-height: 1.3;
 }
@@ -608,101 +494,93 @@ body {
 
 .lesson-content h3 {
     color: var(--gold);
-    font-size: 1.4rem;
-    margin: 1.8rem 0 0.8rem 0;
+    font-size: 1.3rem;
+    margin: 1.5rem 0 0.5rem 0;
 }
 
 .lesson-content h4 {
     color: var(--text-primary);
-    font-size: 1.1rem;
-    margin: 1.2rem 0 0.5rem 0;
+    font-size: 1rem;
+    margin: 1rem 0 0.3rem 0;
 }
 
 .lesson-content p {
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
     line-height: 1.9;
 }
 
 .lesson-content ul, .lesson-content ol {
-    margin: 0.5rem 0 1rem 1.5rem;
+    margin: 0.3rem 0 0.8rem 1.5rem;
 }
 
 .lesson-content li {
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.3rem;
 }
 
 .lesson-content code {
-    background: var(--bg-primary);
-    padding: 0.15rem 0.5rem;
+    background: var(--bg-code);
+    padding: 0.1rem 0.4rem;
     border-radius: 4px;
     color: var(--gold);
     font-size: 0.85rem;
-    font-family: 'Fira Code', 'Courier New', monospace;
+    font-family: 'Courier New', monospace;
     border: 1px solid var(--border-light);
 }
 
 .lesson-content .code-block {
-    background: var(--bg-primary);
-    padding: 1.2rem 1.5rem;
-    border-radius: var(--radius-md);
+    background: var(--bg-code);
+    padding: 1rem;
+    border-radius: var(--radius);
     border: 1px solid var(--border-light);
-    margin: 1rem 0;
+    margin: 0.8rem 0;
     overflow-x: auto;
-    font-family: 'Fira Code', 'Courier New', monospace;
-    font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
     line-height: 1.8;
     color: var(--text-secondary);
-    position: relative;
-}
-
-.lesson-content .code-block::before {
-    content: '💻';
-    position: absolute;
-    top: 0.5rem;
-    right: 0.8rem;
-    font-size: 0.8rem;
-    opacity: 0.5;
+    direction: ltr;
+    text-align: left;
 }
 
 .lesson-content .code-block .comment {
     color: var(--text-muted);
     font-style: italic;
 }
-
 .lesson-content .code-block .keyword {
     color: var(--gold);
     font-weight: 600;
 }
-
 .lesson-content .code-block .string {
     color: #7dd3fc;
 }
-
 .lesson-content .code-block .function {
     color: #a78bfa;
 }
+.lesson-content .code-block .selector {
+    color: #34d399;
+}
 
-.lesson-content .note-box {
+.note-box {
     background: var(--gold-glow);
     border-right: 4px solid var(--gold);
-    padding: 1rem 1.5rem;
-    margin: 1rem 0;
+    padding: 0.8rem 1.2rem;
+    margin: 0.8rem 0;
     border-radius: var(--radius-sm);
 }
 
-.lesson-content .note-box strong {
+.note-box strong {
     color: var(--gold);
 }
 
-.lesson-content .example-box {
-    background: var(--bg-primary);
+.example-box {
+    background: var(--bg-code);
     border-right: 4px solid #a78bfa;
-    padding: 1rem 1.5rem;
-    margin: 1rem 0;
+    padding: 0.8rem 1.2rem;
+    margin: 0.8rem 0;
     border-radius: var(--radius-sm);
 }
 
-.lesson-content .example-box strong {
+.example-box strong {
     color: #a78bfa;
 }
 
@@ -711,11 +589,10 @@ body {
    ======================================== */
 
 .main-footer {
-    background: var(--bg-secondary);
+    background: var(--bg-surface);
     border-top: 1px solid var(--border-color);
-    padding: 1.5rem 2rem;
-    margin-top: 2rem;
-    transition: var(--transition);
+    padding: 1rem 2rem;
+    margin-top: 1.5rem;
 }
 
 .footer-container {
@@ -725,27 +602,24 @@ body {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 0.8rem;
 }
 
 .footer-container p {
     color: var(--text-secondary);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
 }
 
 .footer-links {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.2rem;
 }
 
 .footer-links a {
     color: var(--text-secondary);
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     transition: var(--transition);
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
 }
 
 .footer-links a:hover {
@@ -756,20 +630,10 @@ body {
    الاستجابة للشاشات
    ======================================== */
 
-@media (max-width: 1200px) {
-    .content-grid {
-        grid-template-columns: 280px 1fr;
-    }
-}
-
 @media (max-width: 1024px) {
     .content-grid {
         grid-template-columns: 260px 1fr;
         gap: 1rem;
-    }
-    
-    .content-area {
-        padding: 1.5rem;
     }
 }
 
@@ -781,9 +645,6 @@ body {
     .sidebar {
         max-height: none;
         overflow-y: visible;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
     }
     
     .header-container {
@@ -797,19 +658,15 @@ body {
     }
     
     .main-header {
-        padding: 1rem;
+        padding: 0.8rem 1rem;
     }
     
     .content-area {
         padding: 1.2rem;
-        min-height: 400px;
+        min-height: 350px;
     }
     
-    .welcome-screen h2 {
-        font-size: 1.6rem;
-    }
-    
-    .welcome-features {
+    .welcome-grid {
         grid-template-columns: repeat(2, 1fr);
     }
     
@@ -821,23 +678,15 @@ body {
         display: none;
     }
     
-    .bar-section {
-        gap: 0.3rem;
-    }
-    
     .bar-btn {
-        padding: 0.2rem 0.6rem;
-        font-size: 0.75rem;
-        min-height: 28px;
+        padding: 0.2rem 0.5rem;
+        font-size: 0.7rem;
+        min-height: 26px;
     }
     
     .footer-container {
         flex-direction: column;
         text-align: center;
-    }
-    
-    .footer-links {
-        justify-content: center;
     }
 }
 
@@ -851,138 +700,50 @@ body {
     }
     
     .content-area {
-        padding: 1rem;
-        border-radius: var(--radius-md);
+        padding: 0.8rem;
+        border-radius: var(--radius);
     }
     
     .header-brand h1 {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
     
     .brand-icon {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         padding: 0.3rem;
     }
     
-    .welcome-features {
+    .welcome-grid {
         grid-template-columns: 1fr 1fr;
-        gap: 0.8rem;
+        gap: 0.5rem;
     }
     
-    .welcome-feature {
-        padding: 1rem;
+    .welcome-card {
+        padding: 0.8rem;
     }
     
-    .lesson-header h2 {
+    .welcome-screen h2 {
         font-size: 1.4rem;
     }
     
+    .lesson-header h2 {
+        font-size: 1.2rem;
+    }
+    
     .lesson-content .code-block {
-        padding: 1rem;
-        font-size: 0.8rem;
+        padding: 0.8rem;
+        font-size: 0.75rem;
     }
     
     .accessibility-bar {
         padding: 0.3rem 0.5rem;
     }
-    
-    .stat-number {
-        font-size: 1.2rem;
-    }
 }
 
-/* ========================================
-   تحسينات إضافية
-   ======================================== */
-
-/* تنسيق الروابط في المحتوى */
-.lesson-content a {
-    color: var(--gold);
-    text-decoration: none;
-    border-bottom: 1px dashed var(--gold);
-    transition: var(--transition);
-}
-
-.lesson-content a:hover {
-    color: var(--gold-light);
-    border-bottom-color: var(--gold-light);
-}
-
-/* تنسيق الجداول */
-.lesson-content table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
-    background: var(--bg-primary);
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-}
-
-.lesson-content th,
-.lesson-content td {
-    padding: 0.6rem 1rem;
-    border: 1px solid var(--border-light);
-    text-align: right;
-}
-
-.lesson-content th {
-    background: var(--bg-hover);
-    color: var(--gold);
-    font-weight: 700;
-}
-
-.lesson-content td {
-    color: var(--text-secondary);
-}
-
-/* زر العودة للأعلى - سيتم إضافته بواسطة JS */
-.back-to-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background: var(--gold);
-    color: var(--text-inverse);
-    border: none;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    box-shadow: var(--shadow-gold);
-    transition: var(--transition);
-    z-index: 999;
-    opacity: 0;
-    transform: scale(0.8);
-    pointer-events: none;
-}
-
-.back-to-top.visible {
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: auto;
-}
-
-.back-to-top:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 30px rgba(251, 191, 36, 0.4);
-}
-
-/* تحسين القراءة */
-.lesson-content {
-    font-size: 1rem;
-}
-
-.lesson-content p {
-    max-width: 75ch;
-}
-
-/* دعم Reduced Motion */
+/* دعم تقليل الحركة */
 @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
+    * {
         animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
 }

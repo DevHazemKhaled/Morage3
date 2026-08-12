@@ -101,71 +101,149 @@
     applyContrast();
 
     // ========================================
-    // محرك القراءة الصوتية
+    // محرك القراءة الصوتية المتطور
     // ========================================
     const speakBtn = document.getElementById('speakBtn');
     const stopBtn = document.getElementById('stopSpeakBtn');
     const pauseBtn = document.getElementById('pauseSpeakBtn');
+    const speedUp = document.getElementById('speedUp');
+    const speedDown = document.getElementById('speedDown');
+    const speedDisplay = document.getElementById('speedDisplay');
+    
+    let speechRate = parseFloat(localStorage.getItem('speechRate')) || 1.0;
     let utterance = null;
     let isSpeaking = false;
     let isPaused = false;
+    let currentText = '';
 
-    function getContentText() {
+    speedDisplay.textContent = speechRate.toFixed(1) + 'x';
+
+    speedUp.addEventListener('click', function() {
+        if (speechRate < 2.0) {
+            speechRate += 0.1;
+            speedDisplay.textContent = speechRate.toFixed(1) + 'x';
+            localStorage.setItem('speechRate', speechRate);
+        }
+    });
+
+    speedDown.addEventListener('click', function() {
+        if (speechRate > 0.5) {
+            speechRate -= 0.1;
+            speedDisplay.textContent = speechRate.toFixed(1) + 'x';
+            localStorage.setItem('speechRate', speechRate);
+        }
+    });
+
+    // الحصول على النص وتنظيفه
+    function getCleanContent() {
         const el = document.querySelector('#contentRenderer');
         if (!el) return '';
-        let text = el.textContent.trim();
+        
+        // نسخ المحتوى وإزالة العلامات
+        const clone = el.cloneNode(true);
+        clone.querySelectorAll('.code-block, .note-box, .example-box').forEach(function(el) {
+            el.remove();
+        });
+        
+        let text = clone.textContent.trim();
         text = text.replace(/[📝💡🎯⭐♿🔍📱🚀]/g, '');
         text = text.replace(/\s+/g, ' ');
+        text = text.replace(/[\(\)\{\}\[\]\<\>]/g, ' ');
         return text;
     }
 
-    function speakText() {
-        const text = getContentText();
-        if (!text) { alert('لا يوجد محتوى للقراءة'); return; }
-        if (!('speechSynthesis' in window)) { alert('المتصفح لا يدعم القراءة الصوتية'); return; }
+    // تقسيم النص إلى جمل
+    function splitIntoSentences(text) {
+        // تقسيم حسب النقاط وعلامات الترقيم
+        const sentences = text.split(/(?<=[.۔!؟])\s+/);
+        return sentences.filter(s => s.trim().length > 0);
+    }
 
-        if (isSpeaking) {
-            if (isPaused) {
-                window.speechSynthesis.resume();
-                isPaused = false;
-                speakBtn.textContent = '🔊';
-                return;
-            } else {
-                window.speechSynthesis.pause();
-                isPaused = true;
-                speakBtn.textContent = '⏸️';
-                return;
-            }
+    // قراءة الجمل بالتتابع
+    function speakSentences(sentences, index) {
+        if (index >= sentences.length) {
+            isSpeaking = false;
+            speakBtn.textContent = '🔊';
+            return;
         }
 
-        utterance = new SpeechSynthesisUtterance(text);
+        if (!('speechSynthesis' in window)) {
+            alert('المتصفح لا يدعم القراءة الصوتية');
+            return;
+        }
+
+        const sentence = sentences[index].trim();
+        if (!sentence) {
+            speakSentences(sentences, index + 1);
+            return;
+        }
+
+        utterance = new SpeechSynthesisUtterance(sentence);
         utterance.lang = 'ar-SA';
-        utterance.rate = 0.9;
+        utterance.rate = speechRate;
         utterance.pitch = 1;
         utterance.volume = 1;
 
         utterance.onstart = function() {
             isSpeaking = true;
-            isPaused = false;
             speakBtn.textContent = '🔊';
         };
 
         utterance.onend = function() {
-            isSpeaking = false;
-            isPaused = false;
-            speakBtn.textContent = '🔊';
+            if (!isPaused) {
+                // توقف مؤقت بين الجمل
+                setTimeout(function() {
+                    speakSentences(sentences, index + 1);
+                }, 300);
+            }
         };
 
-        utterance.onerror = function() {
-            isSpeaking = false;
-            isPaused = false;
-            speakBtn.textContent = '🔊';
+        utterance.onerror = function(e) {
+            console.log('خطأ في القراءة:', e);
+            speakSentences(sentences, index + 1);
         };
 
         window.speechSynthesis.speak(utterance);
     }
 
+    function speakText() {
+        const text = getCleanContent();
+        if (!text) {
+            alert('لا يوجد محتوى للقراءة');
+            return;
+        }
+
+        if (isSpeaking && !isPaused) {
+            window.speechSynthesis.pause();
+            isPaused = true;
+            speakBtn.textContent = '⏸️';
+            return;
+        }
+
+        if (isPaused) {
+            window.speechSynthesis.resume();
+            isPaused = false;
+            speakBtn.textContent = '🔊';
+            return;
+        }
+
+        if (window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+        }
+
+        const sentences = splitIntoSentences(text);
+        if (sentences.length === 0) {
+            alert('لا يوجد محتوى قابل للقراءة');
+            return;
+        }
+
+        currentText = text;
+        isPaused = false;
+        speakSentences(sentences, 0);
+    }
+
     speakBtn.addEventListener('click', speakText);
+
     stopBtn.addEventListener('click', function() {
         if (window.speechSynthesis) {
             window.speechSynthesis.cancel();
@@ -174,6 +252,7 @@
             speakBtn.textContent = '🔊';
         }
     });
+
     pauseBtn.addEventListener('click', function() {
         if (isSpeaking && !isPaused) {
             window.speechSynthesis.pause();
@@ -208,7 +287,6 @@
     const sidebarContent = document.getElementById('sidebarContent');
     const renderer = document.getElementById('contentRenderer');
 
-    // عرض القائمة الجانبية
     function renderSidebar() {
         sidebarContent.innerHTML = '';
         chapters.forEach((chapter, idx) => {
@@ -252,14 +330,12 @@
         });
     }
 
-    // تحميل وعرض الدرس
     function loadLesson(chapterId, lessonId) {
         const chapter = chapters.find(c => c.id === chapterId);
         if (!chapter) return;
         const lesson = chapter.lessons.find(l => l.id === lessonId);
         if (!lesson) return;
 
-        // تنظيف المحتوى من أي علامات HTML زائدة
         let content = lesson.content || '';
         content = content.replace(/<span[^>]*>/g, '');
         content = content.replace(/<\/span>/g, '');
@@ -274,20 +350,16 @@
             </div>
         `;
 
-        // إظهار الأكواد بشكل نظيف
         renderer.querySelectorAll('.code-block').forEach(function(block) {
             let html = block.innerHTML;
-            // إزالة أي علامات span متبقية
             html = html.replace(/<span[^>]*>/g, '');
             html = html.replace(/<\/span>/g, '');
             block.innerHTML = html;
         });
 
-        // حفظ آخر درس
         localStorage.setItem('lastLesson', JSON.stringify({ chapterId, lessonId }));
         document.title = `${lesson.title} - أكاديمية الكومندا`;
 
-        // تمييز الدرس النشط
         sidebarContent.querySelectorAll('.sidebar-lesson').forEach(function(el) {
             el.classList.toggle('active', 
                 el.dataset.chapterId === chapterId && 
@@ -296,7 +368,6 @@
         });
     }
 
-    // تحميل آخر درس
     function loadLastLesson() {
         const saved = localStorage.getItem('lastLesson');
         if (saved) {
@@ -309,15 +380,11 @@
                 }
             } catch(e) {}
         }
-        // أول درس
         if (chapters.length > 0 && chapters[0].lessons.length > 0) {
             loadLesson(chapters[0].id, chapters[0].lessons[0].id);
         }
     }
 
-    // ========================================
-    // تهيئة التطبيق
-    // ========================================
     if (chapters.length === 0) {
         renderer.innerHTML = `
             <div style="text-align:center;padding:3rem;">

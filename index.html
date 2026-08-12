@@ -41,43 +41,41 @@
                 </div>
             </div>
             
-            <button class="access-toggle" id="accessToggle" aria-label="فتح شريط إمكانية الوصول">
-                ♿
-            </button>
+            <!-- زر إمكانية الوصول -->
+            <div class="access-wrapper">
+                <button class="access-toggle" id="accessToggle" aria-label="فتح شريط إمكانية الوصول">
+                    ♿
+                </button>
+                <!-- شريط إمكانية الوصول - منسدل صغير -->
+                <div class="access-dropdown" id="accessDropdown">
+                    <div class="access-inner">
+                        <div class="access-row">
+                            <span class="access-label">📐</span>
+                            <button id="fontDec" class="access-btn">أ-</button>
+                            <span class="access-size" id="fontSizeDisplay">16</span>
+                            <button id="fontInc" class="access-btn">أ+</button>
+                        </div>
+                        <div class="access-divider"></div>
+                        <div class="access-row">
+                            <button id="themeToggle" class="access-btn btn-gold">🌙</button>
+                            <button id="contrastToggle" class="access-btn">♿</button>
+                            <button id="speakBtn" class="access-btn btn-speak">🔊</button>
+                        </div>
+                        <div class="access-divider"></div>
+                        <div class="access-row">
+                            <span class="access-label">سرعة</span>
+                            <button id="speedDown" class="access-btn">-</button>
+                            <span class="access-size" id="speedDisplay">1.0</span>
+                            <button id="speedUp" class="access-btn">+</button>
+                            <button id="stopSpeakBtn" class="access-btn">⏹️</button>
+                            <button id="pauseSpeakBtn" class="access-btn">⏸️</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
-  
-    <!-- شريط إمكانية الوصول - ثابت ومخفي/ظاهر -->
-    <div class="accessibility-bar" id="accessibilityBar">
-        <div class="bar-container">
-            <div class="bar-group">
-                <span class="bar-label">📐 حجم</span>
-                <button id="fontDec" class="bar-btn">أ-</button>
-                <span class="bar-size" id="fontSizeDisplay">16</span>
-                <button id="fontInc" class="bar-btn">أ+</button>
-            </div>
-            <div class="bar-divider"></div>
-            <div class="bar-group">
-                <button id="themeToggle" class="bar-btn btn-gold">🌙</button>
-                <button id="contrastToggle" class="bar-btn">♿</button>
-            </div>
-            <div class="bar-divider"></div>
-            <div class="bar-group">
-                <button id="speakBtn" class="bar-btn btn-speak">🔊</button>
-                <button id="pauseSpeakBtn" class="bar-btn">⏸️</button>
-                <button id="stopSpeakBtn" class="bar-btn">⏹️</button>
-            </div>
-            <div class="bar-divider"></div>
-            <div class="bar-group">
-                <span class="bar-label">سرعة</span>
-                <button id="speedDown" class="bar-btn">-</button>
-                <span class="bar-size" id="speedDisplay">1.0</span>
-                <button id="speedUp" class="bar-btn">+</button>
-            </div>
-            <button class="bar-close" id="barClose" aria-label="إغلاق شريط الوصول">✕</button>
-        </div>
-    </div>
-    
+
     <!-- القائمة الجانبية الثابتة -->
     <aside class="sidebar-overlay" id="sidebarOverlay"></aside>
     <aside class="sidebar" id="chapterSidebar" role="navigation">

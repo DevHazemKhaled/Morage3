@@ -390,25 +390,34 @@
         }
 
         renderContent(chapter, lesson) {
+            // تنظيف المحتوى من أي علامات HTML زائدة
             let content = lesson.content || '';
             
-            // تنظيف المحتوى من علامات HTML الزائدة
-            content = content.replace(/<p>/g, '<p>');
-            content = content.replace(/<\/p>/g, '</p>');
+            // إزالة أي <span> متبقية من التنسيق القديم
+            content = content.replace(/<span[^>]*>/g, '');
+            content = content.replace(/<\/span>/g, '');
+            
+            // الحفاظ على العلامات الأساسية فقط
             content = content.replace(/<h3>/g, '<h3>');
             content = content.replace(/<\/h3>/g, '</h3>');
             content = content.replace(/<h4>/g, '<h4>');
             content = content.replace(/<\/h4>/g, '</h4>');
+            content = content.replace(/<p>/g, '<p>');
+            content = content.replace(/<\/p>/g, '</p>');
             content = content.replace(/<ul>/g, '<ul>');
             content = content.replace(/<\/ul>/g, '</ul>');
             content = content.replace(/<ol>/g, '<ol>');
             content = content.replace(/<\/ol>/g, '</ol>');
             content = content.replace(/<li>/g, '<li>');
             content = content.replace(/<\/li>/g, '</li>');
-            content = content.replace(/<code>/g, '<code>');
-            content = content.replace(/<\/code>/g, '</code>');
             content = content.replace(/<strong>/g, '<strong>');
             content = content.replace(/<\/strong>/g, '</strong>');
+            content = content.replace(/<code>/g, '<code>');
+            content = content.replace(/<\/code>/g, '</code>');
+            content = content.replace(/<div class="code-block">/g, '<div class="code-block">');
+            content = content.replace(/<\/div>/g, '</div>');
+            content = content.replace(/<div class="note-box">/g, '<div class="note-box">');
+            content = content.replace(/<div class="example-box">/g, '<div class="example-box">');
             
             this.renderer.innerHTML = `
                 <div class="lesson-header">
@@ -420,43 +429,73 @@
                 </div>
             `;
             
-            // إعادة تنسيق الأكواد
-            this.formatCodeBlocks();
+            // تنسيق الأكواد بعد عرض المحتوى
+            this.highlightCodeBlocks();
         }
 
-        formatCodeBlocks() {
+        highlightCodeBlocks() {
+            // معالجة جميع كتل الأكواد
             this.renderer.querySelectorAll('.code-block').forEach(block => {
                 let html = block.innerHTML;
                 
-                // تلوين التعليقات
-                html = html.replace(/\/\/.*/g, match => 
-                    `<span class="comment">${match}</span>`
-                );
-                html = html.replace(/\/\*[\s\S]*?\*\//g, match => 
-                    `<span class="comment">${match}</span>`
-                );
+                // تلوين التعليقات (//)
+                html = html.replace(/\/\/.*/g, match => {
+                    return `<span class="comment">${match}</span>`;
+                });
+                
+                // تلوين التعليقات (/* */)
+                html = html.replace(/\/\*[\s\S]*?\*\//g, match => {
+                    return `<span class="comment">${match}</span>`;
+                });
                 
                 // تلوين الكلمات المفتاحية
-                const keywords = ['const', 'let', 'var', 'function', 'return', 'if', 'else', 
-                    'for', 'while', 'class', 'new', 'this', 'async', 'await', 'try', 'catch',
-                    'throw', 'switch', 'case', 'break', 'default', 'typeof', 'instanceof',
-                    'void', 'delete', 'in', 'of', 'export', 'import', 'from', 'extends',
-                    'super', 'static', 'get', 'set', 'true', 'false', 'null', 'undefined'];
+                const keywords = [
+                    'const', 'let', 'var', 'function', 'return', 'if', 'else', 
+                    'for', 'while', 'class', 'new', 'this', 'async', 'await', 
+                    'try', 'catch', 'throw', 'switch', 'case', 'break', 'default',
+                    'typeof', 'instanceof', 'void', 'delete', 'in', 'of', 'export',
+                    'import', 'from', 'extends', 'super', 'static', 'get', 'set',
+                    'true', 'false', 'null', 'undefined', 'typeof', 'instanceof'
+                ];
                 
                 keywords.forEach(keyword => {
                     const regex = new RegExp(`\\b${keyword}\\b`, 'g');
                     html = html.replace(regex, `<span class="keyword">${keyword}</span>`);
                 });
                 
-                // تلوين النصوص
-                html = html.replace(/(".*?"|'.*?')/g, match => 
-                    `<span class="string">${match}</span>`
-                );
+                // تلوين النصوص بين علامات التنصيص
+                html = html.replace(/(".*?"|'.*?')/g, match => {
+                    return `<span class="string">${match}</span>`;
+                });
                 
-                // تلوين الدوال
-                html = html.replace(/\b(console\.log|console\.error|console\.warn|console\.info|document\.querySelector|document\.getElementById|document\.createElement|document\.querySelectorAll|fetch|JSON\.parse|JSON\.stringify|localStorage\.setItem|localStorage\.getItem|addEventListener|removeEventListener|appendChild|remove|classList\.add|classList\.remove|classList\.toggle|classList\.contains|textContent|innerHTML|setAttribute|getAttribute|style|createElement|querySelector|querySelectorAll|getElementById|getElementsByClassName|getElementsByTagName|addEventListener|removeEventListener|preventDefault|stopPropagation)\b/g, match => 
-                    `<span class="function">${match}</span>`
-                );
+                // تلوين دوال شائعة
+                const functions = [
+                    'console.log', 'console.error', 'console.warn', 'console.info',
+                    'document.querySelector', 'document.getElementById', 'document.createElement',
+                    'document.querySelectorAll', 'fetch', 'JSON.parse', 'JSON.stringify',
+                    'localStorage.setItem', 'localStorage.getItem', 'addEventListener',
+                    'removeEventListener', 'appendChild', 'remove', 'classList.add',
+                    'classList.remove', 'classList.toggle', 'classList.contains',
+                    'textContent', 'innerHTML', 'setAttribute', 'getAttribute'
+                ];
+                
+                functions.forEach(func => {
+                    const regex = new RegExp(`\\b${func}\\b`, 'g');
+                    html = html.replace(regex, `<span class="function">${func}</span>`);
+                });
+                
+                // تلوين خصائص CSS
+                const cssProperties = [
+                    'width', 'height', 'padding', 'margin', 'border', 'background',
+                    'color', 'font-size', 'display', 'position', 'top', 'left',
+                    'right', 'bottom', 'z-index', 'flex', 'grid', 'gap', 'box-sizing',
+                    'border-radius', 'box-shadow', 'opacity', 'transform', 'transition'
+                ];
+                
+                cssProperties.forEach(prop => {
+                    const regex = new RegExp(`\\b${prop}\\b`, 'g');
+                    html = html.replace(regex, `<span class="property">${prop}</span>`);
+                });
                 
                 block.innerHTML = html;
             });

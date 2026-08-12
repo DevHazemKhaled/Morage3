@@ -2,30 +2,38 @@
     "use strict";
 
     // ========================================
-    // فتح/غلق شريط إمكانية الوصول
+    // فتح/غلق شريط إمكانية الوصول - منسدل صغير
     // ========================================
     const accessToggle = document.getElementById('accessToggle');
-    const accessBar = document.getElementById('accessibilityBar');
-    const barClose = document.getElementById('barClose');
-    const mainHeader = document.getElementById('mainHeader');
-    let barOpen = false;
+    const accessDropdown = document.getElementById('accessDropdown');
+    let dropdownOpen = false;
 
-    function toggleBar() {
-        barOpen = !barOpen;
-        accessBar.classList.toggle('open', barOpen);
-        mainHeader.classList.toggle('shifted', barOpen);
-        accessToggle.classList.toggle('active', barOpen);
-        accessToggle.textContent = barOpen ? '✕' : '♿';
-        
-        localStorage.setItem('accessBarOpen', barOpen);
+    function toggleDropdown(e) {
+        e.stopPropagation();
+        dropdownOpen = !dropdownOpen;
+        accessDropdown.classList.toggle('open', dropdownOpen);
+        accessToggle.classList.toggle('active', dropdownOpen);
     }
 
-    accessToggle.addEventListener('click', toggleBar);
-    barClose.addEventListener('click', toggleBar);
+    accessToggle.addEventListener('click', toggleDropdown);
 
-    if (localStorage.getItem('accessBarOpen') === 'true') {
-        toggleBar();
-    }
+    // إغلاق القائمة عند الضغط خارجها
+    document.addEventListener('click', function(e) {
+        if (dropdownOpen && !accessDropdown.contains(e.target) && !accessToggle.contains(e.target)) {
+            dropdownOpen = false;
+            accessDropdown.classList.remove('open');
+            accessToggle.classList.remove('active');
+        }
+    });
+
+    // إغلاق القائمة عند الضغط على Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && dropdownOpen) {
+            dropdownOpen = false;
+            accessDropdown.classList.remove('open');
+            accessToggle.classList.remove('active');
+        }
+    });
 
     // ========================================
     // فتح/غلق القائمة الجانبية
@@ -374,7 +382,6 @@
             );
         });
 
-        // إيقاف القراءة الصوتية عند تغيير الدرس
         if (window.speechSynthesis) {
             window.speechSynthesis.cancel();
             isSpeaking = false;

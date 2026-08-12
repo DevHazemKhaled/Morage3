@@ -2,12 +2,11 @@
     --bg-color: #0b0f19;
     --card-bg: #131d31;
     --text-color: #f8fafc;
-    --accent-color: #facc15; /* ذهبي مضيء وواضح جداً لضعاف البصر */
+    --accent-color: #facc15;
     --border-color: #334155;
-    --font-size-multiplier: 1rem;
+    --font-size-multiplier: 18px;
 }
 
-/* وضع إمكانية الوصول العالي (High Contrast & Accessibility Mode) */
 body.high-contrast {
     --bg-color: #000000 !important;
     --card-bg: #121212 !important;
@@ -23,11 +22,8 @@ body {
     color: var(--text-color);
     font-size: var(--font-size-multiplier);
     line-height: 2;
-    padding: 0;
-    margin: 0;
 }
 
-/* شريط إمكانية الوصول العلوي (Accessibility Toolbar) */
 .accessibility-bar {
     background: #020617;
     border-bottom: 2px solid var(--accent-color);
@@ -53,7 +49,6 @@ body {
 }
 .accessibility-bar button:hover { opacity: 0.85; }
 
-/* تصميم الهيدر واللوجو */
 header.main-header {
     background: var(--card-bg);
     padding: 40px 30px;
@@ -63,45 +58,12 @@ header.main-header {
 header.main-header h1 { color: var(--accent-color); font-size: 2.2rem; margin-bottom: 10px; }
 header.main-header p { opacity: 0.9; font-size: 1.1rem; }
 
-/* تخطيط المحتوى والدروس */
 .container {
     max-width: 1000px;
     margin: 30px auto;
     padding: 0 20px;
 }
 
-.lesson-card {
-    background: var(--card-bg);
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
-    padding: 30px;
-    margin-bottom: 25px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-}
-
-.lesson-card h2 {
-    color: var(--accent-color);
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    border-right: 5px solid var(--accent-color);
-    padding-right: 12px;
-}
-
-.lesson-card p, .lesson-card li {
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-}
-
-.connection-note {
-    background: rgba(250, 204, 21, 0.1);
-    border-right: 4px solid var(--accent-color);
-    padding: 15px;
-    margin-top: 20px;
-    border-radius: 6px;
-    font-weight: bold;
-}
-
-/* روابط الفصول */
 .chapters-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -115,8 +77,8 @@ header.main-header p { opacity: 0.9; font-size: 1.1rem; }
     padding: 25px;
     border-radius: 10px;
     text-align: center;
-    text-decoration: none;
     color: var(--text-color);
+    cursor: pointer;
     transition: 0.3s;
 }
 .chapter-box:hover {
@@ -124,3 +86,25 @@ header.main-header p { opacity: 0.9; font-size: 1.1rem; }
     transform: translateY(-5px);
 }
 .chapter-box h3 { color: var(--accent-color); margin-bottom: 10px; }
+
+.lesson-card {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 25px;
+}
+.lesson-card h2 {
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    border-right: 5px solid var(--accent-color);
+    padding-right: 12px;
+}
+.connection-note {
+    background: rgba(250, 204, 21, 0.1);
+    border-right: 4px solid var(--accent-color);
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 6px;
+    font-weight: bold;
+}

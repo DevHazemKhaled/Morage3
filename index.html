@@ -3,95 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أكاديمية الكومندا | التعلم الذاتي المتكامل</title>
-    <meta property="og:title" content="أكاديمية الكومندا - منهج تطوير ويب متكامل">
-    <meta property="og:description" content="منصة تعلم ذاتي متكاملة مع شرح تفصيلي وأمثلة عملية">
+    <title>أكاديمية الكومندا | منصة التعلم المتكاملة</title>
+    <meta name="description" content="منصة تعلم برمجة متكاملة مع دعم كامل لإمكانية الوصول">
+    <meta property="og:title" content="أكاديمية الكومندا">
+    <meta property="og:description" content="تعلم البرمجة من الصفر حتى الاحتراف">
     <meta property="og:type" content="website">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-
     <!-- شريط إمكانية الوصول -->
-    <div class="toolbar" id="accessibilityToolbar" role="toolbar" aria-label="شريط إمكانية الوصول">
-        <div class="btn-group">
-            <button id="fontDec" aria-label="تصغير حجم الخط">أ-</button>
-            <button id="fontInc" aria-label="تكبير حجم الخط">أ+</button>
-        </div>
-        <div class="btn-group">
-            <button id="contrastToggle" aria-label="تبديل التباين العالي">🌓 تباين عالي</button>
-        </div>
-        <div class="btn-group">
-            <button id="speakBtn" class="btn-gold" aria-label="استماع إلى الصفحة">🔊 استماع</button>
-            <button id="stopSpeakBtn" aria-label="إيقاف القراءة">⏹️ إيقاف</button>
+    <div class="accessibility-bar" id="accessibilityBar" role="toolbar" aria-label="شريط إمكانية الوصول">
+        <div class="bar-container">
+            <div class="bar-section">
+                <span class="bar-label">📐 حجم الخط</span>
+                <button id="fontDec" class="bar-btn" aria-label="تصغير حجم الخط">أ-</button>
+                <span class="font-size-display" id="fontSizeDisplay">16px</span>
+                <button id="fontInc" class="bar-btn" aria-label="تكبير حجم الخط">أ+</button>
+            </div>
+            
+            <div class="bar-divider"></div>
+            
+            <div class="bar-section">
+                <button id="themeToggle" class="bar-btn btn-gold" aria-label="تبديل الثيم">
+                    🌙 الوضع الداكن
+                </button>
+                <button id="contrastToggle" class="bar-btn" aria-label="تبديل التباين العالي">
+                    ♿ تباين عالي
+                </button>
+            </div>
+            
+            <div class="bar-divider"></div>
+            
+            <div class="bar-section">
+                <button id="speakBtn" class="bar-btn btn-speak" aria-label="استماع إلى المحتوى">
+                    🔊 استماع
+                </button>
+                <button id="stopSpeakBtn" class="bar-btn" aria-label="إيقاف القراءة">
+                    ⏹️ إيقاف
+                </button>
+                <button id="pauseSpeakBtn" class="bar-btn" aria-label="إيقاف مؤقت">
+                    ⏸️ وقفة
+                </button>
+            </div>
         </div>
     </div>
 
-    <!-- الهيدر -->
-    <header>
-        <div class="header-content">
-            <h1>⚡ أكاديمية الكومندا</h1>
-            <p class="subtitle">منصة التعلم الذاتي المتكاملة - من الصفر حتى الاحتراف</p>
+    <!-- الهيدر الرئيسي -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-brand">
+                <div class="brand-icon">⚡</div>
+                <div>
+                    <h1>أكاديمية الكومندا</h1>
+                    <p class="brand-subtitle">منصة التعلم الذاتي المتكاملة</p>
+                </div>
+            </div>
             <div class="header-stats">
-                <span>📚 5 فصول</span>
-                <span>📖 45+ درس</span>
-                <span>💻 مشاريع عملية</span>
-                <span>🎯 شهادة إتمام</span>
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">فصول</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number">42</span>
+                    <span class="stat-label">دروس</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number">🎯</span>
+                    <span class="stat-label">مشروع نهائي</span>
+                </div>
             </div>
         </div>
     </header>
 
     <!-- المحتوى الرئيسي -->
-    <div class="academy-grid">
-        <!-- القائمة الجانبية -->
-        <aside class="sidebar" id="chapterSidebar" role="navigation" aria-label="فصول الأكاديمية">
-            <!-- سيتم إنشاؤها بواسطة JavaScript -->
-        </aside>
+    <main class="main-container">
+        <div class="content-grid">
+            <!-- القائمة الجانبية -->
+            <aside class="sidebar" id="chapterSidebar" role="navigation" aria-label="فصول الأكاديمية">
+                <!-- سيتم إنشاؤها بواسطة JavaScript -->
+            </aside>
 
-        <!-- منطقة عرض المحتوى -->
-        <main class="main-content" id="mainContent" role="main" aria-live="polite">
-            <div id="contentRenderer">
-                <div class="welcome-message">
-                    <h2>🏁 مرحباً في أكاديمية الكومندا</h2>
-                    <p>اختر فصلاً من القائمة الجانبية، ثم اختر درساً لبدء التعلم</p>
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <span>🎯</span>
-                            <h3>تعلم منظم</h3>
-                            <p>خمسة فصول متكاملة تغطي كل ما تحتاجه</p>
-                        </div>
-                        <div class="feature-card">
-                            <span>💡</span>
-                            <h3>أمثلة عملية</h3>
-                            <p>شرح مع أكواد وتطبيقات واقعية</p>
-                        </div>
-                        <div class="feature-card">
-                            <span>♿</span>
-                            <h3>إمكانية وصول</h3>
-                            <p>أدوات دعم للجميع (تكبير، تباين، قراءة صوتية)</p>
-                        </div>
-                        <div class="feature-card">
-                            <span>🚀</span>
-                            <h3>مشاريع نهائية</h3>
-                            <p>تطبيق عملي لكل ما تعلمته</p>
+            <!-- منطقة المحتوى -->
+            <section class="content-area" id="mainContent" role="main" aria-live="polite">
+                <div id="contentRenderer">
+                    <div class="welcome-screen">
+                        <div class="welcome-icon">🚀</div>
+                        <h2>مرحباً في أكاديمية الكومندا</h2>
+                        <p>اختر فصلاً من القائمة الجانبية، ثم اختر درساً لبدء رحلة التعلم</p>
+                        <div class="welcome-features">
+                            <div class="welcome-feature">
+                                <span>📚</span>
+                                <h4>محتوى منظم</h4>
+                                <p>5 فصول تغطي كل ما تحتاجه من الصفر</p>
+                            </div>
+                            <div class="welcome-feature">
+                                <span>💻</span>
+                                <h4>أمثلة عملية</h4>
+                                <p>أكواد وتطبيقات واقعية في كل درس</p>
+                            </div>
+                            <div class="welcome-feature">
+                                <span>♿</span>
+                                <h4>إمكانية وصول</h4>
+                                <p>أدوات دعم للجميع (تكبير، تباين، قراءة)</p>
+                            </div>
+                            <div class="welcome-feature">
+                                <span>🏆</span>
+                                <h4>مشروع نهائي</h4>
+                                <p>تطبيق عملي لكل ما تعلمته</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
-    </div>
+            </section>
+        </div>
+    </main>
 
     <!-- الفوتر -->
-    <footer>
-        <p>© 2026 أكاديمية الكومندا - بناء الجيل القادم من المبرمجين</p>
+    <footer class="main-footer">
+        <div class="footer-container">
+            <p>© 2026 أكاديمية الكومندا - بناء الجيل القادم من المبرمجين</p>
+            <div class="footer-links">
+                <a href="#"><span>📧</span> تواصل معنا</a>
+                <a href="#"><span>📖</span> عن الأكاديمية</a>
+                <a href="#"><span>⭐</span> دعم المشروع</a>
+            </div>
+        </div>
     </footer>
-</div>
 
-<script src="chapter1.js"></script>
-<script src="chapter2.js"></script>
-<script src="chapter3.js"></script>
-<script src="chapter4.js"></script>
-<script src="chapter5.js"></script>
-<script src="app.js"></script>
+    <script src="chapter1.js"></script>
+    <script src="chapter2.js"></script>
+    <script src="chapter3.js"></script>
+    <script src="chapter4.js"></script>
+    <script src="chapter5.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

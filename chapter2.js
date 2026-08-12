@@ -10,28 +10,24 @@ const chapter2 = {
                 <h3>الهيكل الأساسي لأي صفحة HTML5</h3>
                 <p>كل صفحة ويب تبدأ بهيكل أساسي ثابت. هذا الهيكل يخبر المتصفح بنوع المستند وكيفية تفسيره.</p>
                 
-                <h4>مكونات الهيكل الأساسي</h4>
                 <div class="code-block">
-                    <span class="comment">&lt;!--DOCTYPE يخبر المتصفح بأن هذا مستند HTML5 --&gt;</span>
-                    <span class="keyword">&lt;!DOCTYPE</span> <span class="function">html</span><span class="keyword">&gt;</span>
-                    <span class="keyword">&lt;html</span> <span class="function">lang</span>=<span class="string">"ar"</span><span class="keyword">&gt;</span>
-                        <span class="keyword">&lt;head&gt;</span>
-                            <span class="comment">&lt;!-- معلومات عن الصفحة (غير مرئية للمستخدم) --&gt;</span>
-                            <span class="keyword">&lt;meta</span> <span class="function">charset</span>=<span class="string">"UTF-8"</span><span class="keyword">&gt;</span>
-                            <span class="keyword">&lt;meta</span> <span class="function">name</span>=<span class="string">"viewport"</span> <span class="function">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span><span class="keyword">&gt;</span>
-                            <span class="keyword">&lt;title&gt;</span>عنوان الصفحة<span class="keyword">&lt;/title&gt;</span>
-                        <span class="keyword">&lt;/head&gt;</span>
-                        <span class="keyword">&lt;body&gt;</span>
-                            <span class="comment">&lt;!-- المحتوى المرئي للمستخدم --&gt;</span>
-                            <span class="keyword">&lt;h1&gt;</span>مرحباً في موقعي<span class="keyword">&lt;/h1&gt;</span>
-                            <span class="keyword">&lt;p&gt;</span>هذا هو محتوى الصفحة<span class="keyword">&lt;/p&gt;</span>
-                        <span class="keyword">&lt;/body&gt;</span>
-                    <span class="keyword">&lt;/html&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ar"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;عنوان الصفحة&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;مرحباً في موقعي&lt;/h1&gt;
+        &lt;p&gt;هذا هو محتوى الصفحة&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
                 </div>
                 
                 <h4>شرح كل عنصر بالتفصيل</h4>
                 <ul>
-                    <li><strong>&lt;!DOCTYPE html&gt;</strong>: يخبر المتصفح أن هذا مستند HTML5 (أحدث إصدار)</li>
+                    <li><strong>&lt;!DOCTYPE html&gt;</strong>: يخبر المتصفح بأن هذا مستند HTML5 (أحدث إصدار)</li>
                     <li><strong>&lt;html lang="ar"&gt;</strong>: العنصر الجذر للصفحة، lang تحدد اللغة (ar للعربية)</li>
                     <li><strong>&lt;head&gt;</strong>: يحتوي على معلومات غير مرئية مثل العنوان، الترميز، والروابط</li>
                     <li><strong>&lt;meta charset="UTF-8"&gt;</strong>: يحدد ترميز الأحرف (يدعم العربية والعالمية)</li>
@@ -59,17 +55,16 @@ const chapter2 = {
             id: '2-2',
             title: 'العناوين (Headings) وأهميتها لتحسين محركات البحث',
             content: `
-                <h3>عناوين HTML (h1 إلى h6) وأهميتها في SEO</h3>
+                <h3>العناوين (h1 إلى h6) وأهميتها في SEO</h3>
                 <p>العناوين هي العناصر التي تنظم المحتوى وترتبه هرمياً. محركات البحث توليها أهمية كبيرة.</p>
                 
-                <h4>أنواع العناوين واستخداماتها</h4>
                 <div class="code-block">
-                    <span class="keyword">&lt;h1&gt;</span>العنوان الرئيسي للصفحة (مرة واحدة فقط)<span class="keyword">&lt;/h1&gt;</span>
-                    <span class="keyword">&lt;h2&gt;</span>عنوان قسم رئيسي<span class="keyword">&lt;/h2&gt;</span>
-                    <span class="keyword">&lt;h3&gt;</span>عنوان فرعي داخل القسم<span class="keyword">&lt;/h3&gt;</span>
-                    <span class="keyword">&lt;h4&gt;</span>عنوان تفصيلي أكثر<span class="keyword">&lt;/h4&gt;</span>
-                    <span class="keyword">&lt;h5&gt;</span>عنوان فرعي دقيق<span class="keyword">&lt;/h5&gt;</span>
-                    <span class="keyword">&lt;h6&gt;</span>أصغر عنوان<span class="keyword">&lt;/h6&gt;</span>
+&lt;h1&gt;العنوان الرئيسي للصفحة (مرة واحدة فقط)&lt;/h1&gt;
+&lt;h2&gt;عنوان قسم رئيسي&lt;/h2&gt;
+&lt;h3&gt;عنوان فرعي داخل القسم&lt;/h3&gt;
+&lt;h4&gt;عنوان تفصيلي أكثر&lt;/h4&gt;
+&lt;h5&gt;عنوان فرعي دقيق&lt;/h5&gt;
+&lt;h6&gt;أصغر عنوان&lt;/h6&gt;
                 </div>
                 
                 <h4>قواعد ذهبية للعناوين</h4>
@@ -83,14 +78,14 @@ const chapter2 = {
                 <div class="example-box">
                     <strong>🎯 مثال صحيح للتسلسل:</strong>
                     <div class="code-block">
-                        <span class="keyword">&lt;h1&gt;</span>دليل تعلم HTML الشامل<span class="keyword">&lt;/h1&gt;</span>
-                        <span class="keyword">&lt;h2&gt;</span>الفصل الأول: أساسيات HTML<span class="keyword">&lt;/h2&gt;</span>
-                        <span class="keyword">&lt;h3&gt;</span>ما هو HTML؟<span class="keyword">&lt;/h3&gt;</span>
-                        <span class="keyword">&lt;h3&gt;</span>تاريخ HTML<span class="keyword">&lt;/h3&gt;</span>
-                        <span class="keyword">&lt;h2&gt;</span>الفصل الثاني: عناصر HTML المتقدمة<span class="keyword">&lt;/h2&gt;</span>
-                        <span class="keyword">&lt;h3&gt;</span>السمات (Attributes)<span class="keyword">&lt;/h3&gt;</span>
-                        <span class="keyword">&lt;h4&gt;</span>سمة class<span class="keyword">&lt;/h4&gt;</span>
-                        <span class="keyword">&lt;h4&gt;</span>سمة id<span class="keyword">&lt;/h4&gt;</span>
+&lt;h1&gt;دليل تعلم HTML الشامل&lt;/h1&gt;
+    &lt;h2&gt;الفصل الأول: أساسيات HTML&lt;/h2&gt;
+        &lt;h3&gt;ما هو HTML؟&lt;/h3&gt;
+        &lt;h3&gt;تاريخ HTML&lt;/h3&gt;
+    &lt;h2&gt;الفصل الثاني: عناصر HTML المتقدمة&lt;/h2&gt;
+        &lt;h3&gt;السمات (Attributes)&lt;/h3&gt;
+            &lt;h4&gt;سمة class&lt;/h4&gt;
+            &lt;h4&gt;سمة id&lt;/h4&gt;
                     </div>
                 </div>
                 
@@ -107,20 +102,17 @@ const chapter2 = {
                 <h3>الروابط - ربط الصفحات معاً</h3>
                 <p>الروابط هي ما يجعل الويب شبكة مترابطة. بدونها، الإنترنت مجرد صفحات منفصلة.</p>
                 
-                <h4>عنصر الرابط الأساسي (a)</h4>
                 <div class="code-block">
-                    <span class="comment">&lt;!-- رابط بسيط --&gt;</span>
-                    <span class="keyword">&lt;a</span> <span class="function">href</span>=<span class="string">"https://google.com"</span><span class="keyword">&gt;</span>زيارة جوجل<span class="keyword">&lt;/a&gt;</span>
-                    
-                    <span class="comment">&lt;!-- رابط مع سمات الأمان (موصى بها) --&gt;</span>
-                    <span class="keyword">&lt;a</span> <span class="function">href</span>=<span class="string">"https://example.com"</span> 
-                           <span class="function">target</span>=<span class="string">"_blank"</span> 
-                           <span class="function">rel</span>=<span class="string">"noopener noreferrer"</span><span class="keyword">&gt;</span>
-                        فتح في نافذة جديدة بأمان
-                    <span class="keyword">&lt;/a&gt;</span>
-                    
-                    <span class="comment">&lt;!-- رابط لمرساة داخل الصفحة --&gt;</span>
-                    <span class="keyword">&lt;a</span> <span class="function">href</span>=<span class="string">"#section2"</span><span class="keyword">&gt;</span>الذهاب للقسم الثاني<span class="keyword">&lt;/a&gt;</span>
+&lt;!-- رابط بسيط --&gt;
+&lt;a href="https://google.com"&gt;زيارة جوجل&lt;/a&gt;
+
+&lt;!-- رابط مع سمات الأمان (موصى بها) --&gt;
+&lt;a href="https://example.com" target="_blank" rel="noopener noreferrer"&gt;
+    فتح في نافذة جديدة بأمان
+&lt;/a&gt;
+
+&lt;!-- رابط لمرساة داخل الصفحة --&gt;
+&lt;a href="#section2"&gt;الذهاب للقسم الثاني&lt;/a&gt;
                 </div>
                 
                 <h4>سمات الرابط المهمة</h4>
@@ -141,25 +133,6 @@ const chapter2 = {
                         <li>للروابط الخارجية، استخدم <code>rel="nofollow"</code> إذا كان الرابط غير موثوق</li>
                     </ul>
                 </div>
-                
-                <div class="example-box">
-                    <strong>📝 مثال عملي:</strong>
-                    <div class="code-block">
-                        <span class="comment">&lt;!-- رابط لموقع خارجي مع أمان --&gt;</span>
-                        <span class="keyword">&lt;a</span> <span class="function">href</span>=<span class="string">"https://github.com"</span> 
-                               <span class="function">target</span>=<span class="string">"_blank"</span> 
-                               <span class="function">rel</span>=<span class="string">"noopener noreferrer"</span> 
-                               <span class="function">title</span>=<span class="string">"زيارة جيثب"</span><span class="keyword">&gt;</span>
-                            🐙 زيارة جيثب
-                        <span class="keyword">&lt;/a&gt;</span>
-                        
-                        <span class="comment">&lt;!-- رابط لتحميل ملف PDF --&gt;</span>
-                        <span class="keyword">&lt;a</span> <span class="function">href</span>=<span class="string">"/files/document.pdf"</span> 
-                               <span class="function">download</span><span class="keyword">&gt;</span>
-                            📄 تحميل المستند
-                        <span class="keyword">&lt;/a&gt;</span>
-                    </div>
-                </div>
             `
         },
         {
@@ -169,21 +142,12 @@ const chapter2 = {
                 <h3>إدراج الصور والوسائط المتعددة</h3>
                 <p>الوسائط تجعل الصفحات غنية وجذابة. تعلم كيفية إضافتها بشكل صحيح مع مراعاة إمكانية الوصول.</p>
                 
-                <h4>عنصر الصورة (img)</h4>
                 <div class="code-block">
-                    <span class="comment">&lt;!-- صورة أساسية مع نص بديل --&gt;</span>
-                    <span class="keyword">&lt;img</span> 
-                         <span class="function">src</span>=<span class="string">"images/photo.jpg"</span> 
-                         <span class="function">alt</span>=<span class="string">"وصف الصورة لضعاف البصر"</span> 
-                         <span class="function">width</span>=<span class="string">"800"</span> 
-                         <span class="function">height</span>=<span class="string">"600"</span> 
-                         <span class="function">loading</span>=<span class="string">"lazy"</span><span class="keyword">&gt;</span>
-                    
-                    <span class="comment">&lt;!-- صورة مع تنسيق متجاوب --&gt;</span>
-                    <span class="keyword">&lt;img</span> 
-                         <span class="function">src</span>=<span class="string">"images/banner.jpg"</span> 
-                         <span class="function">alt</span>=<span class="string">"بانر الموقع"</span> 
-                         <span class="function">style</span>=<span class="string">"max-width: 100%; height: auto;"</span><span class="keyword">&gt;</span>
+&lt;!-- صورة أساسية مع نص بديل --&gt;
+&lt;img src="images/photo.jpg" alt="وصف الصورة لضعاف البصر" width="800" height="600" loading="lazy"&gt;
+
+&lt;!-- صورة مع تنسيق متجاوب --&gt;
+&lt;img src="images/banner.jpg" alt="بانر الموقع" style="max-width: 100%; height: auto;"&gt;
                 </div>
                 
                 <h4>سمات الصورة المهمة</h4>
@@ -211,24 +175,6 @@ const chapter2 = {
                     <li><strong>WebP:</strong> صيغة حديثة تجمع بين جودة JPEG وحجم PNG (موصى بها)</li>
                     <li><strong>SVG:</strong> للرسومات المتجهة (قابلة للتكبير بدون فقدان الجودة)</li>
                 </ul>
-                
-                <div class="example-box">
-                    <strong>📝 مثال عملي متكامل:</strong>
-                    <div class="code-block">
-                        <span class="comment">&lt;!-- صورة مع تحسين SEO وإمكانية الوصول --&gt;</span>
-                        <span class="keyword">&lt;figure&gt;</span>
-                            <span class="keyword">&lt;img</span> 
-                                 <span class="function">src</span>=<span class="string">"images/team.jpg"</span> 
-                                 <span class="function">alt</span>=<span class="string">"فريق العمل في أكاديمية الكومندا"</span> 
-                                 <span class="function">loading</span>=<span class="string">"lazy"</span> 
-                                 <span class="function">width</span>=<span class="string">"1200"</span> 
-                                 <span class="function">height</span>=<span class="string">"800"</span><span class="keyword">&gt;</span>
-                            <span class="keyword">&lt;figcaption&gt;</span>
-                                فريق أكاديمية الكومندا - 2026
-                            <span class="keyword">&lt;/figcaption&gt;</span>
-                        <span class="keyword">&lt;/figure&gt;</span>
-                    </div>
-                </div>
             `
         },
         {
@@ -238,54 +184,53 @@ const chapter2 = {
                 <h3>تنظيم البيانات باستخدام القوائم والجداول</h3>
                 <p>القوائم والجداول هي أدوات أساسية لتنظيم وعرض البيانات بطريقة منظمة وسهلة القراءة.</p>
                 
-                <h4>أنواع القوائم</h4>
                 <div class="code-block">
-                    <span class="comment">&lt;!-- قائمة غير مرتبة (نقاط) --&gt;</span>
-                    <span class="keyword">&lt;ul&gt;</span>
-                        <span class="keyword">&lt;li&gt;</span>العنصر الأول<span class="keyword">&lt;/li&gt;</span>
-                        <span class="keyword">&lt;li&gt;</span>العنصر الثاني<span class="keyword">&lt;/li&gt;</span>
-                        <span class="keyword">&lt;li&gt;</span>العنصر الثالث<span class="keyword">&lt;/li&gt;</span>
-                    <span class="keyword">&lt;/ul&gt;</span>
-                    
-                    <span class="comment">&lt;!-- قائمة مرتبة (أرقام) --&gt;</span>
-                    <span class="keyword">&lt;ol&gt;</span>
-                        <span class="keyword">&lt;li&gt;</span>الخطوة الأولى<span class="keyword">&lt;/li&gt;</span>
-                        <span class="keyword">&lt;li&gt;</span>الخطوة الثانية<span class="keyword">&lt;/li&gt;</span>
-                        <span class="keyword">&lt;li&gt;</span>الخطوة الثالثة<span class="keyword">&lt;/li&gt;</span>
-                    <span class="keyword">&lt;/ol&gt;</span>
-                    
-                    <span class="comment">&lt;!-- قائمة تعريفية --&gt;</span>
-                    <span class="keyword">&lt;dl&gt;</span>
-                        <span class="keyword">&lt;dt&gt;</span>HTML<span class="keyword">&lt;/dt&gt;</span>
-                        <span class="keyword">&lt;dd&gt;</span>لغة ترميز النصوص التشعبية<span class="keyword">&lt;/dd&gt;</span>
-                        <span class="keyword">&lt;dt&gt;</span>CSS<span class="keyword">&lt;/dt&gt;</span>
-                        <span class="keyword">&lt;dd&gt;</span>لغة تنسيق الصفحات<span class="keyword">&lt;/dd&gt;</span>
-                    <span class="keyword">&lt;/dl&gt;</span>
+&lt;!-- قائمة غير مرتبة (نقاط) --&gt;
+&lt;ul&gt;
+    &lt;li&gt;العنصر الأول&lt;/li&gt;
+    &lt;li&gt;العنصر الثاني&lt;/li&gt;
+    &lt;li&gt;العنصر الثالث&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- قائمة مرتبة (أرقام) --&gt;
+&lt;ol&gt;
+    &lt;li&gt;الخطوة الأولى&lt;/li&gt;
+    &lt;li&gt;الخطوة الثانية&lt;/li&gt;
+    &lt;li&gt;الخطوة الثالثة&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- قائمة تعريفية --&gt;
+&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;لغة ترميز النصوص التشعبية&lt;/dd&gt;
+    &lt;dt&gt;CSS&lt;/dt&gt;
+    &lt;dd&gt;لغة تنسيق الصفحات&lt;/dd&gt;
+&lt;/dl&gt;
                 </div>
                 
                 <h4>الجداول - عرض البيانات الجدولية</h4>
                 <div class="code-block">
-                    <span class="keyword">&lt;table&gt;</span>
-                        <span class="keyword">&lt;thead&gt;</span>
-                            <span class="keyword">&lt;tr&gt;</span>
-                                <span class="keyword">&lt;th&gt;</span>الاسم<span class="keyword">&lt;/th&gt;</span>
-                                <span class="keyword">&lt;th&gt;</span>العمر<span class="keyword">&lt;/th&gt;</span>
-                                <span class="keyword">&lt;th&gt;</span>المدينة<span class="keyword">&lt;/th&gt;</span>
-                            <span class="keyword">&lt;/tr&gt;</span>
-                        <span class="keyword">&lt;/thead&gt;</span>
-                        <span class="keyword">&lt;tbody&gt;</span>
-                            <span class="keyword">&lt;tr&gt;</span>
-                                <span class="keyword">&lt;td&gt;</span>أحمد محمد<span class="keyword">&lt;/td&gt;</span>
-                                <span class="keyword">&lt;td&gt;</span>25<span class="keyword">&lt;/td&gt;</span>
-                                <span class="keyword">&lt;td&gt;</span>القاهرة<span class="keyword">&lt;/td&gt;</span>
-                            <span class="keyword">&lt;/tr&gt;</span>
-                            <span class="keyword">&lt;tr&gt;</span>
-                                <span class="keyword">&lt;td&gt;</span>سارة علي<span class="keyword">&lt;/td&gt;</span>
-                                <span class="keyword">&lt;td&gt;</span>22<span class="keyword">&lt;/td&gt;</span>
-                                <span class="keyword">&lt;td&gt;</span>الرياض<span class="keyword">&lt;/td&gt;</span>
-                            <span class="keyword">&lt;/tr&gt;</span>
-                        <span class="keyword">&lt;/tbody&gt;</span>
-                    <span class="keyword">&lt;/table&gt;</span>
+&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;الاسم&lt;/th&gt;
+            &lt;th&gt;العمر&lt;/th&gt;
+            &lt;th&gt;المدينة&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;أحمد محمد&lt;/td&gt;
+            &lt;td&gt;25&lt;/td&gt;
+            &lt;td&gt;القاهرة&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;سارة علي&lt;/td&gt;
+            &lt;td&gt;22&lt;/td&gt;
+            &lt;td&gt;الرياض&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
                 </div>
                 
                 <div class="note-box">
@@ -296,11 +241,6 @@ const chapter2 = {
                         <li>أضف <code>scope="col"</code> أو <code>scope="row"</code> لتحسين إمكانية الوصول</li>
                     </ul>
                 </div>
-                
-                <div class="example-box">
-                    <strong>📝 مثال عملي:</strong>
-                    <p>استخدم القوائم لعرض عناصر القائمة في موقع، والجداول لعرض بيانات مثل قائمة الطلاب أو المنتجات.</p>
-                </div>
             `
         },
         {
@@ -310,40 +250,19 @@ const chapter2 = {
                 <h3>بناء نماذج تفاعلية لجمع بيانات المستخدمين</h3>
                 <p>النماذج هي وسيلة التفاعل الأساسية مع المستخدمين لجمع البيانات وإرسالها للخادم.</p>
                 
-                <h4>هيكل النموذج الأساسي</h4>
                 <div class="code-block">
-                    <span class="keyword">&lt;form</span> 
-                          <span class="function">action</span>=<span class="string">"/submit"</span> 
-                          <span class="function">method</span>=<span class="string">"POST"</span><span class="keyword">&gt;</span>
-                        
-                        <span class="comment">&lt;!-- حقل النص --&gt;</span>
-                        <span class="keyword">&lt;label</span> <span class="function">for</span>=<span class="string">"name"</span><span class="keyword">&gt;</span>الاسم:<span class="keyword">&lt;/label&gt;</span>
-                        <span class="keyword">&lt;input</span> <span class="function">type</span>=<span class="string">"text"</span> 
-                               <span class="function">id</span>=<span class="string">"name"</span> 
-                               <span class="function">name</span>=<span class="string">"name"</span> 
-                               <span class="function">placeholder</span>=<span class="string">"أدخل اسمك"</span> 
-                               <span class="function">required</span><span class="keyword">&gt;</span>
-                        
-                        <span class="comment">&lt;!-- البريد الإلكتروني --&gt;</span>
-                        <span class="keyword">&lt;label</span> <span class="function">for</span>=<span class="string">"email"</span><span class="keyword">&gt;</span>البريد الإلكتروني:<span class="keyword">&lt;/label&gt;</span>
-                        <span class="keyword">&lt;input</span> <span class="function">type</span>=<span class="string">"email"</span> 
-                               <span class="function">id</span>=<span class="string">"email"</span> 
-                               <span class="function">name</span>=<span class="string">"email"</span> 
-                               <span class="function">placeholder</span>=<span class="string">"example@email.com"</span> 
-                               <span class="function">required</span><span class="keyword">&gt;</span>
-                        
-                        <span class="comment">&lt;!-- منطقة نصية --&gt;</span>
-                        <span class="keyword">&lt;label</span> <span class="function">for</span>=<span class="string">"message"</span><span class="keyword">&gt;</span>الرسالة:<span class="keyword">&lt;/label&gt;</span>
-                        <span class="keyword">&lt;textarea</span> 
-                                  <span class="function">id</span>=<span class="string">"message"</span> 
-                                  <span class="function">name</span>=<span class="string">"message"</span> 
-                                  <span class="function">rows</span>=<span class="string">"5"</span> 
-                                  <span class="function">placeholder</span>=<span class="string">"اكتب رسالتك هنا..."</span><span class="keyword">&gt;</span>
-                        <span class="keyword">&lt;/textarea&gt;</span>
-                        
-                        <span class="comment">&lt;!-- زر الإرسال --&gt;</span>
-                        <span class="keyword">&lt;button</span> <span class="function">type</span>=<span class="string">"submit"</span><span class="keyword">&gt;</span>إرسال<span class="keyword">&lt;/button&gt;</span>
-                    <span class="keyword">&lt;/form&gt;</span>
+&lt;form action="/submit" method="POST"&gt;
+    &lt;label for="name"&gt;الاسم:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name" placeholder="أدخل اسمك" required&gt;
+    
+    &lt;label for="email"&gt;البريد الإلكتروني:&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" placeholder="example@email.com" required&gt;
+    
+    &lt;label for="message"&gt;الرسالة:&lt;/label&gt;
+    &lt;textarea id="message" name="message" rows="5" placeholder="اكتب رسالتك هنا..."&gt;&lt;/textarea&gt;
+    
+    &lt;button type="submit"&gt;إرسال&lt;/button&gt;
+&lt;/form&gt;
                 </div>
                 
                 <h4>أنواع المدخلات (Input Types)</h4>
@@ -370,25 +289,6 @@ const chapter2 = {
                         <li>استخدم <code>required</code> للحقول المهمة مع رسائل خطأ واضحة</li>
                     </ul>
                 </div>
-                
-                <div class="example-box">
-                    <strong>📝 مثال عملي متكامل:</strong>
-                    <div class="code-block">
-                        <span class="keyword">&lt;form</span> <span class="function">action</span>=<span class="string">"/register"</span> <span class="function">method</span>=<span class="string">"POST"</span><span class="keyword">&gt;</span>
-                            <span class="keyword">&lt;fieldset&gt;</span>
-                                <span class="keyword">&lt;legend&gt;</span>معلومات المستخدم<span class="keyword">&lt;/legend&gt;</span>
-                                
-                                <span class="keyword">&lt;label</span> <span class="function">for</span>=<span class="string">"username"</span><span class="keyword">&gt;</span>اسم المستخدم:<span class="keyword">&lt;/label&gt;</span>
-                                <span class="keyword">&lt;input</span> <span class="function">type</span>=<span class="string">"text"</span> <span class="function">id</span>=<span class="string">"username"</span> <span class="function">name</span>=<span class="string">"username"</span> <span class="function">minlength</span>=<span class="string">"3"</span> <span class="function">required</span><span class="keyword">&gt;</span>
-                                
-                                <span class="keyword">&lt;label</span> <span class="function">for</span>=<span class="string">"password"</span><span class="keyword">&gt;</span>كلمة المرور:<span class="keyword">&lt;/label&gt;</span>
-                                <span class="keyword">&lt;input</span> <span class="function">type</span>=<span class="string">"password"</span> <span class="function">id</span>=<span class="string">"password"</span> <span class="function">name</span>=<span class="string">"password"</span> <span class="function">minlength</span>=<span class="string">"8"</span> <span class="function">required</span><span class="keyword">&gt;</span>
-                                
-                                <span class="keyword">&lt;button</span> <span class="function">type</span>=<span class="string">"submit"</span><span class="keyword">&gt;</span>تسجيل<span class="keyword">&lt;/button&gt;</span>
-                            <span class="keyword">&lt;/fieldset&gt;</span>
-                        <span class="keyword">&lt;/form&gt;</span>
-                    </div>
-                </div>
             `
         },
         {
@@ -398,42 +298,40 @@ const chapter2 = {
                 <h3>العناصر الدلالية - بناء هيكل منطقي للصفحات</h3>
                 <p>العناصر الدلالية تعطي معنى للهيكل، وتساعد محركات البحث وقارئات الشاشة في فهم المحتوى.</p>
                 
-                <h4>العناصر الدلالية الرئيسية</h4>
                 <div class="code-block">
-                    <span class="comment">&lt;!-- الهيكل الدلالي لصفحة نموذجية --&gt;</span>
-                    <span class="keyword">&lt;header&gt;</span>
-                        <span class="keyword">&lt;h1&gt;</span>عنوان الموقع<span class="keyword">&lt;/h1&gt;</span>
-                        <span class="keyword">&lt;nav&gt;</span>
-                            <span class="keyword">&lt;ul&gt;</span>
-                                <span class="keyword">&lt;li&gt;</span><span class="keyword">&lt;a</span> <span class="function">href</span>=<span class="string">"#"</span><span class="keyword">&gt;</span>الرئيسية<span class="keyword">&lt;/a&gt;&lt;/li&gt;</span>
-                                <span class="keyword">&lt;li&gt;</span><span class="keyword">&lt;a</span> <span class="function">href</span>=<span class="string">"#"</span><span class="keyword">&gt;</span>الدروس<span class="keyword">&lt;/a&gt;&lt;/li&gt;</span>
-                                <span class="keyword">&lt;li&gt;</span><span class="keyword">&lt;a</span> <span class="function">href</span>=<span class="string">"#"</span><span class="keyword">&gt;</span>اتصل بنا<span class="keyword">&lt;/a&gt;&lt;/li&gt;</span>
-                            <span class="keyword">&lt;/ul&gt;</span>
-                        <span class="keyword">&lt;/nav&gt;</span>
-                    <span class="keyword">&lt;/header&gt;</span>
-                    
-                    <span class="keyword">&lt;main&gt;</span>
-                        <span class="keyword">&lt;section&gt;</span>
-                            <span class="keyword">&lt;h2&gt;</span>قسم المقالات<span class="keyword">&lt;/h2&gt;</span>
-                            <span class="keyword">&lt;article&gt;</span>
-                                <span class="keyword">&lt;h3&gt;</span>مقال: أساسيات البرمجة<span class="keyword">&lt;/h3&gt;</span>
-                                <span class="keyword">&lt;p&gt;</span>محتوى المقال...<span class="keyword">&lt;/p&gt;</span>
-                            <span class="keyword">&lt;/article&gt;</span>
-                            <span class="keyword">&lt;article&gt;</span>
-                                <span class="keyword">&lt;h3&gt;</span>مقال: مقدمة في HTML<span class="keyword">&lt;/h3&gt;</span>
-                                <span class="keyword">&lt;p&gt;</span>محتوى المقال...<span class="keyword">&lt;/p&gt;</span>
-                            <span class="keyword">&lt;/article&gt;</span>
-                        <span class="keyword">&lt;/section&gt;</span>
-                        
-                        <span class="keyword">&lt;aside&gt;</span>
-                            <span class="keyword">&lt;h3&gt;</span>معلومات جانبية<span class="keyword">&lt;/h3&gt;</span>
-                            <span class="keyword">&lt;p&gt;</span>محتويات جانبية مثل الإعلانات أو روابط مفيدة<span class="keyword">&lt;/p&gt;</span>
-                        <span class="keyword">&lt;/aside&gt;</span>
-                    <span class="keyword">&lt;/main&gt;</span>
-                    
-                    <span class="keyword">&lt;footer&gt;</span>
-                        <span class="keyword">&lt;p&gt;</span>جميع الحقوق محفوظة © 2026<span class="keyword">&lt;/p&gt;</span>
-                    <span class="keyword">&lt;/footer&gt;</span>
+&lt;header&gt;
+    &lt;h1&gt;عنوان الموقع&lt;/h1&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#"&gt;الرئيسية&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;الدروس&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;اتصل بنا&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+    &lt;section&gt;
+        &lt;h2&gt;قسم المقالات&lt;/h2&gt;
+        &lt;article&gt;
+            &lt;h3&gt;مقال: أساسيات البرمجة&lt;/h3&gt;
+            &lt;p&gt;محتوى المقال...&lt;/p&gt;
+        &lt;/article&gt;
+        &lt;article&gt;
+            &lt;h3&gt;مقال: مقدمة في HTML&lt;/h3&gt;
+            &lt;p&gt;محتوى المقال...&lt;/p&gt;
+        &lt;/article&gt;
+    &lt;/section&gt;
+    
+    &lt;aside&gt;
+        &lt;h3&gt;معلومات جانبية&lt;/h3&gt;
+        &lt;p&gt;محتويات جانبية مثل الإعلانات أو روابط مفيدة&lt;/p&gt;
+    &lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+    &lt;p&gt;جميع الحقوق محفوظة © 2026&lt;/p&gt;
+&lt;/footer&gt;
                 </div>
                 
                 <h4>شرح كل عنصر</h4>
@@ -457,11 +355,6 @@ const chapter2 = {
                         <li>جعل الكود أكثر قابلية للقراءة والصيانة</li>
                     </ul>
                 </div>
-                
-                <div class="example-box">
-                    <strong>📝 مشروع عملي:</strong>
-                    <p>قم ببناء صفحة مدونة باستخدام العناصر الدلالية: header مع nav، main يحتوي على عدة articles، aside للمعلومات الجانبية، وfooter.</p>
-                </div>
             `
         },
         {
@@ -471,43 +364,33 @@ const chapter2 = {
                 <h3>تحسين محركات البحث التقني والأوبن جراف</h3>
                 <p>SEO يجعل موقعك يظهر في نتائج البحث. الأوبن جراف يتحكم في مظهر الرابط عند المشاركة في وسائل التواصل.</p>
                 
-                <h4>عناصر SEO الأساسية في الـ Head</h4>
                 <div class="code-block">
-                    <span class="keyword">&lt;head&gt;</span>
-                        <span class="comment">&lt;!-- الترميز واللغة --&gt;</span>
-                        <span class="keyword">&lt;meta</span> <span class="function">charset</span>=<span class="string">"UTF-8"</span><span class="keyword">&gt;</span>
-                        <span class="keyword">&lt;meta</span> <span class="function">name</span>=<span class="string">"language"</span> <span class="function">content</span>=<span class="string">"ar"</span><span class="keyword">&gt;</span>
-                        
-                        <span class="comment">&lt;!-- العنوان والوصف --&gt;</span>
-                        <span class="keyword">&lt;title&gt;</span>أكاديمية الكومندا - تعلم البرمجة من الصفر<span class="keyword">&lt;/title&gt;</span>
-                        <span class="keyword">&lt;meta</span> <span class="function">name</span>=<span class="string">"description"</span> 
-                              <span class="function">content</span>=<span class="string">"منصة تعلم برمجة متكاملة للمبتدئين والمحترفين"</span><span class="keyword">&gt;</span>
-                        
-                        <span class="comment">&lt;!-- الكلمات المفتاحية --&gt;</span>
-                        <span class="keyword">&lt;meta</span> <span class="function">name</span>=<span class="string">"keywords"</span> 
-                              <span class="function">content</span>=<span class="string">"برمجة, ويب, HTML, CSS, JavaScript, أكاديمية"</span><span class="keyword">&gt;</span>
-                        
-                        <span class="comment">&lt;!-- الروبوتات --&gt;</span>
-                        <span class="keyword">&lt;meta</span> <span class="function">name</span>=<span class="string">"robots"</span> <span class="function">content</span>=<span class="string">"index, follow"</span><span class="keyword">&gt;</span>
-                        
-                        <span class="comment">&lt;!-- Open Graph (لوسائل التواصل) --&gt;</span>
-                        <span class="keyword">&lt;meta</span> <span class="function">property</span>=<span class="string">"og:title"</span> 
-                              <span class="function">content</span>=<span class="string">"أكاديمية الكومندا - تعلم البرمجة"</span><span class="keyword">&gt;</span>
-                        <span class="keyword">&lt;meta</span> <span class="function">property</span>=<span class="string">"og:description"</span> 
-                              <span class="function">content</span>=<span class="string">"منصة تعلم برمجة متكاملة مع شروحات وأمثلة عملية"</span><span class="keyword">&gt;</span>
-                        <span class="keyword">&lt;meta</span> <span class="function">property</span>=<span class="string">"og:image"</span> 
-                              <span class="function">content</span>=<span class="string">"https://academy.com/logo.jpg"</span><span class="keyword">&gt;</span>
-                        <span class="keyword">&lt;meta</span> <span class="function">property</span>=<span class="string">"og:url"</span> 
-                              <span class="function">content</span>=<span class="string">"https://academy.com"</span><span class="keyword">&gt;</span>
-                        <span class="keyword">&lt;meta</span> <span class="function">property</span>=<span class="string">"og:type"</span> 
-                              <span class="function">content</span>=<span class="string">"website"</span><span class="keyword">&gt;</span>
-                        
-                        <span class="comment">&lt;!-- Twitter Card --&gt;</span>
-                        <span class="keyword">&lt;meta</span> <span class="function">name</span>=<span class="string">"twitter:card"</span> 
-                              <span class="function">content</span>=<span class="string">"summary_large_image"</span><span class="keyword">&gt;</span>
-                        <span class="keyword">&lt;meta</span> <span class="function">name</span>=<span class="string">"twitter:title"</span> 
-                              <span class="function">content</span>=<span class="string">"أكاديمية الكومندا"</span><span class="keyword">&gt;</span>
-                    <span class="keyword">&lt;/head&gt;</span>
+&lt;head&gt;
+    &lt;!-- الترميز واللغة --&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="language" content="ar"&gt;
+    
+    &lt;!-- العنوان والوصف --&gt;
+    &lt;title&gt;أكاديمية الكومندا - تعلم البرمجة من الصفر&lt;/title&gt;
+    &lt;meta name="description" content="منصة تعلم برمجة متكاملة للمبتدئين والمحترفين"&gt;
+    
+    &lt;!-- الكلمات المفتاحية --&gt;
+    &lt;meta name="keywords" content="برمجة, ويب, HTML, CSS, JavaScript, أكاديمية"&gt;
+    
+    &lt;!-- الروبوتات --&gt;
+    &lt;meta name="robots" content="index, follow"&gt;
+    
+    &lt;!-- Open Graph (لوسائل التواصل) --&gt;
+    &lt;meta property="og:title" content="أكاديمية الكومندا - تعلم البرمجة"&gt;
+    &lt;meta property="og:description" content="منصة تعلم برمجة متكاملة مع شروحات وأمثلة عملية"&gt;
+    &lt;meta property="og:image" content="https://academy.com/logo.jpg"&gt;
+    &lt;meta property="og:url" content="https://academy.com"&gt;
+    &lt;meta property="og:type" content="website"&gt;
+    
+    &lt;!-- Twitter Card --&gt;
+    &lt;meta name="twitter:card" content="summary_large_image"&gt;
+    &lt;meta name="twitter:title" content="أكاديمية الكومندا"&gt;
+&lt;/head&gt;
                 </div>
                 
                 <h4>نصائح ذهبية لتحسين SEO</h4>
@@ -523,11 +406,6 @@ const chapter2 = {
                 <div class="note-box">
                     <strong>📱 أهمية الأوبن جراف:</strong>
                     <p>عند مشاركة رابط موقعك على فيسبوك أو تويتر أو واتساب، الأوبن جراف يتحكم في كيفية ظهور المعاينة (العنوان، الوصف، الصورة).</p>
-                </div>
-                
-                <div class="example-box">
-                    <strong>🚀 مشروع عملي:</strong>
-                    <p>أضف جميع عناصر SEO و Open Graph لموقعك الشخصي أو مشروعك التعليمي. جرب مشاركة الرابط على وسائل التواصل وشاهد المعاينة.</p>
                 </div>
             `
         }
